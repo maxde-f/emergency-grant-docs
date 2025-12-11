@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof of Need (PoN) - PGPX Framework</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="style-anthropic.css">
+    <style>
+        .hero-pon {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .hero-pon h1 {
+            color: white;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero-pon .tagline {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.4em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #dee2e6;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .formula-box.highlight {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            border-color: #ffc107;
+        }
+
+        .formula-box.primary {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-color: #2196f3;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .pillar-card {
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .pillar-card.subjective { border-top: 4px solid #9c27b0; }
+        .pillar-card.objective { border-top: 4px solid #2196f3; }
+        .pillar-card.risk { border-top: 4px solid #f44336; }
+        .pillar-card.vulnerability { border-top: 4px solid #ff9800; }
+
+        .pillar-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .component-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .component-table th {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .component-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .loop-diagram {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .key-insight {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        .key-insight h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .comparison-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .comparison-box {
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .comparison-box.qf {
+            border-color: #2196f3;
+        }
+
+        .comparison-box.pon {
+            border-color: #9c27b0;
+        }
+
+        .example-calc {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+
+        .weight-slider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .weight-bar {
+            flex: 1;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .weight-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-pon h1 { font-size: 2.5em; }
+            .comparison-section { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-pon">
+        <h1>Proof of Need</h1>
+        <p class="tagline">
+            A First-Principles Framework for Recognizing Truth in Humanitarian and Public-Good Systems
+        </p>
+        <p style="margin-top: 30px; opacity: 0.8;">
+            The Missing Primitive That Answers: Where Is Need Real, Urgent, and Significant?
+        </p>
+    </div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <div class="nav-links" style="margin: 30px 0;">
+            <a href="index-pgpx.html">PGPX Home</a>
+            <a href="all-diagrams.html">Architecture</a>
+            <a href="ai-improvements-proposal.html">AI Innovations</a>
+            <a href="gf-harm-reduction-hiv-model.html">Global Fund Model</a>
+        </div>
+
+        <!-- WHY NEED IS THE MISSING PRIMITIVE -->
+        <section class="content-section">
+            <h2>Why "Need" Is the Missing Primitive</h2>
+
+            <p style="font-size: 1.15em; color: var(--color-text-secondary); max-width: 900px;">
+                The world has <strong>Proof of Work</strong> and <strong>Proof of Stake</strong> for blockchains,
+                and <strong>Proof of Impact</strong> emerging in public-good finance. But the system lacks a primitive
+                that answers the most essential moral question:
+            </p>
+
+            <div class="formula-box highlight">
+                <strong>How do we know, verifiably and safely, where need is real, urgent, and significant?</strong>
+            </div>
+
+            <p>Without this primitive, all other proofs risk misalignment. We measure what happened (impact)
+            without understanding what should have happened (need).</p>
+
+            <div class="key-insight">
+                <h4>The Core Problem</h4>
+                <p>Funding decisions are often influenced by: donor preferences, historical commitments, advocacy strength,
+                reporting structures, political optics, or legacy budgets. Meanwhile, the <strong>actual distribution of need</strong>
+                among real people rarely determines how resources flow.</p>
+            </div>
+        </section>
+
+        <!-- WHAT IS PROOF OF NEED -->
+        <section class="content-section">
+            <h2>What Is Proof of Need?</h2>
+
+            <p style="font-size: 1.1em;">
+                <strong>Proof of Need (PoN)</strong> is an epistemic and ethical framework that defines how systems should
+                recognize, validate, and prioritize human need <em>before</em> resources are allocated.
+            </p>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">?</div>
+                    <h3>Is the need real?</h3>
+                    <p>Verified through multiple evidence streams, not just claims</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">!</div>
+                    <h3>Is the need urgent?</h3>
+                    <p>Time-sensitive factors that require immediate response</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">*</div>
+                    <h3>Is the need material?</h3>
+                    <p>Non-trivial impact on lives, health, or dignity</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">+</div>
+                    <h3>Is the need structural?</h3>
+                    <p>Persistent systemic issues, not episodic events</p>
+                </div>
+            </div>
+
+            <div class="formula-box primary">
+                <strong>Most importantly:</strong><br>
+                Proof of Need elevates the <em>lived experience of affected communities</em> as a primary source of truth.<br>
+                Not a data point. Not an "input." A <strong>source of epistemic legitimacy</strong>.
+            </div>
+        </section>
+
+        <!-- THE THREE PILLARS -->
+        <section class="content-section">
+            <h2>The Four Pillars of Proof of Need</h2>
+
+            <div class="pillar-grid">
+                <div class="pillar-card subjective">
+                    <h3>S - Subjective Recognition</h3>
+                    <p><strong>Lived experience as primary truth</strong></p>
+                    <p>Communities, activists, frontline workers, and affected people assert:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>What is missing</li>
+                        <li>What is fragile</li>
+                        <li>What is dangerous</li>
+                        <li>What threatens dignity or life</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-style: italic; color: var(--color-text-secondary);">
+                        This subjective layer captures: stigma, safety risks, inaccessibility, exhaustion of services,
+                        bureaucratic barriers, psychological needs, declining trust, early indicators of collapse.
+                    </p>
+                </div>
+
+                <div class="pillar-card objective">
+                    <h3>O - Objective Validation</h3>
+                    <p><strong>Multiple independent evidence streams</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Service utilization patterns</li>
+                        <li>Workforce shortages</li>
+                        <li>Epidemiological signals</li>
+                        <li>Financial risks & supply-chain stress</li>
+                        <li>Geospatial & market data</li>
+                        <li>Governance disruptions</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-style: italic; color: var(--color-text-secondary);">
+                        Objective data does not override subjective truth. It provides triangulation and denoising.
+                    </p>
+                </div>
+
+                <div class="pillar-card risk">
+                    <h3>R - Continuity Risk</h3>
+                    <p><strong>Risk of service collapse</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Funding runway depletion</li>
+                        <li>Single-provider fragility</li>
+                        <li>Conflict intensity</li>
+                        <li>Provider arrest/shutdown risk</li>
+                        <li>Supply chain disruption</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-style: italic; color: var(--color-text-secondary);">
+                        A system 20% likely to collapse is more than twice as dangerous as one 10% likely.
+                        <strong>Fragility multiplies need.</strong>
+                    </p>
+                </div>
+
+                <div class="pillar-card vulnerability">
+                    <h3>U - Structural Vulnerability</h3>
+                    <p><strong>Latent injustice amplifiers</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Criminalization of key populations</li>
+                        <li>Intensity of stigma</li>
+                        <li>Repression & human rights violations</li>
+                        <li>Policy barriers</li>
+                        <li>Informal costs of accessing care</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-style: italic; color: var(--color-text-secondary);">
+                        This makes the system explicitly bias toward the most structurally exposed groups.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE MATHEMATICAL FORMULA -->
+        <section class="content-section">
+            <h2>The Mathematical Formula</h2>
+
+            <p>For a given community/region/project <em>i</em>, the Proof of Need score is:</p>
+
+            <div class="formula-box primary" style="font-size: 1.4em;">
+                PoN<sub>i</sub> = w<sub>S</sub>·S<sub>i</sub> + w<sub>O</sub>·O<sub>i</sub> + w<sub>R</sub>·R<sub>i</sub> + w<sub>U</sub>·U<sub>i</sub>
+            </div>
+
+            <table class="component-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Description</th>
+                        <th>Normalization</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>S<sub>i</sub></strong></td>
+                        <td>Subjective/community need (what people say)</td>
+                        <td>[0, 1]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>O<sub>i</sub></strong></td>
+                        <td>Objective indicators (what data shows)</td>
+                        <td>[0, 1]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>R<sub>i</sub></strong></td>
+                        <td>Continuity risk (how close to service collapse)</td>
+                        <td>[0, 1]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>U<sub>i</sub></strong></td>
+                        <td>Structural vulnerability (criminalization, conflict, etc.)</td>
+                        <td>[0, 1]</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Constraints:</strong> w<sub>S</sub> + w<sub>O</sub> + w<sub>R</sub> + w<sub>U</sub> = 1, all weights ≥ 0</p>
+
+            <h3 style="margin-top: 40px;">The Quadratic Trick for Community Voice</h3>
+
+            <p>For the subjective component, we borrow from Quadratic Funding:</p>
+
+            <div class="formula-box" style="font-size: 1.3em;">
+                S<sub>i</sub> = (Σ<sub>j</sub> √s<sub>ij</sub>)²
+            </div>
+
+            <p>Where s<sub>ij</sub> ∈ [0,1] is the need intensity reported by person j in community i.</p>
+
+            <div class="key-insight">
+                <h4>Why Square Roots?</h4>
+                <ul>
+                    <li><strong>Many moderate signals > few extreme ones</strong> — shared experience of moderate need = strong signal</li>
+                    <li><strong>Diminishing returns on individual intensity</strong> — no incentive to exaggerate</li>
+                    <li><strong>Symmetry with QF</strong> — shared structure makes mechanisms interoperable</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FUNDING ALLOCATION -->
+        <section class="content-section">
+            <h2>From Need to Funding Allocation</h2>
+
+            <p>Once we have PoN<sub>i</sub> for each community, we allocate from a fixed pool F:</p>
+
+            <div class="formula-box primary" style="font-size: 1.3em;">
+                Funding<sub>i</sub> = F · (PoN<sub>i</sub>)<sup>κ</sup> / Σ<sub>j</sub>(PoN<sub>j</sub>)<sup>κ</sup>
+            </div>
+
+            <p>Where κ controls responsiveness to need:</p>
+
+            <ul style="margin-left: 30px;">
+                <li><strong>κ = 1</strong> → proportional allocation</li>
+                <li><strong>κ > 1</strong> → strongly favor high-need communities (convex)</li>
+                <li><strong>κ < 1</strong> → smoother distribution (concave)</li>
+            </ul>
+
+            <h3 style="margin-top: 40px;">Concrete Example</h3>
+
+            <div class="example-calc">
+                <p><strong>Two Communities: A and B</strong></p>
+                <table style="width: 100%; margin: 15px 0;">
+                    <tr><th>Component</th><th>Community A</th><th>Community B</th></tr>
+                    <tr><td>S (Subjective)</td><td>0.65</td><td>0.45</td></tr>
+                    <tr><td>O (Objective)</td><td>0.40</td><td>0.60</td></tr>
+                    <tr><td>R (Risk)</td><td>0.20</td><td>0.90</td></tr>
+                    <tr><td>U (Vulnerability)</td><td>0.10</td><td>0.80</td></tr>
+                </table>
+                <p><strong>Weights:</strong> w<sub>S</sub>=0.3, w<sub>O</sub>=0.2, w<sub>R</sub>=0.3, w<sub>U</sub>=0.2</p>
+                <hr style="margin: 15px 0;">
+                <p><strong>PoN<sub>A</sub></strong> = 0.3(0.65) + 0.2(0.40) + 0.3(0.20) + 0.2(0.10) = <strong>0.355</strong></p>
+                <p><strong>PoN<sub>B</sub></strong> = 0.3(0.45) + 0.2(0.60) + 0.3(0.90) + 0.2(0.80) = <strong>0.685</strong></p>
+                <hr style="margin: 15px 0;">
+                <p>With κ=2 (strong pro-need bias):</p>
+                <p><strong>Share<sub>A</sub></strong> = 0.126 / 0.595 ≈ <strong>21.2%</strong></p>
+                <p><strong>Share<sub>B</sub></strong> = 0.469 / 0.595 ≈ <strong>78.8%</strong></p>
+            </div>
+
+            <div class="key-insight">
+                <h4>Result</h4>
+                <p>Community B receives ~79% of funding despite Community A having stronger community voice.
+                This matches the philosophical intuition: <strong>continuity risk + structural vulnerability override raw volume of signals</strong>.</p>
+            </div>
+        </section>
+
+        <!-- THE ADAPTIVE LOOP -->
+        <section class="content-section">
+            <h2>The Adaptive Public-Good Funding Loop</h2>
+
+            <div class="loop-diagram">
+                <div class="mermaid">
+graph TB
+    subgraph "1. PROOF OF NEED"
+        PoN[PoN Signal]
+        PoN1[Lived experience]
+        PoN2[Fragility & risk]
+        PoN3[Structural need]
+        PoN --> PoN1
+        PoN --> PoN2
+        PoN --> PoN3
+    end
+
+    subgraph "2. PRIORITY WEIGHTING"
+        PW[Governance Layer]
+        PW1[Need → weight]
+        PW2[Urgency scoring]
+        PW3[Quadratic aggregation]
+        PW --> PW1
+        PW --> PW2
+        PW --> PW3
+    end
+
+    subgraph "3. FUNDING ALLOCATION"
+        FA[Liquidity Flow]
+        FA1[QF rounds]
+        FA2[Treasury routing]
+        FA3[Emergency buffers]
+        FA --> FA1
+        FA --> FA2
+        FA --> FA3
+    end
+
+    subgraph "4. IMPLEMENTATION"
+        IMP[Real-World Work]
+        IMP1[Service delivery]
+        IMP2[Crisis response]
+        IMP3[Community action]
+        IMP --> IMP1
+        IMP --> IMP2
+        IMP --> IMP3
+    end
+
+    subgraph "5. PROOF OF IMPACT"
+        PoI[PoI Signal]
+        PoI1[Beneficiary validation]
+        PoI2[ZK proofs & privacy]
+        PoI3[Verified outcomes]
+        PoI --> PoI1
+        PoI --> PoI2
+        PoI --> PoI3
+    end
+
+    subgraph "6. SYSTEM ADAPTATION"
+        SA[Learning Layer]
+        SA1[Update PoN baseline]
+        SA2[Adjust weights]
+        SA3[Reroute liquidity]
+        SA --> SA1
+        SA --> SA2
+        SA --> SA3
+    end
+
+    PoN --> PW
+    PW --> FA
+    FA --> IMP
+    IMP --> PoI
+    PoI --> SA
+    SA --> PoN
+
+    style PoN fill:#9c27b0,color:#fff
+    style PW fill:#ff9800,color:#fff
+    style FA fill:#2196f3,color:#fff
+    style IMP fill:#4caf50,color:#fff
+    style PoI fill:#e91e63,color:#fff
+    style SA fill:#607d8b,color:#fff
+                </div>
+            </div>
+
+            <div class="key-insight">
+                <h4>The Self-Correcting System</h4>
+                <p><strong>Need</strong> produces weight → <strong>Weight</strong> produces allocation → <strong>Allocation</strong> produces action →
+                <strong>Action</strong> produces measured impact → <strong>Impact</strong> updates need → <strong>Need</strong> resets the next cycle's governance parameters.</p>
+            </div>
+        </section>
+
+        <!-- COMBINING PoN AND PoI -->
+        <section class="content-section">
+            <h2>Combining PoN with PoI</h2>
+
+            <p>Proof of Need and Proof of Impact form a closed accountability loop:</p>
+
+            <div class="formula-box primary" style="font-size: 1.3em;">
+                Score<sub>i</sub> = (PoN<sub>i</sub>)<sup>κ</sup> · (PoI<sub>i</sub>)<sup>λ</sup>
+            </div>
+
+            <div class="comparison-section">
+                <div class="comparison-box pon">
+                    <h3 style="color: #9c27b0;">PoN asks:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>What is required?</li>
+                        <li>Who is at risk?</li>
+                        <li>What is fragile?</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>κ</strong> — how much to prioritize need</p>
+                </div>
+                <div class="comparison-box qf">
+                    <h3 style="color: #2196f3;">PoI asks:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>Did we deliver real value?</li>
+                        <li>What changed in people's lives?</li>
+                        <li>Was impact verified?</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>λ</strong> — how much to reward demonstrated impact</p>
+                </div>
+            </div>
+
+            <p><strong>Evolution strategy:</strong></p>
+            <ul style="margin-left: 30px;">
+                <li>Early-stage systems: set λ low (need first)</li>
+                <li>As data accumulates: increase λ gradually (need + performance)</li>
+                <li>The system evolves naturally rather than by governance fiat</li>
+            </ul>
+        </section>
+
+        <!-- SYMMETRY WITH QF -->
+        <section class="content-section">
+            <h2>The Symmetry with Quadratic Funding</h2>
+
+            <div class="comparison-section">
+                <div class="comparison-box qf">
+                    <h3 style="color: #2196f3;">Quadratic Funding</h3>
+                    <p style="margin: 15px 0;">Transforms:</p>
+                    <p style="font-weight: bold; font-size: 1.1em;">donations → public-good allocation</p>
+                    <ul style="margin: 20px 0 0 20px;">
+                        <li>Reduces influence of concentrated actors</li>
+                        <li>Rewards broad participation</li>
+                        <li>Uses convexity/concavity for fairness</li>
+                        <li>Transparent and legible</li>
+                    </ul>
+                </div>
+                <div class="comparison-box pon">
+                    <h3 style="color: #9c27b0;">Proof of Need</h3>
+                    <p style="margin: 15px 0;">Transforms:</p>
+                    <p style="font-weight: bold; font-size: 1.1em;">need signals → public-good allocation</p>
+                    <ul style="margin: 20px 0 0 20px;">
+                        <li>Reduces influence of concentrated actors</li>
+                        <li>Rewards broad participation</li>
+                        <li>Uses convexity/concavity for fairness</li>
+                        <li>Transparent and legible</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box highlight">
+                <strong>PoN is essentially "Quadratic Funding for necessity, not preference."</strong>
+            </div>
+        </section>
+
+        <!-- ETHICS -->
+        <section class="content-section">
+            <h2>The Ethics of Proof of Need</h2>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <h3>Ethic 1</h3>
+                    <p><strong>Truth belongs to those experiencing the problem.</strong></p>
+                    <p style="color: var(--color-text-secondary);">Top-down models cannot define the needs of sex workers, people who use drugs,
+                    LGBTQI+ communities, people living with HIV, or people in conflict zones.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Ethic 2</h3>
+                    <p><strong>Need must be recognized without demanding vulnerability.</strong></p>
+                    <p style="color: var(--color-text-secondary);">Evidence systems cannot punish people for telling the truth
+                    or force them to expose risky personal information.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Ethic 3</h3>
+                    <p><strong>Need is not a competition.</strong></p>
+                    <p style="color: var(--color-text-secondary);">Communities should never be placed in a position where they must
+                    exaggerate suffering to "win" funding.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Ethic 4</h3>
+                    <p><strong>Need implies duty.</strong></p>
+                    <p style="color: var(--color-text-secondary);">When Proof of Need is high, the system has a moral obligation to respond —
+                    not a discretionary choice.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Ethic 5</h3>
+                    <p><strong>Need precedes impact.</strong></p>
+                    <p style="color: var(--color-text-secondary);">We cannot measure "impact" without understanding "what needed to be impacted."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECHNOLOGY -->
+        <section class="content-section">
+            <h2>Cryptography and AI: Seeing Need Without Surveillance</h2>
+
+            <p style="font-size: 1.1em; margin-bottom: 30px;">
+                The central tension: <strong>you must see need without exposing people.</strong>
+            </p>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <h3>Zero-Knowledge Proofs</h3>
+                    <p>Allow evidence of need without revealing identities</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Differential Privacy</h3>
+                    <p>Protects small populations from identification</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>AI Aggregation</h3>
+                    <p>Aggregate patterns without collecting personal data</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Community Oracles</h3>
+                    <p>Local validators confirm claims without exposing to outsiders</p>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                The system becomes <strong>transparent where it matters</strong>, <strong>private where it protects</strong>.<br>
+                Proof of Need reconciles two old enemies: <em>legitimacy</em> and <em>safety</em>.
+            </div>
+        </section>
+
+        <!-- CLOSING -->
+        <section class="content-section" style="text-align: center;">
+            <h2>A Closing Thought</h2>
+
+            <p style="font-size: 1.2em; max-width: 800px; margin: 30px auto;">
+                Traditional systems treat need as <em>deficiency</em>.<br>
+                Proof of Need reframes it as <strong>signal</strong> — a message from the world about where life is becoming fragile,
+                where rights are slipping, where resilience is thinning.
+            </p>
+
+            <div class="formula-box highlight" style="max-width: 600px; margin: 30px auto;">
+                <p style="font-size: 1.1em; margin: 0;">
+                    A dignified system <strong>listens</strong> to these signals.<br>
+                    A just system <strong>responds</strong>.<br>
+                    A wise system <strong>adapts</strong>.
+                </p>
+            </div>
+
+            <p style="font-size: 1.3em; margin-top: 40px; color: var(--color-primary);">
+                <strong>Proof of Need is the beginning of such a system.</strong>
+            </p>
+        </section>
+
+        <!-- LINKS -->
+        <section class="content-section">
+            <h2>Related Documentation</h2>
+            <div class="architecture-cards">
+                <div class="arch-card">
+                    <h3>PGPX Protocol</h3>
+                    <p>The complete Public Goods Protocol X architecture</p>
+                    <a href="index-pgpx.html" class="btn">View PGPX</a>
+                </div>
+                <div class="arch-card">
+                    <h3>Proof of Impact</h3>
+                    <p>Multi-layer validation and impact measurement</p>
+                    <a href="all-diagrams.html#impact-validation" class="btn">View PoI</a>
+                </div>
+                <div class="arch-card">
+                    <h3>Global Fund Model</h3>
+                    <p>Real-world implementation for harm reduction</p>
+                    <a href="gf-harm-reduction-hiv-model.html" class="btn">View Model</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3>Proof of Need - PGPX Framework</h3>
+            <p style="margin: 20px 0;">A Mathematical Primitive for Allocating Public-Good Funding</p>
+            <div class="nav-links" style="margin-top: 30px;">
+                <a href="index-pgpx.html">PGPX Home</a>
+                <a href="all-diagrams.html">Architecture</a>
+                <a href="ai-improvements-proposal.html">AI Innovations</a>
+                <a href="smart-contracts.md">Smart Contracts</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px'
+            }
+        });
+    </script>
+</body>
+</html>
