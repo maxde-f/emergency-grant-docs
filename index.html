@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Grant Management System - Architecture Diagrams</title>
+    <title>PGPX - Technical Architecture Diagrams</title>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <style>
         * {
@@ -50,12 +50,12 @@
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             position: sticky;
-            top: 20px;
+            top: 10px;
             z-index: 100;
         }
-        
+
         nav h3 {
             margin-bottom: 15px;
             color: #667eea;
@@ -91,6 +91,7 @@
             margin-bottom: 30px;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            scroll-margin-top: 200px;
         }
         
         .diagram-section h2 {
@@ -208,13 +209,13 @@
 <body>
     <div class="container">
         <header>
-            <h1>🏥 Emergency Grant Management System</h1>
-            <p class="subtitle">Comprehensive Architecture & Data Flow Diagrams</p>
+            <h1>PGPX - Technical Architecture</h1>
+            <p class="subtitle">Public Goods Protocol X - Comprehensive Architecture & Data Flow Diagrams</p>
             <p style="margin-top: 15px; font-size: 0.9em;">AI-Powered • Blockchain-Based • Real-time Monitoring</p>
         </header>
 
         <nav id="navigation">
-            <h3>📊 Навигация по диаграммам</h3>
+            <h3>Навигация по диаграммам</h3>
             <ul>
                 <li><a href="#diagram1">1. High-Level Grant Cycle</a></li>
                 <li><a href="#diagram2">2. Detailed Cycle with AI & Blockchain</a></li>
@@ -269,7 +270,7 @@ graph TB
             </div>
             
             <div class="insights">
-                <h4>💡 Ключевые Инсайты</h4>
+                <h4>Ключевые Инсайты</h4>
                 <ul>
                     <li><strong>Непрерывный цикл:</strong> Knowledge Base питает следующие gap identifications</li>
                     <li><strong>Feedback loops:</strong> Rejected applications получают detailed feedback</li>
@@ -389,7 +390,7 @@ graph TB
             </div>
             
             <div class="insights">
-                <h4>💡 Automation Breakdown</h4>
+                <h4>Automation Breakdown</h4>
                 <ul>
                     <li><strong>Этап 1:</strong> 90% automated gap detection через DHIS2 + ML</li>
                     <li><strong>Этап 2:</strong> 80% eligibility screening automated</li>
@@ -489,7 +490,7 @@ graph TB
             </div>
             
             <div class="insights">
-                <h4>💡 Архитектурные Принципы</h4>
+                <h4>Архитектурные Принципы</h4>
                 <ul>
                     <li><strong>Microservices:</strong> Каждый сервис независимо deployable и scalable</li>
                     <li><strong>AI/ML Layer:</strong> Отдельный layer для GPU-intensive операций</li>
@@ -579,7 +580,7 @@ graph LR
             </div>
             
             <div class="insights">
-                <h4>💡 Data Flow Patterns</h4>
+                <h4>Data Flow Patterns</h4>
                 <ul>
                     <li><strong>Real-time Stream:</strong> DHIS2 data → Streaming Processor → AI Analysis → Alerts (< 5 sec)</li>
                     <li><strong>Batch Processing:</strong> Field reports → ETL → Analytics → Data Warehouse (daily)</li>
@@ -665,7 +666,7 @@ sequenceDiagram
             </div>
             
             <div class="insights">
-                <h4>💡 Blockchain Benefits</h4>
+                <h4>Blockchain Benefits</h4>
                 <ul>
                     <li><strong>Immutability:</strong> Все grant transactions permanently recorded</li>
                     <li><strong>Transparency:</strong> Donors видят real-time fund flow</li>
@@ -787,7 +788,7 @@ graph TB
             </div>
             
             <div class="insights">
-                <h4>💡 Validation Thresholds</h4>
+                <h4>Validation Thresholds</h4>
                 <ul>
                     <li><strong>Layer 1:</strong> 70% threshold - statistical validation</li>
                     <li><strong>Layer 2:</strong> 75% threshold - AI evidence assessment</li>
@@ -817,13 +818,13 @@ graph TB
     Q3 -->|Yes| Q4{Volume?}
     
     Q4 -->|Low| Manual4[Optional<br/>Automation]
-    Q4 -->|High| Auto[Full<br/>Automation ✅]
+    Q4 -->|High| Auto[Full<br/>Automation]
     
     Manual2 --> HumanLoop[Human-in-the-Loop<br/>AI Assistant]
     
     Manual3 --> Pilot[Pilot Program]
     Pilot --> Test{Success?}
-    Test -->|Yes| Scale[Scale Up 🔨]
+    Test -->|Yes| Scale[Scale Up]
     Test -->|No| Iterate[Iterate]
     
     Auto --> Monitor[Continuous<br/>Monitoring]
@@ -842,11 +843,11 @@ graph TB
             </div>
             
             <div class="insights">
-                <h4>💡 Automation Strategy</h4>
+                <h4>Automation Strategy</h4>
                 <ul>
-                    <li><strong>Full Automation (✅):</strong> High-volume, low-risk, proven tech (screening, classification)</li>
-                    <li><strong>Human-in-Loop (🟠):</strong> Critical decisions require human final approval (grant approval, disbursement)</li>
-                    <li><strong>Phased Rollout (🔨):</strong> New tech needs pilot testing (scoring models, risk assessment)</li>
+                    <li><strong>Full Automation:</strong> High-volume, low-risk, proven tech (screening, classification)</li>
+                    <li><strong>Human-in-Loop:</strong> Critical decisions require human final approval (grant approval, disbursement)</li>
+                    <li><strong>Phased Rollout:</strong> New tech needs pilot testing (scoring models, risk assessment)</li>
                     <li><strong>Never Automate:</strong> Poor data quality scenarios - garbage in, garbage out</li>
                 </ul>
             </div>
@@ -923,7 +924,7 @@ graph LR
             </div>
             
             <div class="insights">
-                <h4>💡 Fast-Track Acceleration</h4>
+                <h4>Fast-Track Acceleration</h4>
                 <ul>
                     <li><strong>AI Pre-screening:</strong> 2-3 days vs 2-3 weeks manual</li>
                     <li><strong>Parallel Review:</strong> Technical + Financial simultaneous</li>
@@ -1011,7 +1012,7 @@ graph TB
             </div>
             
             <div class="insights">
-                <h4>💡 DHIS2 Integration Benefits</h4>
+                <h4>DHIS2 Integration Benefits</h4>
                 <ul>
                     <li><strong>Real-time Gap Detection:</strong> Webhooks trigger immediate alerts при critical indicators</li>
                     <li><strong>Evidence Cross-validation:</strong> Grant results автоматически verified против DHIS2 data</li>
@@ -1099,7 +1100,7 @@ graph TB
             </div>
             
             <div class="insights">
-                <h4>💡 Security Highlights</h4>
+                <h4>Security Highlights</h4>
                 <ul>
                     <li><strong>Defense in Depth:</strong> 4 security layers + compliance + monitoring</li>
                     <li><strong>Zero Trust:</strong> MFA required для всех users, даже internal</li>
@@ -1210,7 +1211,7 @@ graph TB
             </div>
             
             <div class="insights">
-                <h4>💡 Deployment Strategy</h4>
+                <h4>Deployment Strategy</h4>
                 <ul>
                     <li><strong>Namespace Isolation:</strong> Security boundaries между service types</li>
                     <li><strong>Pod Replication:</strong> High-availability через multiple pods</li>
@@ -1223,10 +1224,10 @@ graph TB
         </div>
 
         <div class="diagram-section">
-            <h2>📊 SUMMARY: KEY ARCHITECTURAL DECISIONS</h2>
+            <h2>SUMMARY: KEY ARCHITECTURAL DECISIONS</h2>
             
             <div class="insights">
-                <h4>🎯 Technology Stack Highlights</h4>
+                <h4>Technology Stack Highlights</h4>
                 <ul>
                     <li><strong>Frontend:</strong> React (Web), React Native (Mobile) - single codebase approach</li>
                     <li><strong>Backend:</strong> Node.js + Python microservices на Kubernetes</li>
@@ -1238,7 +1239,7 @@ graph TB
             </div>
             
             <div class="insights">
-                <h4>⚡ Performance Targets</h4>
+                <h4>Performance Targets</h4>
                 <ul>
                     <li><strong>Application Screening:</strong> < 24 hours (automated)</li>
                     <li><strong>AI Scoring:</strong> < 5 minutes per application</li>
@@ -1250,7 +1251,7 @@ graph TB
             </div>
             
             <div class="insights">
-                <h4>💰 Cost Considerations</h4>
+                <h4>Cost Considerations</h4>
                 <ul>
                     <li><strong>AI/ML API Costs:</strong> $50K-100K/year (OpenAI/Claude usage)</li>
                     <li><strong>GPU Pods:</strong> $3K-5K/month per GPU node (ML training/inference)</li>

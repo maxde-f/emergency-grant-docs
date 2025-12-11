@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGPX - AI Improvements & Adaptive Smart Contracts</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="style-anthropic.css">
+    <style>
+        .diagram-section {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .diagram-section h2 {
+            color: var(--color-text);
+            border-bottom: 3px solid var(--color-primary);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .diagram-section h3 {
+            color: var(--color-text);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .proposal-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .proposal-box h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+        }
+
+        .improvement-card {
+            background: white;
+            border-left: 4px solid var(--color-primary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .improvement-card h4 {
+            color: var(--color-primary);
+            margin-top: 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .comparison-table th {
+            background: var(--color-primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--color-bg-secondary);
+        }
+
+        .feature-badge {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 5px;
+        }
+
+        .diagram-wrapper {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius-md);
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .nav-links a {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>PGPX - Architectural Improvements Proposal</h1>
+        <p class="subtitle">AI Automation Enhancements & Adaptive Smart Contracts with Human-Readable Translation</p>
+    </div>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="index-pgpx.html">PGPX Home</a>
+            <a href="all-diagrams.html">Core Diagrams</a>
+            <a href="pgp-extended-diagrams.html">Extended Diagrams</a>
+            <a href="WHITEPAPER.md">Whitepaper</a>
+        </div>
+
+        <div class="proposal-box">
+            <h2>🎯 Ключевая Инновация: Адаптивные Смарт-Контракты с ИИ</h2>
+            <p><strong>Проблема:</strong> Традиционные смарт-контракты жесткие ("если X, то Y"), а бумажные договоры неэффективны. Нужен гибкий механизм, который понимает контекст и адаптируется к изменениям, сохраняя фокус на конечной цели - impact.</p>
+            <p><strong>Решение:</strong> ИИ-агент между донором, провайдером услуг и бенефициарами, который:</p>
+            <ul>
+                <li>✅ Переводит смарт-контракт на человеческий язык (двусторонняя трансляция)</li>
+                <li>✅ Заменяет бумажные грантовые соглашения цифровыми</li>
+                <li>✅ Валидирует proof-of-impact в реальном времени</li>
+                <li>✅ Адаптирует условия при изменениях, сохраняя цель</li>
+                <li>✅ Обеспечивает прозрачность для всех сторон</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 1: CURRENT STATE ANALYSIS -->
+        <section class="diagram-section">
+            <h2>1. Анализ Текущей Архитектуры</h2>
+
+            <h3>Существующие Компоненты:</h3>
+
+            <div class="improvement-card">
+                <h4>✅ Что Уже Есть (Хорошо)</h4>
+                <ul>
+                    <li><strong>3-Layer Protocol:</strong> Identity (DID/SBT) → Funding (QF) → Governance (DAO)</li>
+                    <li><strong>4-Layer Proof-of-Impact:</strong> Automated → AI → Blockchain → Human validation</li>
+                    <li><strong>Basic Smart Adaptive Contracts:</strong> AI oracle, milestone-based disbursement</li>
+                    <li><strong>Reputation System:</strong> Bronze → Silver → Gold → Platinum tiers</li>
+                    <li><strong>Multi-stakeholder QF:</strong> Weighted voting by role</li>
+                </ul>
+            </div>
+
+            <div class="improvement-card">
+                <h4>⚠️ Что Нужно Улучшить</h4>
+                <ul>
+                    <li><strong>Human-Readable Translation:</strong> Смарт-контракты сложны для понимания</li>
+                    <li><strong>Adaptation Logic:</strong> ИИ адаптация недостаточно гибкая</li>
+                    <li><strong>Real-Time Validation:</strong> Proof-of-impact валидация не в реальном времени</li>
+                    <li><strong>Multi-Party Communication:</strong> Нет прямого канала между донором ↔ ИИ ↔ провайдером ↔ бенефициарами</li>
+                    <li><strong>Goal-Oriented Flexibility:</strong> Нет механизма "гибкость в методах, жесткость в цели"</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ADAPTIVE AI SMART CONTRACT ARCHITECTURE -->
+        <section class="diagram-section">
+            <h2>2. Новая Архитектура: Адаптивный ИИ Смарт-Контракт</h2>
+
+            <h3>2.1 Общая Архитектура</h3>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "PARTICIPANTS"
+        Donor[Donor<br/>Донор]
+        ServiceProvider[Service Provider<br/>Провайдер Услуг]
+        Beneficiaries[Beneficiaries<br/>Бенефициары]
+        Validators[Expert Validators<br/>Эксперты]
+    end
+
+    subgraph "AI AGENT LAYER - Интеллектуальный Посредник"
+        AICore[AI Agent Core<br/>Ядро ИИ-Агента]
+
+        subgraph "AI Modules"
+            Translator[Natural Language Translator<br/>Переводчик Контрактов<br/>Solidity ↔ Human Language]
+            ImpactValidator[Impact Validator<br/>Валидатор Влияния<br/>Real-time PoI Analysis]
+            AdaptationEngine[Adaptation Engine<br/>Движок Адаптации<br/>Context-Aware Adjustments]
+            GoalKeeper[Goal Keeper<br/>Хранитель Цели<br/>Ensures Impact Focus]
+            CommunicationHub[Communication Hub<br/>Коммуникационный Хаб<br/>Multi-party Dialogue]
+        end
+    end
+
+    subgraph "SMART CONTRACT LAYER"
+        AdaptiveContract[Adaptive Smart Contract<br/>Адаптивный Смарт-Контракт]
+
+        subgraph "Contract Modules"
+            CoreTerms[Core Terms<br/>Базовые Условия<br/>Immutable Goals]
+            FlexibleTerms[Flexible Terms<br/>Гибкие Условия<br/>Adjustable Methods]
+            MilestoneLogic[Milestone Logic<br/>Логика Вех<br/>Auto-disbursement]
+            ValidationRules[Validation Rules<br/>Правила Валидации<br/>PoI Thresholds]
+        end
+    end
+
+    subgraph "DATA SOURCES"
+        DHIS2[DHIS2<br/>Health Data]
+        IoT[IoT Sensors<br/>Real-time Metrics]
+        Photos[Photo/Video<br/>Evidence]
+        Surveys[Surveys<br/>Beneficiary Feedback]
+        External[External APIs<br/>Weather, News, etc]
+    end
+
+    subgraph "BLOCKCHAIN LAYER"
+        OnChain[On-Chain Records<br/>Immutable Log]
+        IPFS[IPFS/Arweave<br/>Document Storage]
+        Oracle[Chainlink Oracle<br/>External Data Bridge]
+    end
+
+    %% Connections
+    Donor --> AICore
+    ServiceProvider --> AICore
+    Beneficiaries --> AICore
+    Validators --> AICore
+
+    AICore --> Translator
+    AICore --> ImpactValidator
+    AICore --> AdaptationEngine
+    AICore --> GoalKeeper
+    AICore --> CommunicationHub
+
+    Translator --> AdaptiveContract
+    ImpactValidator --> AdaptiveContract
+    AdaptationEngine --> AdaptiveContract
+    GoalKeeper --> AdaptiveContract
+    CommunicationHub --> AdaptiveContract
+
+    AdaptiveContract --> CoreTerms
+    AdaptiveContract --> FlexibleTerms
+    AdaptiveContract --> MilestoneLogic
+    AdaptiveContract --> ValidationRules
+
+    DHIS2 --> Oracle
+    IoT --> Oracle
+    Photos --> Oracle
+    Surveys --> Oracle
+    External --> Oracle
+
+    Oracle --> ImpactValidator
+    Oracle --> AdaptationEngine
+
+    AdaptiveContract --> OnChain
+    AdaptiveContract --> IPFS
+
+    %% Styling
+    style AICore fill:#667eea,stroke:#764ba2,color:#fff
+    style Translator fill:#4ecdc4,stroke:#0a8a7f
+    style ImpactValidator fill:#95e1d3,stroke:#38ada9
+    style AdaptationEngine fill:#ffd93d,stroke:#f39c12
+    style GoalKeeper fill:#ff6b6b,stroke:#c92a2a
+    style CommunicationHub fill:#74b9ff,stroke:#0984e3
+    style AdaptiveContract fill:#a29bfe,stroke:#6c5ce7
+    style CoreTerms fill:#55efc4,stroke:#00b894
+    style FlexibleTerms fill:#fdcb6e,stroke:#e17055
+                </div>
+            </div>
+
+            <h3>2.2 Ключевые Инновации</h3>
+
+            <div class="improvement-card">
+                <h4>🔄 1. Natural Language Translator (Переводчик Контрактов)</h4>
+                <p><strong>Функция:</strong> Двусторонняя трансляция между Solidity кодом и человеческим языком</p>
+
+                <p><strong>Пример:</strong></p>
+                <div class="code-block">
+<strong>Solidity Code:</strong>
+if (milestone[0].completed && aiOracle.validate(evidenceHash) >= 75) {
+    transfer(recipient, 25000 * 10**18);
+    milestone[1].unlocked = true;
+}
+
+<strong>↓ ИИ Переводит ↓</strong>
+
+<strong>Human Language (Russian):</strong>
+📋 Веха 1: "Обучение 50 медработников"
+✅ Условие: Завершено обучение + ИИ подтвердил доказательства (≥75%)
+💰 Выплата: $25,000 USD
+🔓 Следующий шаг: Разблокируется Веха 2 "Закупка оборудования"
+
+<strong>↓ Может Обратно в Код ↓</strong>
+
+<strong>Generated Solidity:</strong> (if changes needed)
+                </div>
+
+                <p><strong>Преимущества:</strong></p>
+                <ul>
+                    <li>✅ Доноры видят понятные условия</li>
+                    <li>✅ Провайдеры понимают требования без технических знаний</li>
+                    <li>✅ Бенефициары могут отслеживать прогресс</li>
+                    <li>✅ Юридическая понятность (замена бумажных договоров)</li>
+                </ul>
+            </div>
+
+            <div class="improvement-card">
+                <h4>🎯 2. Goal Keeper (Хранитель Цели)</h4>
+                <p><strong>Функция:</strong> Обеспечивает фокус на конечной цели (impact), разрешая гибкость в методах</p>
+
+                <p><strong>Принцип:</strong></p>
+                <div class="code-block">
+<strong>IMMUTABLE GOAL (Неизменная Цель):</strong>
+"Reduce maternal mortality in District X by 30% within 12 months"
+
+<strong>FLEXIBLE METHODS (Гибкие Методы):</strong>
+✓ Training targets: 100 → 85 health workers (OK if goal still achievable)
+✓ Budget allocation: 60% training + 40% equipment → 50% + 50% (OK)
+✓ Timeline: 12 months → 14 months (OK if external crisis)
+✗ Goal change: 30% → 20% reduction (NOT OK without donor approval)
+                </div>
+
+                <p><strong>Логика ИИ:</strong></p>
+                <ul>
+                    <li>📊 Постоянно анализирует прогресс к цели</li>
+                    <li>🔄 Разрешает адаптации, которые не угрожают цели</li>
+                    <li>🚨 Блокирует изменения, которые снижают вероятность достижения цели</li>
+                    <li>🗳️ Эскалирует серьезные изменения на голосование DAO</li>
+                </ul>
+            </div>
+
+            <div class="improvement-card">
+                <h4>✅ 3. Real-Time Impact Validator (Валидатор Влияния)</h4>
+                <p><strong>Функция:</strong> Непрерывная валидация proof-of-impact, не только на вехах</p>
+
+                <p><strong>Источники Данных:</strong></p>
+                <ul>
+                    <li><strong>DHIS2:</strong> Ежедневные метрики здоровья (посещения, вакцинации, etc)</li>
+                    <li><strong>IoT Sensors:</strong> Холодильники для вакцин, генераторы, водоснабжение</li>
+                    <li><strong>Photo/Video:</strong> Компьютерное зрение для валидации активностей</li>
+                    <li><strong>Surveys:</strong> SMS/WhatsApp опросы бенефициаров</li>
+                    <li><strong>Geolocation:</strong> GPS треки медработников</li>
+                </ul>
+
+                <p><strong>Real-Time Dashboard:</strong></p>
+                <div class="code-block">
+🎯 Goal Progress: 67% to target (on track ✅)
+📊 Data Quality Score: 92% (high confidence)
+⏱️ Timeline Status: 2 weeks ahead of schedule
+💰 Budget Utilization: 58% spent, 42% remaining
+🚨 Risk Alerts: None
+📈 Impact Trajectory: Projected 32% reduction (exceeding goal)
+                </div>
+            </div>
+
+            <div class="improvement-card">
+                <h4>🔄 4. Adaptation Engine (Движок Адаптации)</h4>
+                <p><strong>Функция:</strong> Автоматическая адаптация условий на основе реального контекста</p>
+
+                <p><strong>Типы Адаптаций:</strong></p>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Сценарий</th>
+                        <th>ИИ Детектирует</th>
+                        <th>Автоматическая Реакция</th>
+                        <th>Требует Одобрения</th>
+                    </tr>
+                    <tr>
+                        <td>Ahead of Schedule</td>
+                        <td>Веха завершена раньше на 20%</td>
+                        <td>✅ Ранняя выплата + бонус к репутации</td>
+                        <td>❌ Нет</td>
+                    </tr>
+                    <tr>
+                        <td>Budget Efficiency</td>
+                        <td>Экономия 15% на обучении</td>
+                        <td>✅ Предложение перераспределить на оборудование</td>
+                        <td>✅ Провайдер одобряет</td>
+                    </tr>
+                    <tr>
+                        <td>External Crisis</td>
+                        <td>Землетрясение в регионе (новости + отсутствие активности)</td>
+                        <td>✅ Автопауза сроков на 30 дней</td>
+                        <td>❌ Нет (уведомление донору)</td>
+                    </tr>
+                    <tr>
+                        <td>Method Change</td>
+                        <td>Провайдер просит заменить очное обучение на онлайн</td>
+                        <td>✅ ИИ оценивает влияние на цель → Если OK, одобряет</td>
+                        <td>✅ Донор уведомляется</td>
+                    </tr>
+                    <tr>
+                        <td>Performance Issues</td>
+                        <td>После 40% времени только 20% прогресса</td>
+                        <td>🚨 Эскалация → Предложение: уменьшить цель ИЛИ продлить срок</td>
+                        <td>✅ DAO/Донор решают</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="improvement-card">
+                <h4>💬 5. Communication Hub (Коммуникационный Хаб)</h4>
+                <p><strong>Функция:</strong> Прозрачный канал общения между всеми сторонами через ИИ</p>
+
+                <p><strong>Возможности:</strong></p>
+                <ul>
+                    <li><strong>Donor → AI → Provider:</strong> "Почему задержка?" → ИИ анализирует данные → Отвечает + предлагает решения</li>
+                    <li><strong>Provider → AI → Donor:</strong> "Нужно изменить бюджет" → ИИ оценивает → Готовит предложение для донора</li>
+                    <li><strong>Beneficiaries → AI:</strong> SMS опросы → "Довольны ли вы качеством?" → Анализ → В dashboard</li>
+                    <li><strong>AI → All Parties:</strong> Автоматические уведомления о вехах, рисках, достижениях</li>
+                </ul>
+
+                <p><strong>Пример Диалога:</strong></p>
+                <div class="code-block">
+<strong>Provider:</strong> "We need to extend training from 5 days to 7 days due to complexity"
+
+<strong>AI Analysis:</strong>
+- Budget impact: +$4,000 (within 10% tolerance) ✅
+- Timeline impact: +2 weeks (acceptable) ✅
+- Goal impact: Higher quality training → Better outcomes ✅✅
+- Recommendation: APPROVE with condition (monitor completion rate)
+
+<strong>AI → Donor:</strong> "Provider requests 2-day training extension. AI analysis shows
+positive impact on goal with minimal budget increase. Recommend approval.
+Your response needed within 48h, otherwise auto-approved."
+
+<strong>Donor:</strong> "Approved"
+
+<strong>AI → Smart Contract:</strong> Update milestone_deadline[1] += 14 days;
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: IMPLEMENTATION DETAILS -->
+        <section class="diagram-section">
+            <h2>3. Детальная Реализация</h2>
+
+            <h3>3.1 Smart Contract Architecture</h3>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "ADAPTIVE SMART CONTRACT"
+        Contract[AdaptiveGrantContract.sol]
+
+        subgraph "Immutable Core"
+            IC1[Project Goal<br/>Immutable Impact Target]
+            IC2[Parties<br/>Donor, Provider, Beneficiaries]
+            IC3[Total Budget<br/>Maximum Funds]
+            IC4[Validation Thresholds<br/>Min PoI Scores]
+        end
+
+        subgraph "Flexible Parameters"
+            FP1[Milestones<br/>Can adjust timing/targets]
+            FP2[Budget Allocation<br/>Can rebalance within total]
+            FP3[Methods<br/>How goals achieved]
+            FP4[Evidence Requirements<br/>Can adjust based on quality]
+        end
+
+        subgraph "AI Interface"
+            AI1[aiOracle.validateImpact]
+            AI2[aiOracle.proposeAdaptation]
+            AI3[aiOracle.translateToHuman]
+            AI4[aiOracle.checkGoalAlignment]
+        end
+
+        subgraph "Events"
+            E1[MilestoneCompleted]
+            E2[AdaptationProposed]
+            E3[AdaptationExecuted]
+            E4[FundsReleased]
+            E5[GoalAchieved]
+        end
+    end
+
+    subgraph "AI ORACLE SERVICE"
+        Oracle[AI Oracle Contract]
+
+        subgraph "Off-Chain AI Engine"
+            NLP[NLP Engine<br/>GPT-4/Claude]
+            CV[Computer Vision<br/>Image Analysis]
+            DataAnalysis[Data Analytics<br/>Impact Calculation]
+            Translation[Translation Engine<br/>Solidity ↔ Human]
+        end
+
+        subgraph "Data Integrations"
+            D1[DHIS2 API]
+            D2[IoT Data Streams]
+            D3[Photo/Video Storage]
+            D4[Survey Platforms]
+            D5[External APIs]
+        end
+    end
+
+    Contract --> IC1 & IC2 & IC3 & IC4
+    Contract --> FP1 & FP2 & FP3 & FP4
+    Contract --> AI1 & AI2 & AI3 & AI4
+    Contract --> E1 & E2 & E3 & E4 & E5
+
+    AI1 --> Oracle
+    AI2 --> Oracle
+    AI3 --> Oracle
+    AI4 --> Oracle
+
+    Oracle --> NLP & CV & DataAnalysis & Translation
+
+    D1 & D2 & D3 & D4 & D5 --> DataAnalysis
+
+    style Contract fill:#a29bfe,stroke:#6c5ce7
+    style IC1 fill:#ff6b6b,stroke:#c92a2a
+    style IC2 fill:#ff6b6b,stroke:#c92a2a
+    style IC3 fill:#ff6b6b,stroke:#c92a2a
+    style IC4 fill:#ff6b6b,stroke:#c92a2a
+    style FP1 fill:#55efc4,stroke:#00b894
+    style FP2 fill:#55efc4,stroke:#00b894
+    style FP3 fill:#55efc4,stroke:#00b894
+    style FP4 fill:#55efc4,stroke:#00b894
+    style Oracle fill:#667eea,stroke:#764ba2
+    style NLP fill:#4ecdc4,stroke:#0a8a7f
+    style Translation fill:#ffd93d,stroke:#f39c12
+                </div>
+            </div>
+
+            <h3>3.2 Example: Adaptive Grant Lifecycle</h3>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+sequenceDiagram
+    participant D as Donor
+    participant AI as AI Agent
+    participant SC as Smart Contract
+    participant P as Provider
+    participant B as Beneficiaries
+    participant Val as Validators
+
+    Note over D,Val: PHASE 1: Contract Creation & Translation
+
+    D->>AI: Create grant: "Reduce maternal mortality 30%"<br/>Budget $100K, 12 months
+    AI->>AI: Generate smart contract code
+    AI->>D: Human translation: "If Provider trains 100<br/>health workers with 90% pass rate..."
+    D->>AI: Approve
+    AI->>SC: Deploy contract on-chain
+    SC->>P: Notify: New grant available
+
+    Note over D,Val: PHASE 2: Execution with Real-Time Monitoring
+
+    P->>SC: Accept grant, start Milestone 1
+    P->>AI: Upload training photos + attendance
+    AI->>AI: Computer vision: Validate 50 people in training
+    AI->>SC: Update progress: 50% milestone complete
+
+    loop Real-Time Validation
+        AI->>DHIS2: Check health metrics
+        DHIS2-->>AI: Vaccination rates up 15%
+        AI->>B: SMS survey: "Quality of training?"
+        B-->>AI: 92% positive feedback
+        AI->>SC: Impact score: 88% (high confidence)
+    end
+
+    Note over D,Val: PHASE 3: Adaptive Change Request
+
+    P->>AI: "Need to extend training from 5 to 7 days"
+    AI->>AI: Analyze impact on goal
+    AI->>AI: Check: Budget OK? Timeline OK? Goal OK?
+    AI->>AI: Result: All checks pass ✅
+    AI->>SC: Propose adaptation
+    SC->>D: Notify: "AI recommends approval"
+    D->>SC: Approve (or auto-approve after 48h)
+    SC->>SC: Update milestone[1].deadline += 14 days
+    SC->>P: Adaptation executed
+
+    Note over D,Val: PHASE 4: Milestone Completion & Auto-Disbursement
+
+    P->>SC: Submit completion evidence
+    SC->>AI: Validate evidence
+    AI->>Val: Request expert review (if >$50K)
+    Val->>AI: Approve
+    AI->>SC: Validation score: 92%
+    SC->>SC: Release funds: $25K to Provider
+    SC->>D: Notify: Milestone 1 complete
+    SC->>B: Notify: Progress update
+
+    Note over D,Val: PHASE 5: Goal Achievement
+
+    AI->>AI: Continuous monitoring shows goal achieved
+    AI->>SC: Final validation: 32% reduction (exceeds 30%)
+    SC->>P: Release final payment + bonus
+    SC->>P: Reputation: +50 points (Gold tier unlocked)
+    SC->>D: Grant successful - impact report generated
+                </div>
+            </div>
+
+            <h3>3.3 Solidity Pseudocode Example</h3>
+
+            <div class="code-block">
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract AdaptiveGrantContract {
+
+    // ========== IMMUTABLE CORE ==========
+    struct ImmutableGoal {
+        string description;  // "Reduce maternal mortality by 30%"
+        uint256 targetMetric;  // 30 (percentage)
+        uint256 totalBudget;  // 100000 * 10**18 (100K USD)
+        uint256 maxDuration;  // 365 days
+    }
+
+    ImmutableGoal public immutable goal;
+    address public immutable donor;
+    address public immutable provider;
+    IAIOracle public immutable aiOracle;
+
+    // ========== FLEXIBLE PARAMETERS ==========
+    struct Milestone {
+        string description;
+        uint256 targetAmount;  // Can be adjusted
+        uint256 deadline;  // Can be extended
+        uint256 actualDeadline;  // Adjusted deadline
+        uint256 fundsAllocated;  // Can be rebalanced
+        bool completed;
+        uint256 impactScore;  // AI-validated
+    }
+
+    Milestone[] public milestones;
+
+    // ========== AI ADAPTATION ==========
+    struct AdaptationProposal {
+        uint256 proposalId;
+        string reason;
+        string humanReadable;  // AI translation
+        AdaptationType adaptType;
+        bytes adaptationData;
+        uint256 aiConfidence;  // 0-100
+        bool requiresApproval;
+        bool approved;
+        uint256 proposedAt;
+    }
+
+    enum AdaptationType {
+        EXTEND_DEADLINE,
+        REBALANCE_BUDGET,
+        CHANGE_METHOD,
+        ADJUST_TARGET,
+        EMERGENCY_PAUSE
+    }
+
+    AdaptationProposal[] public adaptations;
+
+    // ========== EVENTS ==========
+    event MilestoneCompleted(uint256 milestoneId, uint256 impactScore, uint256 fundsReleased);
+    event AdaptationProposed(uint256 proposalId, string humanReadable, bool autoApproved);
+    event AdaptationExecuted(uint256 proposalId, AdaptationType adaptType);
+    event GoalAchieved(uint256 finalImpact, uint256 totalSpent, uint256 duration);
+    event AITranslation(string solidityCode, string humanLanguage);
+
+    // ========== FUNCTIONS ==========
+
+    function completeMilestone(
+        uint256 milestoneId,
+        bytes32 evidenceHash
+    ) external {
+        require(msg.sender == provider, "Only provider");
+        require(!milestones[milestoneId].completed, "Already completed");
+
+        // AI validates evidence
+        (uint256 impactScore, string memory analysis) =
+            aiOracle.validateImpact(evidenceHash, goal.description);
+
+        require(impactScore >= 75, "Impact score too low");
+
+        milestones[milestoneId].completed = true;
+        milestones[milestoneId].impactScore = impactScore;
+
+        // Auto-release funds
+        uint256 amount = milestones[milestoneId].fundsAllocated;
+        payable(provider).transfer(amount);
+
+        emit MilestoneCompleted(milestoneId, impactScore, amount);
+
+        // Check if goal achieved
+        _checkGoalAchievement();
+    }
+
+    function proposeAdaptation(
+        AdaptationType adaptType,
+        bytes memory adaptationData,
+        string memory reason
+    ) external {
+        require(msg.sender == provider || msg.sender == address(aiOracle),
+                "Unauthorized");
+
+        // AI analyzes proposal
+        (bool goalAligned, uint256 confidence, string memory humanReadable) =
+            aiOracle.analyzeAdaptation(adaptType, adaptationData, goal.description);
+
+        require(goalAligned, "Adaptation threatens goal");
+
+        bool requiresApproval = _needsApproval(adaptType, confidence);
+
+        uint256 proposalId = adaptations.length;
+        adaptations.push(AdaptationProposal({
+            proposalId: proposalId,
+            reason: reason,
+            humanReadable: humanReadable,
+            adaptType: adaptType,
+            adaptationData: adaptationData,
+            aiConfidence: confidence,
+            requiresApproval: requiresApproval,
+            approved: !requiresApproval,  // Auto-approve if not required
+            proposedAt: block.timestamp
+        }));
+
+        emit AdaptationProposed(proposalId, humanReadable, !requiresApproval);
+
+        // Execute immediately if auto-approved
+        if (!requiresApproval) {
+            _executeAdaptation(proposalId);
+        }
+    }
+
+    function approveAdaptation(uint256 proposalId) external {
+        require(msg.sender == donor, "Only donor can approve");
+        require(adaptations[proposalId].requiresApproval, "Not pending");
+
+        adaptations[proposalId].approved = true;
+        _executeAdaptation(proposalId);
+    }
+
+    function _executeAdaptation(uint256 proposalId) internal {
+        AdaptationProposal storage proposal = adaptations[proposalId];
+
+        if (proposal.adaptType == AdaptationType.EXTEND_DEADLINE) {
+            (uint256 milestoneId, uint256 extension) =
+                abi.decode(proposal.adaptationData, (uint256, uint256));
+            milestones[milestoneId].actualDeadline += extension;
+        }
+        else if (proposal.adaptType == AdaptationType.REBALANCE_BUDGET) {
+            (uint256[] memory milestoneIds, uint256[] memory newAmounts) =
+                abi.decode(proposal.adaptationData, (uint256[], uint256[]));
+
+            for (uint i = 0; i < milestoneIds.length; i++) {
+                milestones[milestoneIds[i]].fundsAllocated = newAmounts[i];
+            }
+        }
+        // ... other adaptation types
+
+        emit AdaptationExecuted(proposalId, proposal.adaptType);
+    }
+
+    function translateToHuman() external view returns (string memory) {
+        // AI translates current contract state to human language
+        return aiOracle.translateContract(address(this));
+    }
+
+    function _checkGoalAchievement() internal {
+        (bool achieved, uint256 finalImpact) =
+            aiOracle.checkGoalStatus(goal.description);
+
+        if (achieved) {
+            emit GoalAchieved(finalImpact, address(this).balance,
+                            block.timestamp - goal.startTime);
+            // Update provider reputation, release remaining funds, etc.
+        }
+    }
+
+    function _needsApproval(AdaptationType adaptType, uint256 aiConfidence)
+        internal pure returns (bool) {
+
+        // High confidence AI + minor changes = auto-approve
+        if (aiConfidence >= 90 &&
+            (adaptType == AdaptationType.EXTEND_DEADLINE ||
+             adaptType == AdaptationType.EMERGENCY_PAUSE)) {
+            return false;
+        }
+
+        // Significant changes need donor approval
+        return true;
+    }
+}
+
+interface IAIOracle {
+    function validateImpact(bytes32 evidenceHash, string memory goal)
+        external returns (uint256 score, string memory analysis);
+
+    function analyzeAdaptation(
+        AdaptationType adaptType,
+        bytes memory data,
+        string memory goal
+    ) external returns (bool goalAligned, uint256 confidence, string memory humanReadable);
+
+    function translateContract(address contractAddr)
+        external view returns (string memory humanReadable);
+
+    function checkGoalStatus(string memory goal)
+        external view returns (bool achieved, uint256 finalImpact);
+}
+            </div>
+        </section>
+
+        <!-- SECTION 4: COMPARISON TABLE -->
+        <section class="diagram-section">
+            <h2>4. Сравнение: До и После</h2>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Аспект</th>
+                    <th>Традиционные Бумажные Договоры</th>
+                    <th>Обычные Смарт-Контракты</th>
+                    <th><strong>PGPX Адаптивные ИИ Контракты</strong></th>
+                </tr>
+                <tr>
+                    <td><strong>Понятность</strong></td>
+                    <td>✅ Юридический язык (сложно)</td>
+                    <td>❌ Код Solidity (очень сложно)</td>
+                    <td>✅✅ ИИ-перевод на человеческий язык</td>
+                </tr>
+                <tr>
+                    <td><strong>Гибкость</strong></td>
+                    <td>✅ Можно менять (но медленно)</td>
+                    <td>❌ Полностью жесткие</td>
+                    <td>✅✅ Адаптивные с сохранением цели</td>
+                </tr>
+                <tr>
+                    <td><strong>Прозрачность</strong></td>
+                    <td>❌ Закрыто для публики</td>
+                    <td>✅ On-chain (но сложно читать)</td>
+                    <td>✅✅ On-chain + человеческий перевод</td>
+                </tr>
+                <tr>
+                    <td><strong>Валидация</strong></td>
+                    <td>❌ Ручная, периодическая</td>
+                    <td>⚠️ Автоматическая, но жесткая</td>
+                    <td>✅✅ ИИ real-time + адаптация</td>
+                </tr>
+                <tr>
+                    <td><strong>Скорость изменений</strong></td>
+                    <td>❌ Недели/месяцы</td>
+                    <td>❌ Невозможно</td>
+                    <td>✅✅ Часы/дни (с ИИ анализом)</td>
+                </tr>
+                <tr>
+                    <td><strong>Коммуникация</strong></td>
+                    <td>⚠️ Email, встречи</td>
+                    <td>❌ Нет встроенной</td>
+                    <td>✅✅ ИИ-хаб между всеми сторонами</td>
+                </tr>
+                <tr>
+                    <td><strong>Фокус на цели</strong></td>
+                    <td>⚠️ Зависит от мониторинга</td>
+                    <td>⚠️ Фокус на условиях, не на цели</td>
+                    <td>✅✅ Goal Keeper - постоянный фокус</td>
+                </tr>
+                <tr>
+                    <td><strong>Стоимость</strong></td>
+                    <td>❌ Высокая (юристы, бумага)</td>
+                    <td>✅ Низкая (gas fees)</td>
+                    <td>✅ Средняя (gas + AI oracle)</td>
+                </tr>
+                <tr>
+                    <td><strong>Trust</strong></td>
+                    <td>⚠️ Нужны посредники</td>
+                    <td>✅ Trustless (код)</td>
+                    <td>✅✅ Trustless + AI обоснования</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 5: ADDITIONAL AI IMPROVEMENTS -->
+        <section class="diagram-section">
+            <h2>5. Дополнительные Улучшения ИИ-Автоматизации</h2>
+
+            <div class="improvement-card">
+                <h4>🤖 5.1 AI Grant Matching Engine</h4>
+                <p><strong>Проблема:</strong> Доноры не знают лучших провайдеров, провайдеры не знают подходящих грантов</p>
+                <p><strong>Решение:</strong></p>
+                <ul>
+                    <li>ИИ анализирует историю провайдера (репутация, прошлые проекты, экспертиза)</li>
+                    <li>ИИ анализирует требования донора (цели, бюджет, география)</li>
+                    <li>Автоматический matching с confidence score</li>
+                    <li>Предложения: "Provider X has 92% match for your health grant in District Y"</li>
+                </ul>
+            </div>
+
+            <div class="improvement-card">
+                <h4>📊 5.2 Predictive Impact Analytics</h4>
+                <p><strong>Функция:</strong> Предсказание вероятности успеха до начала гранта</p>
+                <ul>
+                    <li>Анализ исторических данных похожих проектов</li>
+                    <li>Оценка capacity провайдера</li>
+                    <li>Анализ внешних факторов (погода, политика, экономика)</li>
+                    <li>Recommendation: "This project has 78% predicted success rate. Suggest increasing budget by 10% to raise to 88%"</li>
+                </ul>
+            </div>
+
+            <div class="improvement-card">
+                <h4>🎓 5.3 AI Training & Capacity Building</h4>
+                <p><strong>Проблема:</strong> Новые провайдеры не знают как писать хорошие заявки и отчеты</p>
+                <p><strong>Решение:</strong></p>
+                <ul>
+                    <li>ИИ-помощник для написания grant proposals</li>
+                    <li>Анализ качества заявки с рекомендациями</li>
+                    <li>Автоматическая генерация progress reports из данных</li>
+                    <li>Персонализированные рекомендации по улучшению</li>
+                </ul>
+            </div>
+
+            <div class="improvement-card">
+                <h4>🚨 5.4 Early Warning System</h4>
+                <p><strong>Функция:</strong> Предсказание проблем до их возникновения</p>
+                <ul>
+                    <li><strong>Risk Signals:</strong> Замедление активности, падение качества данных, негативные отзывы</li>
+                    <li><strong>External Risks:</strong> Погода, политические события, вспышки болезней</li>
+                    <li><strong>Financial Risks:</strong> Unusual spending patterns, budget overruns</li>
+                    <li><strong>Actions:</strong> Автоматические алерты → Предложения по митигации → Адаптация контракта</li>
+                </ul>
+            </div>
+
+            <div class="improvement-card">
+                <h4>🌍 5.5 Multi-Language AI Support</h4>
+                <p><strong>Функция:</strong> Поддержка локальных языков для глобального adoption</p>
+                <ul>
+                    <li>Смарт-контракты переводятся на любой язык (не только English/Russian)</li>
+                    <li>Бенефициары отвечают на опросы на родном языке</li>
+                    <li>ИИ анализирует на любом языке, переводит insights для доноров</li>
+                    <li>Пример: Beneficiary в Kenya отвечает на Swahili → AI понимает → Dashboard на English</li>
+                </ul>
+            </div>
+
+            <div class="improvement-card">
+                <h4>🔗 5.6 Cross-Grant Learning</h4>
+                <p><strong>Функция:</strong> ИИ учится на всех грантах в системе</p>
+                <ul>
+                    <li>Выявление best practices из успешных проектов</li>
+                    <li>Обнаружение common failure patterns</li>
+                    <li>Recommendation engine: "Projects like yours succeeded by doing X"</li>
+                    <li>Continuous improvement протокола</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 6: IMPLEMENTATION ROADMAP -->
+        <section class="diagram-section">
+            <h2>6. Roadmap Реализации</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+gantt
+    title PGPX Adaptive AI Smart Contracts - Implementation Roadmap
+    dateFormat YYYY-MM
+    section Phase 1: Foundation
+    AI Oracle Integration           :2024-06, 2M
+    Basic NLP Translator            :2024-07, 2M
+    Simple Adaptation Engine        :2024-08, 2M
+    section Phase 2: Core Features
+    Advanced Translation (Multi-lang) :2024-09, 2M
+    Goal Keeper Module              :2024-10, 2M
+    Real-Time Impact Validator      :2024-11, 2M
+    Communication Hub               :2024-12, 2M
+    section Phase 3: Intelligence
+    Predictive Analytics            :2025-01, 2M
+    AI Matching Engine              :2025-02, 2M
+    Early Warning System            :2025-03, 2M
+    Cross-Grant Learning            :2025-04, 2M
+    section Phase 4: Scale
+    Multi-Domain Deployment         :2025-05, 3M
+    Advanced Adaptations            :2025-06, 3M
+    Full DAO Integration            :2025-09, 3M
+                </div>
+            </div>
+
+            <h3>Priority Levels:</h3>
+
+            <div class="improvement-card">
+                <h4>🔴 Critical (Phase 1) - MVP для Health Grants</h4>
+                <ul>
+                    <li>✅ Basic AI Oracle (Chainlink + custom)</li>
+                    <li>✅ NLP Translator (Solidity → Human, English/Russian)</li>
+                    <li>✅ Simple Adaptation Engine (extend deadline, rebalance budget)</li>
+                    <li>✅ Real-time DHIS2 integration</li>
+                </ul>
+                <p><strong>Goal:</strong> 3 pilot projects в Q3 2024</p>
+            </div>
+
+            <div class="improvement-card">
+                <h4>🟡 Important (Phase 2) - Full Features</h4>
+                <ul>
+                    <li>Goal Keeper module</li>
+                    <li>Advanced Impact Validator (CV, IoT, surveys)</li>
+                    <li>Communication Hub</li>
+                    <li>Multi-language support</li>
+                </ul>
+                <p><strong>Goal:</strong> Production-ready для 20+ grants в Q4 2024</p>
+            </div>
+
+            <div class="improvement-card">
+                <h4>🟢 Nice-to-Have (Phase 3-4) - Advanced Intelligence</h4>
+                <ul>
+                    <li>Predictive analytics</li>
+                    <li>AI matching engine</li>
+                    <li>Cross-grant learning</li>
+                    <li>Multi-domain expansion</li>
+                </ul>
+                <p><strong>Goal:</strong> Scale to 100+ grants across domains в 2025</p>
+            </div>
+        </section>
+
+        <!-- SECTION 7: TECHNICAL STACK -->
+        <section class="diagram-section">
+            <h2>7. Технологический Stack</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "FRONTEND LAYER"
+        WebApp[Web Application<br/>React + TypeScript]
+        MobileApp[Mobile App<br/>React Native]
+        Dashboard[AI Dashboard<br/>Real-time Analytics]
+    end
+
+    subgraph "AI/ML LAYER"
+        LLM[Large Language Models<br/>GPT-4, Claude, Llama]
+        CV[Computer Vision<br/>ResNet, YOLO]
+        Analytics[Analytics Engine<br/>Python + Pandas]
+        Translator[Translation Service<br/>Custom NLP Model]
+    end
+
+    subgraph "BACKEND LAYER"
+        APIGateway[API Gateway<br/>GraphQL]
+        AIOracle[AI Oracle Service<br/>Node.js + Python]
+        DataProcessor[Data Processor<br/>Apache Kafka]
+        Database[(PostgreSQL<br/>+ MongoDB)]
+    end
+
+    subgraph "BLOCKCHAIN LAYER"
+        SmartContracts[Adaptive Contracts<br/>Solidity]
+        ChainlinkOracle[Chainlink Oracle]
+        IPFS[IPFS/Arweave<br/>Document Storage]
+        Blockchain[Ethereum/Polygon<br/>Mainnet]
+    end
+
+    subgraph "EXTERNAL INTEGRATIONS"
+        DHIS2API[DHIS2 API]
+        IoTGateway[IoT Gateway<br/>MQTT]
+        SMSGateway[SMS Gateway<br/>Twilio]
+        WeatherAPI[Weather API]
+        NewsAPI[News API]
+    end
+
+    WebApp --> APIGateway
+    MobileApp --> APIGateway
+    Dashboard --> APIGateway
+
+    APIGateway --> AIOracle
+    APIGateway --> Database
+
+    AIOracle --> LLM
+    AIOracle --> CV
+    AIOracle --> Analytics
+    AIOracle --> Translator
+
+    AIOracle --> ChainlinkOracle
+    ChainlinkOracle --> SmartContracts
+
+    SmartContracts --> Blockchain
+    SmartContracts --> IPFS
+
+    AIOracle --> DataProcessor
+    DataProcessor --> DHIS2API
+    DataProcessor --> IoTGateway
+    DataProcessor --> SMSGateway
+    DataProcessor --> WeatherAPI
+    DataProcessor --> NewsAPI
+
+    style LLM fill:#667eea,stroke:#764ba2,color:#fff
+    style Translator fill:#4ecdc4,stroke:#0a8a7f
+    style SmartContracts fill:#a29bfe,stroke:#6c5ce7
+    style AIOracle fill:#ffd93d,stroke:#f39c12
+                </div>
+            </div>
+
+            <h3>Key Technologies:</h3>
+
+            <div class="improvement-card">
+                <h4>🧠 AI/ML Stack</h4>
+                <ul>
+                    <li><strong>LLMs:</strong> OpenAI GPT-4, Anthropic Claude (для translation & analysis)</li>
+                    <li><strong>Computer Vision:</strong> PyTorch + Hugging Face Transformers</li>
+                    <li><strong>Analytics:</strong> Python + Pandas + Scikit-learn</li>
+                    <li><strong>NLP:</strong> Custom fine-tuned models для domain-specific tasks</li>
+                </ul>
+            </div>
+
+            <div class="improvement-card">
+                <h4>⛓️ Blockchain Stack</h4>
+                <ul>
+                    <li><strong>Smart Contracts:</strong> Solidity 0.8+, OpenZeppelin libraries</li>
+                    <li><strong>Networks:</strong> Polygon (low fees), Ethereum L2s, NEAR Protocol</li>
+                    <li><strong>Oracles:</strong> Chainlink + custom AI oracle bridge</li>
+                    <li><strong>Storage:</strong> IPFS для documents, Arweave для permanent storage</li>
+                </ul>
+            </div>
+
+            <div class="improvement-card">
+                <h4>🔧 Backend Stack</h4>
+                <ul>
+                    <li><strong>API:</strong> GraphQL (Apollo Server)</li>
+                    <li><strong>AI Services:</strong> Python FastAPI + Node.js</li>
+                    <li><strong>Message Queue:</strong> Apache Kafka для real-time data streams</li>
+                    <li><strong>Database:</strong> PostgreSQL (structured), MongoDB (documents)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 8: SUCCESS METRICS -->
+        <section class="diagram-section">
+            <h2>8. Метрики Успеха</h2>
+
+            <h3>KPIs для Адаптивных Смарт-Контрактов:</h3>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Метрика</th>
+                    <th>Текущая (Baseline)</th>
+                    <th>Target (Year 1)</th>
+                    <th>Измерение</th>
+                </tr>
+                <tr>
+                    <td><strong>Contract Comprehension</strong></td>
+                    <td>15% (only technical users)</td>
+                    <td>85% (all stakeholders)</td>
+                    <td>User surveys</td>
+                </tr>
+                <tr>
+                    <td><strong>Adaptation Speed</strong></td>
+                    <td>2-4 weeks (paper contracts)</td>
+                    <td>24-48 hours</td>
+                    <td>Time from request to execution</td>
+                </tr>
+                <tr>
+                    <td><strong>Goal Achievement Rate</strong></td>
+                    <td>65% (traditional grants)</td>
+                    <td>85%</td>
+                    <td>% of grants meeting impact targets</td>
+                </tr>
+                <tr>
+                    <td><strong>Adaptation Success Rate</strong></td>
+                    <td>N/A</td>
+                    <td>90%</td>
+                    <td>% of adaptations that help achieve goal</td>
+                </tr>
+                <tr>
+                    <td><strong>Transparency Score</strong></td>
+                    <td>40% (limited reporting)</td>
+                    <td>95%</td>
+                    <td>Real-time data availability</td>
+                </tr>
+                <tr>
+                    <td><strong>AI Translation Accuracy</strong></td>
+                    <td>N/A</td>
+                    <td>95%</td>
+                    <td>Expert validation of translations</td>
+                </tr>
+                <tr>
+                    <td><strong>Donor Satisfaction</strong></td>
+                    <td>70%</td>
+                    <td>90%</td>
+                    <td>NPS score</td>
+                </tr>
+                <tr>
+                    <td><strong>Provider Satisfaction</strong></td>
+                    <td>65%</td>
+                    <td>88%</td>
+                    <td>NPS score</td>
+                </tr>
+                <tr>
+                    <td><strong>Beneficiary Trust</strong></td>
+                    <td>55%</td>
+                    <td>80%</td>
+                    <td>Survey feedback</td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="proposal-box">
+            <h2>💡 Заключение</h2>
+            <p><strong>Адаптивные Смарт-Контракты с ИИ</strong> - это revolutionary подход, который:</p>
+            <ul>
+                <li>✅ Делает blockchain доступным для всех (через human translation)</li>
+                <li>✅ Сохраняет гибкость традиционных договоров</li>
+                <li>✅ Добавляет прозрачность и автоматизацию Web3</li>
+                <li>✅ Фокусируется на главном - impact на решение проблем</li>
+                <li>✅ Создает trust между всеми сторонами через ИИ-посредника</li>
+            </ul>
+            <p><strong>Next Steps:</strong></p>
+            <ol>
+                <li>Разработать MVP AI Oracle (2-3 месяца)</li>
+                <li>Пилот на 3 health grants (Q3 2024)</li>
+                <li>Iterate на основе feedback</li>
+                <li>Scale to 20+ grants (Q4 2024)</li>
+                <li>Expand to other domains (2025)</li>
+            </ol>
+        </div>
+
+        <div class="nav-links">
+            <a href="index-pgpx.html">← Back to PGPX Home</a>
+            <a href="all-diagrams.html">Core System Diagrams</a>
+            <a href="pgp-extended-diagrams.html">Extended Diagrams</a>
+            <a href="WHITEPAPER.md">Whitepaper</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3>PGPX - Architectural Improvements</h3>
+            <p>AI-Powered Adaptive Smart Contracts for the Future of Public Goods Funding</p>
+            <div class="nav-links" style="justify-content: center;">
+                <a href="index-pgpx.html">PGPX Home</a>
+                <a href="WHITEPAPER.md">Whitepaper</a>
+                <a href="README.md">Documentation</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            sequence: {
+                useMaxWidth: true,
+                actorMargin: 50
+            },
+            gantt: {
+                titleTopMargin: 25,
+                barHeight: 20,
+                barGap: 4,
+                topPadding: 50,
+                leftPadding: 75,
+                gridLineStartPadding: 35,
+                fontSize: 11
+            }
+        });
+    </script>
+</body>
+</html>

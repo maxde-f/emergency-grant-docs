@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Funding Ecosystem - Complete Architecture</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="style-anthropic.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+    <div class="hero">
+        <h1>Health Funding Ecosystem</h1>
+        <p>Complete Architecture: Emergency Grants + Quadratic Funding + Decentralized Identity</p>
+    </div>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="all-diagrams.html">All Diagrams</a>
+            <a href="index.html">Emergency Grant Architecture</a>
+            <a href="traditional-grants.html">Traditional Grants</a>
+            <a href="miro-board.html">Miro Board</a>
+            <a href="qf-matching-fund-concept.md">QF Concept</a>
+            <a href="integrated-architecture.md">Integration Details</a>
+            <a href="smart-contracts.md">Smart Contracts</a>
+        </div>
+
+        <div class="architecture-cards">
+            <div class="arch-card">
+                <h2>1. Emergency Grant Management</h2>
+                <p>AI-powered grant lifecycle management with blockchain transparency</p>
+                <ul class="features">
+                    <li>AI screening & validation</li>
+                    <li>Milestone-based disbursement</li>
+                    <li>DHIS2 integration</li>
+                    <li>Real-time monitoring</li>
+                    <li>Proof-of-Impact NFTs</li>
+                </ul>
+                <a href="index.html" class="btn">View Architecture</a>
+            </div>
+
+            <div class="arch-card">
+                <h2>2. Quadratic Funding</h2>
+                <p>Democratic community fundraising with matching pool amplification</p>
+                <ul class="features">
+                    <li>Community-driven allocation</li>
+                    <li>Stakeholder-weighted voting</li>
+                    <li>Sybil resistance</li>
+                    <li>Fair matching distribution</li>
+                    <li>Donor incentives</li>
+                </ul>
+                <a href="qf-matching-fund-concept.md" class="btn">View Concept</a>
+            </div>
+
+            <div class="arch-card">
+                <h2>3. DID + Reputation System</h2>
+                <p>Decentralized identity and on-chain reputation for trust & efficiency</p>
+                <ul class="features">
+                    <li>W3C DID standard</li>
+                    <li>Soulbound Tokens (SBT)</li>
+                    <li>On-chain reputation</li>
+                    <li>Tier-based benefits</li>
+                    <li>Anti-Sybil enhanced</li>
+                </ul>
+                <a href="integrated-architecture.md" class="btn">View Integration</a>
+            </div>
+        </div>
+
+        <div class="integration-section">
+            <h2>Complete System Integration</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "LAYER 1: IDENTITY"
+        DID[Decentralized Identity<br/>W3C DID]
+        SBT[Soulbound Tokens<br/>Credentials]
+        REP[Reputation Oracle<br/>0-100 Score]
+    end
+
+    subgraph "LAYER 2: FUNDRAISING"
+        QF[Quadratic Funding<br/>Community Driven]
+        Match[Matching Pool<br/>Fair Distribution]
+    end
+
+    subgraph "LAYER 3: GRANT EXECUTION"
+        Award[Grant Award<br/>Smart Contracts]
+        Milestone[Milestone Management<br/>Automated]
+        Monitor[AI + DHIS2<br/>Real-time Monitoring]
+    end
+
+    subgraph "LAYER 4: VALIDATION & REWARDS"
+        Impact[Impact Validation<br/>Multi-layer]
+        NFT[Proof-of-Impact<br/>NFT Certificate]
+        Badge[Achievement Badges<br/>SBT]
+    end
+
+    DID --> QF
+    SBT --> Match
+    REP --> Match
+
+    QF --> Award
+    Match --> Award
+
+    Award --> Milestone
+    Milestone --> Monitor
+    Monitor --> Impact
+
+    Impact --> NFT
+    Impact --> Badge
+    Badge --> REP
+
+    style DID fill:#9c27b0
+    style SBT fill:#9c27b0
+    style REP fill:#ff9800
+    style QF fill:#2196f3
+    style Award fill:#4caf50
+    style NFT fill:#f3e5f5
+                </div>
+            </div>
+
+            <div class="benefits">
+                <div class="benefit-card">
+                    <h3>For Organizations</h3>
+                    <p>Build on-chain reputation, access fast-track funding, and earn achievement badges that unlock better terms over time.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>For Donors</h3>
+                    <p>Democratic allocation power, transparent impact tracking, and earn rewards for supporting successful projects.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>For Governments</h3>
+                    <p>No upfront cost, community validation, strengthened health systems, and sustainable transition pathway.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>For Beneficiaries</h3>
+                    <p>Voice in funding priorities, faster deployment, local ownership, and proven impact documentation.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="integration-section">
+            <h2>Technology Stack</h2>
+
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h3>Smart Contracts</h3>
+                    <p>Solidity, OpenZeppelin<br/>Polygon/Ethereum</p>
+                </div>
+
+                <div class="tech-item">
+                    <h3>Identity</h3>
+                    <p>W3C DID, Soulbound Tokens<br/>ERC-721 Non-transferable</p>
+                </div>
+
+                <div class="tech-item">
+                    <h3>AI/ML</h3>
+                    <p>GPT-4, Claude API<br/>TensorFlow, PyTorch</p>
+                </div>
+
+                <div class="tech-item">
+                    <h3>Storage</h3>
+                    <p>IPFS, PostgreSQL<br/>MongoDB, Redis</p>
+                </div>
+
+                <div class="tech-item">
+                    <h3>Integration</h3>
+                    <p>DHIS2 API<br/>Payment Gateways</p>
+                </div>
+
+                <div class="tech-item">
+                    <h3>Frontend</h3>
+                    <p>React, Next.js<br/>React Native</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="integration-section">
+            <h2>Key Innovations</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph LR
+    subgraph "TRADITIONAL GRANTS"
+        T1[6-9 months]
+        T2[Top-down]
+        T3[15-25% overhead]
+        T4[Limited transparency]
+    end
+
+    subgraph "PURE QF PLATFORMS"
+        P1[2-4 weeks]
+        P2[Democratic]
+        P3[5-8% overhead]
+        P4[No implementation support]
+    end
+
+    subgraph "OUR HYBRID SYSTEM"
+        H1[4-6 weeks]
+        H2[Democratic + Expert validation]
+        H3[10-15% overhead]
+        H4[Full lifecycle support]
+        H5[DID + Reputation]
+        H6[Multi-layer validation]
+    end
+
+    style T1 fill:#ff9800
+    style P1 fill:#2196f3
+    style H1 fill:#4caf50
+    style H5 fill:#9c27b0
+                </div>
+            </div>
+        </div>
+
+        <div class="integration-section">
+            <h2>Reputation Tiers & Benefits</h2>
+
+            <div class="stats">
+                <div class="stat-box" style="border-top: 5px solid #e5e4e2;">
+                    <div class="number">90+</div>
+                    <div class="label">Platinum Tier</div>
+                    <p style="margin-top: 10px;">1.5x QF multiplier<br/>Auto-approvals<br/>Fast-track</p>
+                </div>
+
+                <div class="stat-box" style="border-top: 5px solid #ffd700;">
+                    <div class="number">75+</div>
+                    <div class="label">Gold Tier</div>
+                    <p style="margin-top: 10px;">1.3x QF multiplier<br/>Fast-track<br/>Priority support</p>
+                </div>
+
+                <div class="stat-box" style="border-top: 5px solid #c0c0c0;">
+                    <div class="number">60+</div>
+                    <div class="label">Silver Tier</div>
+                    <p style="margin-top: 10px;">1.15x QF multiplier<br/>Standard review<br/>Full support</p>
+                </div>
+
+                <div class="stat-box" style="border-top: 5px solid #cd7f32;">
+                    <div class="number">0-59</div>
+                    <div class="label">Bronze Tier</div>
+                    <p style="margin-top: 10px;">1.0x base multiplier<br/>Enhanced due diligence</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="integration-section">
+            <h2>Virtuous Cycle</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    Start([New Organization<br/>Bronze Tier]) --> FirstGrant[Participate in<br/>QF Round]
+
+    FirstGrant --> Funding{Receive<br/>Funding?}
+
+    Funding -->|Yes| Implement[Successful<br/>Implementation]
+    Funding -->|No| Improve[Improve & Retry]
+
+    Improve -.-> FirstGrant
+
+    Implement --> Impact[Validated<br/>Impact]
+
+    Impact --> RepUp[Reputation +15<br/>→ Gold Tier]
+
+    RepUp --> Benefits[Unlock Benefits:<br/>1.3x multiplier<br/>Fast-track access]
+
+    Benefits --> NextRound[Next QF Round<br/>Better Position]
+
+    NextRound --> MoreFunding[More Funding<br/>Received]
+
+    MoreFunding --> BiggerImpact[Bigger<br/>Impact]
+
+    BiggerImpact --> Platinum[Reputation +20<br/>→ Platinum Tier]
+
+    Platinum --> Elite[Elite Status:<br/>1.5x multiplier<br/>Auto-approvals<br/>Unlimited grants]
+
+    Elite --> Scale[Scale to<br/>Regional Hub]
+
+    style Start fill:#cd7f32
+    style RepUp fill:#ffd700
+    style Platinum fill:#e5e4e2
+    style Elite fill:#4caf50
+                </div>
+            </div>
+        </div>
+
+        <div class="integration-section">
+            <h2>Smart Contracts Available</h2>
+
+            <div class="benefits">
+                <div class="benefit-card">
+                    <h3>DIDRegistry.sol</h3>
+                    <p>W3C DID implementation with support for individual, organization, healthcare worker, and government entity types.</p>
+                    <a href="smart-contracts.md#1-did-registry" class="btn" style="margin-top: 15px;">View Contract</a>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>SBTIssuer.sol</h3>
+                    <p>Soulbound Token (non-transferable NFT) issuer for credentials, badges, and achievements.</p>
+                    <a href="smart-contracts.md#2-sbt-issuer" class="btn" style="margin-top: 15px;">View Contract</a>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>ReputationOracle.sol</h3>
+                    <p>On-chain reputation system with automatic tier calculation and QF multiplier determination.</p>
+                    <a href="smart-contracts.md#3-reputation-oracle" class="btn" style="margin-top: 15px;">View Contract</a>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>QFMatchingPoolEnhanced.sol</h3>
+                    <p>Quadratic Funding with DID verification, reputation multipliers, and stakeholder weighting.</p>
+                    <a href="smart-contracts.md#4-qf-matching-pool-enhanced" class="btn" style="margin-top: 15px;">View Contract</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="integration-section">
+            <h2>Deployment Roadmap</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph LR
+    subgraph "PHASE 1: MVP"
+        P1A[Emergency Grants<br/>Basic]
+        P1B[Simple QF<br/>No multipliers]
+        P1C[Manual<br/>Processes]
+    end
+
+    subgraph "PHASE 2: DID INTEGRATION"
+        P2A[DID Registry<br/>Deployed]
+        P2B[Basic SBTs<br/>Org verification]
+        P2C[Reputation v1<br/>Simple scoring]
+    end
+
+    subgraph "PHASE 3: FULL STACK"
+        P3A[All SBT types<br/>Complete]
+        P3B[Advanced<br/>Reputation]
+        P3C[Tier benefits<br/>Activated]
+    end
+
+    subgraph "PHASE 4: ECOSYSTEM"
+        P4A[Multi-platform<br/>Identity]
+        P4B[Open standards<br/>Adoption]
+        P4C[Government<br/>Integration]
+    end
+
+    P1A & P1B & P1C --> P2A
+    P2A & P2B & P2C --> P3A
+    P3A & P3B & P3C --> P4A
+    P4A & P4B & P4C --> Scale[Global<br/>Scale]
+
+    style P1A fill:#e3f2fd
+    style P2A fill:#fff9c4
+    style P3A fill:#c8e6c9
+    style P4A fill:#f3e5f5
+    style Scale fill:#4caf50
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3>Ready to Build the Future of Health Funding?</h3>
+            <p style="margin: 20px 0;">This integrated architecture combines the best of traditional grants, quadratic funding, and decentralized identity.</p>
+            <div class="nav-links" style="margin-top: 30px;">
+                <a href="all-diagrams.html">All Diagrams</a>
+                <a href="index.html">Emergency Grant Diagrams</a>
+                <a href="traditional-grants.html">Traditional Grants</a>
+                <a href="miro-board.html">Miro Board</a>
+                <a href="qf-matching-fund-concept.md">QF Full Concept</a>
+                <a href="integrated-architecture.md">Integration Details</a>
+                <a href="smart-contracts.md">Smart Contracts</a>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.8;">Health Funding Ecosystem - Complete Architecture Documentation</p>
+        </div>
+    </footer>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

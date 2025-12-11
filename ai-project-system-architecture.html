@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGPX - AI Project Manager & Developer System Architecture</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="style-anthropic.css">
+    <style>
+        .hero-ai {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-ai h1 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .hero-ai .subtitle {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.3em;
+            max-width: 900px;
+            margin: 0 auto 30px;
+        }
+
+        .diagram-section {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .diagram-section h2 {
+            color: var(--color-text);
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .vision-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .vision-box h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+        }
+
+        .component-card {
+            background: white;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .component-card h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .diagram-wrapper {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius-md);
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            color: #667eea;
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--color-bg-secondary);
+        }
+
+        .workflow-step {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: var(--radius-md);
+        }
+
+        .workflow-step h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .nav-links a {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-card {
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .tech-card strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-ai">
+        <h1>🤖 AI Project Manager & Developer System</h1>
+        <p class="subtitle">Клод "Живёт" в Проекте: Слушает, Понимает Контекст, Участвует, Реализует</p>
+        <div style="margin-top: 30px; font-size: 1.1em;">
+            <strong>Persistent AI Teammate для PGPX Development</strong>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="index-pgpx.html">PGPX Home</a>
+            <a href="ai-improvements-proposal.html">AI Improvements</a>
+            <a href="gf-harm-reduction-hiv-model.html">Global Fund Model</a>
+            <a href="WHITEPAPER.md">Whitepaper</a>
+        </div>
+
+        <!-- SECTION 1: VISION -->
+        <section class="diagram-section">
+            <h2>1. Vision: AI-Teammate Который "Живёт" в Проекте</h2>
+
+            <div class="vision-box">
+                <h2>🎯 Что Мы Строим</h2>
+                <p>Систему, где <strong>Claude AI</strong> становится полноценным членом команды PGPX:</p>
+                <ul style="font-size: 1.1em; line-height: 1.8;">
+                    <li>📹 <strong>Присутствует на Zoom встречах</strong> - слушает, понимает, делает заметки</li>
+                    <li>💬 <strong>Участвует в Telegram/Asana</strong> - отвечает на вопросы, предлагает решения</li>
+                    <li>🧠 <strong>Помнит всё</strong> - весь контекст проекта, решения, архитектуру</li>
+                    <li>📝 <strong>Создаёт ТЗ и архитектуру</strong> - после обсуждений формализует решения</li>
+                    <li>💻 <strong>Реализует код</strong> - пишет смарт-контракты, backend, frontend</li>
+                    <li>🔄 <strong>Обновляет задачи</strong> - синхронизирует Asana с реальным прогрессом</li>
+                    <li>🎓 <strong>Обучается</strong> - с каждым обсуждением лучше понимает проект</li>
+                </ul>
+            </div>
+
+            <h3>Ключевые Возможности:</h3>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎧</div>
+                    <div class="feature-title">Multi-Modal Input</div>
+                    <p>Zoom audio, Telegram text, Asana tasks, GitHub commits</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-title">Persistent Memory</div>
+                    <p>Vector DB с полным контекстом проекта + temporal graph</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <div class="feature-title">Proactive Suggestions</div>
+                    <p>Не только отвечает, но предлагает решения</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <div class="feature-title">Auto Documentation</div>
+                    <p>Создаёт ТЗ, архитектуру, ADR автоматически</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Code Generation</div>
+                    <p>От идеи до pull request за минуты</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-title">Task Sync</div>
+                    <p>Asana ↔ GitHub ↔ Code ↔ Meetings</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SYSTEM ARCHITECTURE -->
+        <section class="diagram-section">
+            <h2>2. Общая Архитектура Системы</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "COMMUNICATION CHANNELS - Входы"
+        Zoom[Zoom Meetings<br/>🎥 Video/Audio]
+        Telegram[Telegram<br/>💬 Team Chat]
+        Asana[Asana<br/>📋 Task Management]
+        GitHub[GitHub<br/>💻 Code Repository]
+        Email[Email<br/>📧 External Comms]
+        Docs[Google Docs<br/>📄 Documents]
+    end
+
+    subgraph "INPUT PROCESSING LAYER"
+        AudioTranscribe[Audio Transcription<br/>Whisper API]
+        TextParser[Text Parser<br/>Extract Context]
+        TaskExtractor[Task Extractor<br/>Action Items]
+        CodeAnalyzer[Code Analyzer<br/>Understand Changes]
+    end
+
+    subgraph "CLAUDE AI CORE - Мозг Системы"
+        MainClaude[Claude Sonnet 4.5<br/>Main Reasoning Engine]
+
+        subgraph "Specialized Agents"
+            MeetingAgent[Meeting Agent<br/>Summarize & Extract]
+            ChatAgent[Chat Agent<br/>Respond & Suggest]
+            ArchitectAgent[Architect Agent<br/>Design Systems]
+            CodeAgent[Code Agent<br/>Write & Review]
+            PMAgent[PM Agent<br/>Manage Tasks]
+        end
+
+        subgraph "Memory System"
+            ShortTerm[Short-Term Memory<br/>Current Session]
+            LongTerm[Long-Term Memory<br/>Vector DB: Pinecone]
+            KnowledgeGraph[Knowledge Graph<br/>Neo4j<br/>Entities & Relations]
+            ProjectContext[Project Context<br/>Live State]
+        end
+    end
+
+    subgraph "ACTION EXECUTION LAYER"
+        DocGenerator[Document Generator<br/>Create ТЗ, Architecture]
+        CodeWriter[Code Writer<br/>Generate Pull Requests]
+        TaskUpdater[Task Updater<br/>Update Asana]
+        Notifier[Notifier<br/>Send Updates]
+        Scheduler[Scheduler<br/>Plan Next Actions]
+    end
+
+    subgraph "OUTPUTS - Действия"
+        TelegramOut[Telegram Bot<br/>💬 Responses]
+        AsanaOut[Asana API<br/>📋 Task Updates]
+        GitHubOut[GitHub API<br/>💻 PRs & Comments]
+        DocsOut[Google Docs<br/>📄 ТЗ, Architecture]
+        Miro[Miro Board<br/>📊 Diagrams]
+    end
+
+    subgraph "INFRASTRUCTURE"
+        API[API Gateway<br/>Webhook Handler]
+        Queue[Message Queue<br/>Redis/RabbitMQ]
+        DB[(PostgreSQL<br/>Structured Data)]
+        VectorDB[(Vector DB<br/>Embeddings)]
+        GraphDB[(Neo4j<br/>Knowledge Graph)]
+    end
+
+    %% Input Flow
+    Zoom --> AudioTranscribe
+    Telegram --> TextParser
+    Asana --> TaskExtractor
+    GitHub --> CodeAnalyzer
+    Email --> TextParser
+    Docs --> TextParser
+
+    AudioTranscribe --> MainClaude
+    TextParser --> MainClaude
+    TaskExtractor --> MainClaude
+    CodeAnalyzer --> MainClaude
+
+    %% Claude Internal
+    MainClaude --> MeetingAgent
+    MainClaude --> ChatAgent
+    MainClaude --> ArchitectAgent
+    MainClaude --> CodeAgent
+    MainClaude --> PMAgent
+
+    MeetingAgent --> ShortTerm
+    ChatAgent --> ShortTerm
+    ShortTerm --> LongTerm
+    LongTerm --> VectorDB
+    ProjectContext --> KnowledgeGraph
+    KnowledgeGraph --> GraphDB
+
+    %% Action Flow
+    MeetingAgent --> DocGenerator
+    ChatAgent --> Notifier
+    ArchitectAgent --> DocGenerator
+    CodeAgent --> CodeWriter
+    PMAgent --> TaskUpdater
+
+    DocGenerator --> DocsOut
+    DocGenerator --> Miro
+    CodeWriter --> GitHubOut
+    TaskUpdater --> AsanaOut
+    Notifier --> TelegramOut
+
+    %% Infrastructure
+    API --> Queue
+    Queue --> MainClaude
+    MainClaude --> DB
+
+    style MainClaude fill:#667eea,stroke:#764ba2,color:#fff
+    style LongTerm fill:#4ecdc4,stroke:#0a8a7f
+    style KnowledgeGraph fill:#ffd93d,stroke:#f39c12
+    style ArchitectAgent fill:#e74c3c,stroke:#c0392b
+    style CodeAgent fill:#2ecc71,stroke:#27ae60
+                </div>
+            </div>
+
+            <h3>Как Это Работает:</h3>
+
+            <div class="component-card">
+                <h4>🔄 Continuous Loop</h4>
+                <p><strong>1. Listen →</strong> Zoom/Telegram/Asana → Input Processing</p>
+                <p><strong>2. Understand →</strong> Claude analyzes context, updates memory</p>
+                <p><strong>3. Reason →</strong> Specialized agents determine actions</p>
+                <p><strong>4. Act →</strong> Generate docs, write code, update tasks</p>
+                <p><strong>5. Communicate →</strong> Post updates to Telegram/Asana</p>
+                <p><strong>6. Learn →</strong> Store outcomes in memory, improve next time</p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ZOOM INTEGRATION -->
+        <section class="diagram-section">
+            <h2>3. Zoom Meetings Integration: Клод Слушает и Участвует</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+sequenceDiagram
+    participant Team as Team Members
+    participant Zoom as Zoom Meeting
+    participant Bot as Zoom Bot<br/>(Meeting SDK)
+    participant Whisper as Whisper API<br/>(Transcription)
+    participant Claude as Claude AI
+    participant Memory as Memory System
+    participant Telegram as Telegram<br/>(Notifications)
+    participant Docs as Google Docs<br/>(Meeting Notes)
+
+    Note over Team,Docs: DURING MEETING
+
+    Team->>Zoom: Start meeting
+    Bot->>Zoom: Join as participant
+    Bot->>Bot: Record audio stream
+
+    loop Real-Time Processing
+        Bot->>Whisper: Stream audio chunks
+        Whisper-->>Bot: Return transcription
+        Bot->>Claude: Send transcript segment
+        Claude->>Claude: Analyze context<br/>Identify: decisions, questions, tasks
+
+        alt Important Decision Detected
+            Claude->>Memory: Store decision with context
+            Claude->>Telegram: 🚨 Decision made: "Use Polygon for smart contracts"
+        end
+
+        alt Question Asked
+            Claude->>Claude: Search memory for answer
+            Claude->>Telegram: 💡 Suggestion: "We discussed this on May 15th..."
+        end
+
+        alt Action Item Mentioned
+            Claude->>Memory: Extract task<br/>"Max, implement DID contract by Friday"
+            Claude->>Telegram: 📋 New task detected
+        end
+    end
+
+    Note over Team,Docs: AFTER MEETING
+
+    Bot->>Claude: Send full transcript
+    Claude->>Claude: Generate comprehensive summary
+
+    Claude->>Memory: Store full meeting context
+    Claude->>Memory: Update knowledge graph<br/>(new entities, decisions, dependencies)
+
+    Claude->>Docs: Create meeting notes<br/>- Summary<br/>- Decisions<br/>- Action Items<br/>- Next Steps
+
+    Claude->>Telegram: Post summary to team chat
+    Claude->>Asana: Create tasks from action items
+
+    Team->>Telegram: "Claude, what did we decide about X?"
+    Telegram->>Claude: Query
+    Claude->>Memory: Search meeting context
+    Claude-->>Team: "In today's meeting at 10:23, we decided..."
+                </div>
+            </div>
+
+            <h3>Zoom Integration Details:</h3>
+
+            <div class="component-card">
+                <h4>🎧 Real-Time Listening</h4>
+                <p><strong>Technology:</strong> Zoom Meeting SDK + Bot User</p>
+                <p><strong>Capabilities:</strong></p>
+                <ul>
+                    <li>✅ Join meeting as invisible participant or visible bot</li>
+                    <li>✅ Capture audio stream in real-time</li>
+                    <li>✅ Speaker diarization (who said what)</li>
+                    <li>✅ Real-time transcription via Whisper API</li>
+                    <li>✅ Detect keywords, decisions, questions on-the-fly</li>
+                </ul>
+            </div>
+
+            <div class="component-card">
+                <h4>🧠 What Claude Extracts from Meetings</h4>
+                <div class="code-block">
+<strong>1. DECISIONS</strong>
+   - What: "Use Polygon network for smart contracts"
+   - Who: Max decided
+   - When: May 20, 2024, 10:23 AM
+   - Context: Cost analysis showed 10x cheaper gas fees
+   - Impact: Changes architecture design
+
+<strong>2. ACTION ITEMS</strong>
+   - Task: "Implement DID smart contract"
+   - Assignee: Max
+   - Deadline: Friday, May 24
+   - Dependencies: Need Polygon testnet setup first
+   - Priority: High
+
+<strong>3. QUESTIONS & ANSWERS</strong>
+   - Q: "Should we use IPFS or Arweave for document storage?"
+   - A: "Arweave for permanent, IPFS for temporary"
+   - Reasoning: Cost vs permanence tradeoff
+
+<strong>4. BLOCKERS</strong>
+   - Blocker: "Can't deploy until Global Fund legal approval"
+   - Impact: 2-week delay on milestone 2
+   - Mitigation: Work on other components in parallel
+
+<strong>5. TECHNICAL DISCUSSIONS</strong>
+   - Topic: "AI Oracle architecture"
+   - Participants: Max, Team Lead, Technical Advisor
+   - Outcome: Agreed on Chainlink + custom oracle hybrid
+   - Documentation: Link to Miro board diagram
+
+<strong>6. CONTEXT & SENTIMENT</strong>
+   - Team morale: Positive (excited about progress)
+   - Concerns: Timeline tight, need more resources
+   - Opportunities: Partnership with GlobalFund expanding
+                </div>
+            </div>
+
+            <div class="component-card">
+                <h4>📋 Auto-Generated Meeting Notes Example</h4>
+                <div class="code-block">
+<strong>📅 PGPX Development Meeting - May 20, 2024</strong>
+<strong>⏰ Duration:</strong> 10:00 AM - 11:30 AM (1h 30min)
+<strong>👥 Participants:</strong> Max, Anna, Tech Lead, PM
+
+═══════════════════════════════════════════════════════
+
+<strong>📌 KEY DECISIONS</strong>
+
+1. <strong>Blockchain Network Selection</strong> → POLYGON
+   - Rationale: 10x cheaper gas fees vs Ethereum mainnet
+   - Impact: Update all smart contract deployment scripts
+   - Owner: Max
+   - Status: ✅ Approved
+
+2. <strong>AI Oracle Architecture</strong> → Hybrid Approach
+   - Chainlink for price feeds & external data
+   - Custom oracle for PGPX-specific validation logic
+   - Owner: Tech Lead
+   - Status: ✅ Approved, design doc needed
+
+═══════════════════════════════════════════════════════
+
+<strong>✅ ACTION ITEMS</strong>
+
+| Task | Owner | Deadline | Priority | Dependencies |
+|------|-------|----------|----------|--------------|
+| Implement DID smart contract | Max | May 24 | High | Polygon testnet |
+| Create AI oracle design doc | Tech Lead | May 22 | High | None |
+| Setup Polygon testnet | Max | May 21 | Critical | None |
+| Update architecture diagrams | Claude AI | May 21 | Medium | Oracle design |
+| Legal review - GF partnership | Anna | May 30 | High | Legal team avail |
+
+═══════════════════════════════════════════════════════
+
+<strong>🚧 BLOCKERS & RISKS</strong>
+
+1. <strong>Global Fund Legal Approval</strong> (High Impact)
+   - Can't deploy to production until approved
+   - Estimated delay: 2-3 weeks
+   - Mitigation: Continue testnet development
+
+2. <strong>Timeline Pressure</strong> (Medium Impact)
+   - Q3 deadline tight with current velocity
+   - Consider: Add 1 more developer
+
+═══════════════════════════════════════════════════════
+
+<strong>💬 DISCUSSION HIGHLIGHTS</strong>
+
+<strong>[10:15]</strong> Max: "IPFS vs Arweave for document storage?"
+→ Decision: Arweave for grant contracts (permanent)
+           IPFS for temporary files (evidence photos)
+
+<strong>[10:42]</strong> Anna: "How to handle privacy for key populations?"
+→ Claude suggestion: Zero-knowledge proofs (from previous research)
+→ Team agreed to explore ZK-SNARKs for beneficiary data
+
+<strong>[11:10]</strong> PM: "Need demo for GlobalFund by June 5th"
+→ Action: Create demo script, practice run on June 3rd
+
+═══════════════════════════════════════════════════════
+
+<strong>📊 PROGRESS UPDATE</strong>
+
+- ✅ Milestone 1 (Architecture): 100% complete
+- 🔄 Milestone 2 (Smart Contracts): 60% complete
+- ⏳ Milestone 3 (AI Oracle): 20% complete
+- ⏳ Milestone 4 (Frontend): 0% (not started)
+
+═══════════════════════════════════════════════════════
+
+<strong>🔮 NEXT MEETING</strong>
+
+- Date: May 27, 2024, 10:00 AM
+- Agenda:
+  1. Review: DID contract implementation
+  2. Review: AI oracle design
+  3. Demo preparation for Global Fund
+  4. Resource planning discussion
+
+═══════════════════════════════════════════════════════
+
+<strong>🤖 Claude's Observations & Suggestions:</strong>
+
+1. <strong>Resource Gap:</strong> Team velocity suggests adding 1 frontend dev
+   to meet June 5th demo deadline with buffer.
+
+2. <strong>Technical Debt:</strong> Consider allocating 20% time to testing
+   infrastructure before Milestone 3 complexity increases.
+
+3. <strong>Knowledge Sharing:</strong> Max is single point of failure for
+   smart contracts. Recommend pair programming sessions.
+
+4. <strong>Partnership Opportunity:</strong> GlobalFund expanding partnership
+   could mean 3x funding. Prepare scalability plan.
+
+Generated by Claude AI | <em>May 20, 2024, 11:32 AM</em>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: TELEGRAM INTEGRATION -->
+        <section class="diagram-section">
+            <h2>4. Telegram Integration: Постоянное Присутствие</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph LR
+    subgraph "TELEGRAM CHAT"
+        TeamChat[Team Group Chat<br/>PGPX Development]
+        ClaudeBot[Claude Bot<br/>@pgpx_ai_bot]
+    end
+
+    subgraph "CLAUDE AI BRAIN"
+        Understander[Context Understanding<br/>What's the question?]
+        MemorySearch[Memory Search<br/>Vector DB + Graph]
+        Reasoner[Reasoning Engine<br/>Generate Response]
+        ActionPlanner[Action Planner<br/>Should I do something?]
+    end
+
+    subgraph "ACTIONS"
+        Respond[Send Response<br/>Answer Question]
+        CreateTask[Create Asana Task<br/>If action item]
+        UpdateDocs[Update Documentation<br/>If decision made]
+        GenerateCode[Generate Code<br/>If tech request]
+        SearchExternal[Search External<br/>If need info]
+    end
+
+    TeamChat --> ClaudeBot
+    ClaudeBot --> Understander
+    Understander --> MemorySearch
+    MemorySearch --> Reasoner
+    Reasoner --> ActionPlanner
+
+    ActionPlanner --> Respond
+    ActionPlanner --> CreateTask
+    ActionPlanner --> UpdateDocs
+    ActionPlanner --> GenerateCode
+    ActionPlanner --> SearchExternal
+
+    Respond --> ClaudeBot
+    CreateTask --> ClaudeBot
+    UpdateDocs --> ClaudeBot
+    GenerateCode --> ClaudeBot
+    SearchExternal --> ClaudeBot
+
+    ClaudeBot --> TeamChat
+
+    style ClaudeBot fill:#667eea,stroke:#764ba2,color:#fff
+    style MemorySearch fill:#4ecdc4,stroke:#0a8a7f
+    style ActionPlanner fill:#ffd93d,stroke:#f39c12
+                </div>
+            </div>
+
+            <h3>Примеры Взаимодействия:</h3>
+
+            <div class="workflow-step">
+                <h4>Сценарий 1: Простой Вопрос о Проекте</h4>
+                <div class="code-block">
+<strong>Max:</strong> @pgpx_ai_bot что мы решили по поводу blockchain network?
+
+<strong>Claude:</strong>
+На встрече 20 мая (сегодня в 10:23) мы решили использовать <strong>Polygon</strong>.
+
+<strong>Причина:</strong> Gas fees в 10x дешевле чем Ethereum mainnet.
+
+<strong>Action Items:</strong>
+✅ Max: Setup Polygon testnet (дедлайн: завтра)
+✅ Max: Update deployment scripts
+
+<strong>Relevant Docs:</strong>
+📄 Architecture Decision Record: polygon-selection.md
+📊 Cost Analysis: <link>
+
+Нужна помощь с setup?
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>Сценарий 2: Технический Вопрос</h4>
+                <div class="code-block">
+<strong>Anna:</strong> @pgpx_ai_bot как реализовать privacy для beneficiaries в Global Fund модели?
+
+<strong>Claude:</strong>
+Отличный вопрос! Мы обсуждали это сегодня на встрече в 11:10.
+
+<strong>Recommended Solution: Zero-Knowledge Proofs</strong>
+
+Я создал детальный дизайн в документе:
+📄 gf-harm-reduction-hiv-model.html (Section 4.2)
+
+<strong>Ключевые компоненты:</strong>
+
+1️⃣ <strong>Anonymous Client IDs</strong>
+   - Hash ID instead of real identity
+   - Code: keccak256(biometrics + salt + timestamp)
+
+2️⃣ <strong>ZK-SNARKs for Service Verification</strong>
+   - Prove "service received" without revealing who
+   - Library: snarkjs or circom
+
+3️⃣ <strong>Aggregated Data Only On-Chain</strong>
+   - Individual records: NEVER
+   - Only: "500 clients served this week"
+
+<strong>Implementation Plan:</strong>
+1. Research ZK-SNARK libraries (2 days)
+2. Design proof circuits (3 days)
+3. Implement & test (1 week)
+4. Security audit (external)
+
+Хочешь, чтобы я создал задачу в Asana и начал implementation?
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>Сценарий 3: Запрос на Код</h4>
+                <div class="code-block">
+<strong>Max:</strong> @pgpx_ai_bot напиши function для completeMilestone в adaptive grant contract
+
+<strong>Claude:</strong>
+Создаю function на основе архитектуры из gf-harm-reduction-hiv-model.html...
+
+```solidity
+function completeMilestone(
+    uint8 _milestoneId,
+    bytes32[] memory _evidenceHashes
+) external onlyPR {
+    require(_milestoneId < milestones.length, "Invalid milestone");
+    Milestone storage milestone = milestones[_milestoneId];
+    require(!milestone.completed, "Already completed");
+    require(block.timestamp <= milestone.actualDeadline, "Deadline passed");
+
+    milestone.evidenceHashes = _evidenceHashes;
+
+    // AI validates evidence
+    (
+        uint256 validationScore,
+        string memory analysis,
+        bool communityValidated
+    ) = aiOracle.validateMilestoneEvidence(
+        _milestoneId,
+        _evidenceHashes,
+        goal.description
+    );
+
+    require(validationScore >= 75, "Validation score too low");
+
+    milestone.validationScore = validationScore;
+    milestone.communityValidated = communityValidated;
+    milestone.completed = true;
+
+    // Release funds
+    uint256 amount = milestone.fundsAllocated;
+    _releaseFunds(principalRecipient, amount);
+
+    emit MilestoneCompleted(
+        _milestoneId,
+        validationScore,
+        amount,
+        analysis
+    );
+
+    // Check if goal achieved
+    _checkGoalAchievement();
+}
+```
+
+<strong>Пояснения:</strong>
+- Проверяет права (только PR может вызвать)
+- Валидирует через AI Oracle (threshold 75%)
+- Автоматически выпускает funds при успехе
+- Проверяет достижение главной цели
+
+<strong>Tests нужны?</strong> Могу сгенерировать:
+- Unit tests (Hardhat)
+- Integration tests
+- Gas optimization tests
+
+<strong>Создать PR на GitHub?</strong> [Yes] [No]
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>Сценарий 4: Proactive Suggestion</h4>
+                <div class="code-block">
+<strong>Claude:</strong> [Unprompted]
+
+🚨 <strong>Potential Issue Detected</strong>
+
+Анализируя наш progress, заметил:
+
+<strong>Milestone 2</strong> (Smart Contracts) - дедлайн <strong>May 28</strong>
+└─ Current progress: 60%
+└─ Remaining time: 8 days
+└─ Velocity: ~7.5% per day needed
+└─ Current velocity: ~5% per day
+
+<strong>Risk:</strong> HIGH - Likely to miss deadline by 3-4 days
+
+<strong>Blockers:</strong>
+1. Max is single dev on contracts (mentioned in meeting)
+2. Polygon testnet setup not done yet (dependency)
+
+<strong>Recommendations:</strong>
+
+<strong>Option 1:</strong> Extend deadline to June 2 (+5 days buffer)
+└─ Pros: Realistic, maintains quality
+└─ Cons: Pushes demo prep timeline
+
+<strong>Option 2:</strong> Add resource (pair programmer with Max)
+└─ Pros: Velocity boost, knowledge sharing
+└─ Cons: Onboarding time ~2 days
+
+<strong>Option 3:</strong> Reduce scope (defer non-critical features)
+└─ Pros: Meet deadline
+└─ Cons: May impact demo quality
+
+<strong>My Recommendation:</strong> Option 1 + Option 3
+- Extend to May 31 (+3 days)
+- Defer "advanced reputation tiers" to Milestone 3
+- Focus on core DID + QF + Basic Impact contracts
+
+Хотите, чтобы я:
+[ ] Update project timeline in Asana
+[ ] Create discussion topic for next meeting
+[ ] Prepare scope reduction proposal
+[ ] All of the above
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: ASANA INTEGRATION -->
+        <section class="diagram-section">
+            <h2>5. Asana Integration: Project Management Automation</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "SOURCES OF TASKS"
+        Meeting[Zoom Meetings<br/>Action Items]
+        TelegramReq[Telegram Requests<br/>Ad-hoc Tasks]
+        CodeIssues[GitHub Issues<br/>Bugs & Features]
+        ClaudeInit[Claude Initiatives<br/>Proactive Suggestions]
+    end
+
+    subgraph "CLAUDE TASK MANAGER"
+        TaskExtractor[Task Extraction<br/>From Conversations]
+        TaskClassifier[Task Classifier<br/>Type, Priority, Owner]
+        DependencyAnalyzer[Dependency Analyzer<br/>Find Blockers]
+        AsanaCreator[Asana Task Creator<br/>API Integration]
+    end
+
+    subgraph "ASANA PROJECT"
+        Backlog[Backlog<br/>Not Started]
+        InProgress[In Progress<br/>Active Work]
+        Blocked[Blocked<br/>Waiting On]
+        Review[Review<br/>Code Review]
+        Done[Done<br/>Completed]
+    end
+
+    subgraph "CONTINUOUS MONITORING"
+        ProgressTracker[Progress Tracker<br/>Monitor Velocity]
+        BlockerDetector[Blocker Detector<br/>Identify Risks]
+        ReportGenerator[Report Generator<br/>Status Updates]
+    end
+
+    Meeting --> TaskExtractor
+    TelegramReq --> TaskExtractor
+    CodeIssues --> TaskExtractor
+    ClaudeInit --> TaskExtractor
+
+    TaskExtractor --> TaskClassifier
+    TaskClassifier --> DependencyAnalyzer
+    DependencyAnalyzer --> AsanaCreator
+
+    AsanaCreator --> Backlog
+    Backlog --> InProgress
+    InProgress --> Blocked
+    InProgress --> Review
+    Review --> Done
+    Blocked --> InProgress
+
+    InProgress --> ProgressTracker
+    ProgressTracker --> BlockerDetector
+    BlockerDetector --> ReportGenerator
+    ReportGenerator -.->|Telegram Alert| TelegramReq
+
+    style TaskExtractor fill:#667eea,stroke:#764ba2,color:#fff
+    style ProgressTracker fill:#4ecdc4,stroke:#0a8a7f
+    style BlockerDetector fill:#e74c3c,stroke:#c0392b
+                </div>
+            </div>
+
+            <h3>Auto-Created Task Example:</h3>
+
+            <div class="code-block">
+<strong>📋 ASANA TASK (Auto-Created by Claude)</strong>
+
+═══════════════════════════════════════════════════════
+
+<strong>Title:</strong> Implement DID Smart Contract with SBT Support
+
+<strong>Project:</strong> PGPX - Milestone 2: Smart Contracts
+<strong>Section:</strong> In Progress
+<strong>Assignee:</strong> Max Demchenko
+<strong>Due Date:</strong> May 24, 2024 (Friday)
+<strong>Priority:</strong> 🔴 High
+
+<strong>Created From:</strong> Zoom Meeting on May 20, 2024 at 10:35 AM
+<strong>Created By:</strong> Claude AI (action item detected)
+
+═══════════════════════════════════════════════════════
+
+<strong>📝 DESCRIPTION</strong>
+
+Implement the Decentralized Identity (DID) smart contract as specified
+in the PGPX whitepaper (Layer 1: Identity & Reputation).
+
+<strong>Requirements:</strong>
+- W3C DID standard compliance
+- Soulbound Token (SBT) for credentials
+- Reputation oracle integration (0-100 score)
+- Support for 4 tiers: Bronze, Silver, Gold, Platinum
+
+<strong>Reference Documents:</strong>
+📄 WHITEPAPER.md - Section 2.2 "Layer 1: Identity & Reputation"
+📄 all-diagrams.html - Section 3 "Identity & Reputation"
+🎥 Meeting Recording: zoom-recording-2024-05-20.mp4 (timestamp: 10:35)
+
+═══════════════════════════════════════════════════════
+
+<strong>🔗 DEPENDENCIES</strong>
+
+<strong>Blockers (must complete first):</strong>
+├─ ⏳ Setup Polygon testnet (Max, due May 21)
+└─ ⏳ Create test wallet with testnet tokens
+
+<strong>Related Tasks:</strong>
+├─ 📋 Implement Reputation Oracle (#124)
+├─ 📋 Design SBT metadata schema (#125)
+└─ 📋 Create DID resolver service (#126)
+
+═══════════════════════════════════════════════════════
+
+<strong>✅ ACCEPTANCE CRITERIA</strong>
+
+1. [ ] Contract deployed to Polygon testnet
+2. [ ] Create DID function working (gas optimized)
+3. [ ] Mint SBT function working (non-transferable)
+4. [ ] Reputation update function with access control
+5. [ ] Tier calculation logic (Bronze→Silver→Gold→Platinum)
+6. [ ] Unit tests with 90%+ coverage
+7. [ ] Integration test with mock Reputation Oracle
+8. [ ] Gas usage < 100k per transaction
+9. [ ] Security audit checklist completed
+10. [ ] Documentation in README
+
+═══════════════════════════════════════════════════════
+
+<strong>💡 CLAUDE'S IMPLEMENTATION NOTES</strong>
+
+<strong>Suggested Approach:</strong>
+1. Use OpenZeppelin ERC721 as base for SBT
+2. Override transfer functions to make soulbound
+3. Store reputation score in SBT metadata
+4. Use Chainlink oracle for reputation updates
+
+<strong>Code Skeleton:</strong> I can generate this if needed
+<strong>Estimated Time:</strong> 2-3 days
+<strong>Complexity:</strong> Medium
+
+<strong>Risks:</strong>
+- Reputation oracle integration may take longer than expected
+- Need to coordinate with backend team for DID resolver
+
+<strong>Recommended:</strong> Pair programming session with Tech Lead
+to review architecture before starting implementation.
+
+═══════════════════════════════════════════════════════
+
+<strong>📊 TIME TRACKING</strong>
+
+Estimated: 20 hours
+Logged: 0 hours
+Remaining: 20 hours
+
+<strong>Subtasks:</strong>
+├─ [ ] Research SBT implementations (2h)
+├─ [ ] Write contract code (8h)
+├─ [ ] Write unit tests (6h)
+├─ [ ] Integration testing (3h)
+└─ [ ] Documentation (1h)
+
+═══════════════════════════════════════════════════════
+
+<strong>🤖 CLAUDE MONITORING</strong>
+
+I'll monitor this task and:
+✅ Alert if deadline at risk
+✅ Suggest solutions for blockers
+✅ Auto-update when dependencies complete
+✅ Generate code/tests if requested
+✅ Post progress updates to Telegram
+
+Type <code>@pgpx_ai_bot help with #128</code> for assistance
+            </div>
+        </section>
+
+        <!-- SECTION 6: MEMORY SYSTEM -->
+        <section class="diagram-section">
+            <h2>6. Memory System: Как Claude "Помнит" Проект</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "SHORT-TERM MEMORY - Current Session"
+        CurrentMeeting[Current Meeting<br/>Live Transcript]
+        CurrentChat[Current Chat Thread<br/>Last 50 messages]
+        CurrentTask[Current Task Context<br/>What I'm working on]
+    end
+
+    subgraph "LONG-TERM MEMORY - Vector Database"
+        Embeddings[Text Embeddings<br/>Pinecone Vector DB]
+
+        subgraph "Indexed Content"
+            MeetingHistory[All Past Meetings<br/>Transcripts + Summaries]
+            ChatHistory[All Chat Messages<br/>Telegram + Email]
+            DocsHistory[All Documents<br/>ТЗ, Architecture, ADRs]
+            CodeHistory[Code Changes<br/>Commits, PRs, Reviews]
+            DecisionHistory[Decisions Log<br/>What, Why, When, Who]
+        end
+    end
+
+    subgraph "KNOWLEDGE GRAPH - Neo4j"
+        Entities[Entities<br/>People, Components, Concepts]
+        Relations[Relationships<br/>depends_on, created_by, etc]
+
+        subgraph "Entity Types"
+            People[People<br/>Max, Anna, Team]
+            Components[System Components<br/>DID, QF, Oracle]
+            Decisions[Decisions<br/>Architecture Choices]
+            Tasks[Tasks<br/>From Asana]
+            Meetings[Meetings<br/>Events Timeline]
+        end
+
+        subgraph "Relation Types"
+            DependsOn[depends_on<br/>Task → Task]
+            CreatedBy[created_by<br/>Decision → Person]
+            DiscussedIn[discussed_in<br/>Component → Meeting]
+            Blocks[blocks<br/>Task → Task]
+            Implements[implements<br/>Code → Component]
+        end
+    end
+
+    subgraph "SEMANTIC SEARCH"
+        Query[User Query<br/>"What did we decide about X?"]
+        Embed[Embed Query<br/>Generate vector]
+        VectorSearch[Vector Similarity<br/>Find relevant docs]
+        GraphTraversal[Graph Traversal<br/>Find connections]
+        RankResults[Rank & Filter<br/>Most relevant first]
+    end
+
+    CurrentMeeting --> Embeddings
+    CurrentChat --> Embeddings
+    CurrentTask --> Embeddings
+
+    Embeddings --> MeetingHistory
+    Embeddings --> ChatHistory
+    Embeddings --> DocsHistory
+    Embeddings --> CodeHistory
+    Embeddings --> DecisionHistory
+
+    MeetingHistory --> Entities
+    ChatHistory --> Entities
+    DocsHistory --> Entities
+    DecisionHistory --> Entities
+
+    Entities --> People & Components & Decisions & Tasks & Meetings
+    Relations --> DependsOn & CreatedBy & DiscussedIn & Blocks & Implements
+
+    Query --> Embed
+    Embed --> VectorSearch
+    VectorSearch --> Embeddings
+    Embeddings --> GraphTraversal
+    GraphTraversal --> Entities
+    GraphTraversal --> Relations
+    Relations --> RankResults
+
+    style Embeddings fill:#667eea,stroke:#764ba2,color:#fff
+    style Entities fill:#4ecdc4,stroke:#0a8a7f
+    style VectorSearch fill:#ffd93d,stroke:#f39c12
+
+                </div>
+            </div>
+
+            <h3>Memory System в Действии:</h3>
+
+            <div class="component-card">
+                <h4>🔍 Example Query: "Почему мы выбрали Polygon?"</h4>
+
+                <div class="code-block">
+<strong>Step 1: Embed Query</strong>
+Query: "Почему мы выбрали Polygon?"
+Vector: [0.123, -0.456, 0.789, ...] (1536 dimensions)
+
+<strong>Step 2: Vector Search in Pinecone</strong>
+Top 5 Similar Documents:
+1. Meeting Transcript - May 20, 2024 (similarity: 0.95)
+   "...discussed blockchain options. Polygon chosen because..."
+
+2. Architecture Decision Record - polygon-selection.md (similarity: 0.92)
+   "ADR-003: Blockchain Network Selection → Polygon"
+
+3. Cost Analysis Spreadsheet (similarity: 0.88)
+   "Gas fees comparison: Polygon $0.01 vs Ethereum $10"
+
+4. Telegram Chat - May 19, 2024 (similarity: 0.85)
+   "Max: Should we consider Polygon? Lower fees..."
+
+5. Whitepaper Section 2.4 (similarity: 0.82)
+   "PGPX will deploy on EVM-compatible chains..."
+
+<strong>Step 3: Graph Traversal</strong>
+Entity: "Polygon" (type: Technology)
+└─ created_by: Decision "ADR-003" (May 20)
+    └─ made_by: Max + Team Lead
+    └─ discussed_in: Meeting "Dev Sync #12"
+    └─ rationale: Cost (10x cheaper), Speed (2sec blocks)
+    └─ affects: Component "Smart Contracts"
+        └─ tasks: "Setup Polygon testnet" (In Progress)
+        └─ tasks: "Update deployment scripts" (Backlog)
+
+<strong>Step 4: Generate Answer</strong>
+Combining vector search + graph knowledge...
+
+<strong>Claude's Response:</strong>
+
+Мы выбрали <strong>Polygon</strong> на встрече 20 мая 2024 (сегодня).
+
+<strong>Главные причины:</strong>
+
+1️⃣ <strong>Стоимость:</strong> Gas fees в 10x дешевле
+   - Polygon: ~$0.01 per transaction
+   - Ethereum mainnet: ~$10 per transaction
+   - Для PGPX критично: много транзакций в QF voting
+
+2️⃣ <strong>Скорость:</strong> 2-секундные блоки vs 12-сек Ethereum
+   - Лучший UX для пользователей
+   - Быстрее milestone completions
+
+3️⃣ <strong>EVM Compatibility:</strong> Наш Solidity код работает без изменений
+
+<strong>Кто решил:</strong> Max + Tech Lead (одобрено всей командой)
+
+<strong>Документация:</strong>
+📄 ADR-003: polygon-selection.md
+📊 Cost Analysis: polygon-vs-ethereum.xlsx
+🎥 Meeting Recording: timestamp 10:23 AM
+
+<strong>Статус:</strong>
+✅ Decision approved
+🔄 In Progress: Setup testnet (Max, due tomorrow)
+⏳ Backlog: Update deployment scripts
+
+Нужна помощь с setup?
+                </div>
+            </div>
+
+            <h3>Knowledge Graph Structure:</h3>
+
+            <div class="code-block">
+<strong>EXAMPLE KNOWLEDGE GRAPH (Neo4j Cypher)</strong>
+
+// People
+(max:Person {name: "Max Demchenko", role: "Lead Developer"})
+(anna:Person {name: "Anna", role: "Partnership Manager"})
+
+// Components
+(did:Component {name: "DID Contract", status: "In Progress"})
+(qf:Component {name: "Quadratic Funding", status: "Design"})
+(oracle:Component {name: "AI Oracle", status: "Design"})
+
+// Decisions
+(d1:Decision {
+    id: "ADR-003",
+    title: "Polygon Network Selection",
+    date: "2024-05-20",
+    status: "Approved"
+})
+
+// Relationships
+(max)-[:MADE]->(d1)
+(d1)-[:AFFECTS]->(did)
+(d1)-[:AFFECTS]->(qf)
+(d1)-[:DISCUSSED_IN]->(meeting1:Meeting {date: "2024-05-20"})
+(did)-[:DEPENDS_ON]->(oracle)
+
+// Query: "What decisions affect the DID contract?"
+MATCH (d:Decision)-[:AFFECTS]->(did:Component {name: "DID Contract"})
+RETURN d
+
+// Result:
+- ADR-003: Polygon Network Selection (May 20)
+- ADR-001: Use OpenZeppelin for base contracts (May 10)
+- ADR-005: Soulbound Token implementation (May 22)
+            </div>
+        </section>
+
+        <!-- SECTION 7: CODE GENERATION -->
+        <section class="diagram-section">
+            <h2>7. Code Generation & Implementation</h2>
+
+            <h3>From Idea to Pull Request - Automated Workflow:</h3>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+sequenceDiagram
+    participant Team as Team Member
+    participant Claude as Claude AI
+    participant Memory as Memory System
+    participant GitHub as GitHub
+    participant CI as CI/CD Pipeline
+    participant Review as Code Review Bot
+
+    Team->>Claude: "Implement feature X"
+    Claude->>Memory: Search for context<br/>- Architecture docs<br/>- Similar code<br/>- Best practices
+
+    Claude->>Claude: Generate implementation plan
+    Claude->>Team: "Here's my plan:<br/>1. Component A<br/>2. Tests<br/>3. Docs<br/>Approve?"
+
+    Team->>Claude: "Yes, proceed"
+
+    Note over Claude: Code Generation
+
+    Claude->>Claude: Generate code files<br/>- Smart contract<br/>- Unit tests<br/>- Integration tests<br/>- Documentation
+
+    Claude->>GitHub: Create branch<br/>"feature/implement-x"
+    Claude->>GitHub: Commit code + tests
+    Claude->>GitHub: Create Pull Request<br/>with detailed description
+
+    GitHub->>CI: Trigger CI/CD
+    CI->>CI: Run tests
+    CI->>CI: Run linters
+    CI->>CI: Check coverage
+    CI-->>GitHub: ✅ All checks passed
+
+    GitHub->>Review: Trigger code review bot
+    Review->>Review: Analyze code quality<br/>security, gas optimization
+    Review-->>GitHub: Post review comments
+
+    Claude->>Team: "PR ready for review<br/>Link: github.com/..."<br/>All checks ✅"
+
+    Team->>GitHub: Review code
+    Team->>Claude: "Looks good, one change:<br/>Optimize gas in line 45"
+
+    Claude->>Memory: Retrieve gas optimization patterns
+    Claude->>GitHub: Push updated code
+    CI-->>GitHub: ✅ Tests still pass
+
+    Team->>GitHub: Approve PR
+    Team->>GitHub: Merge to main
+
+    GitHub->>Memory: Store implementation<br/>for future reference
+                </div>
+            </div>
+
+            <h3>What Claude Can Generate:</h3>
+
+            <div class="tech-stack-grid">
+                <div class="tech-card">
+                    <strong>Smart Contracts</strong>
+                    <p>Solidity, Rust (NEAR)</p>
+                    <p>✅ ERC standards</p>
+                    <p>✅ Gas optimized</p>
+                    <p>✅ Security patterns</p>
+                </div>
+                <div class="tech-card">
+                    <strong>Backend Services</strong>
+                    <p>Node.js, Python</p>
+                    <p>✅ REST APIs</p>
+                    <p>✅ GraphQL</p>
+                    <p>✅ Microservices</p>
+                </div>
+                <div class="tech-card">
+                    <strong>Frontend Components</strong>
+                    <p>React, TypeScript</p>
+                    <p>✅ UI components</p>
+                    <p>✅ Web3 integration</p>
+                    <p>✅ State management</p>
+                </div>
+                <div class="tech-card">
+                    <strong>Tests</strong>
+                    <p>Hardhat, Jest, Pytest</p>
+                    <p>✅ Unit tests</p>
+                    <p>✅ Integration tests</p>
+                    <p>✅ E2E tests</p>
+                </div>
+                <div class="tech-card">
+                    <strong>Documentation</strong>
+                    <p>Markdown, JSDoc</p>
+                    <p>✅ API docs</p>
+                    <p>✅ Architecture diagrams</p>
+                    <p>✅ User guides</p>
+                </div>
+                <div class="tech-card">
+                    <strong>Infrastructure</strong>
+                    <p>Docker, K8s, Terraform</p>
+                    <p>✅ Deployment configs</p>
+                    <p>✅ CI/CD pipelines</p>
+                    <p>✅ Monitoring</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: TECHNICAL STACK -->
+        <section class="diagram-section">
+            <h2>8. Технический Stack Системы</h2>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Component</th>
+                    <th>Technology</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td><strong>Main AI Engine</strong></td>
+                    <td>Claude Sonnet 4.5 (Anthropic API)</td>
+                    <td>Core reasoning, code generation, conversation</td>
+                </tr>
+                <tr>
+                    <td><strong>Audio Transcription</strong></td>
+                    <td>Whisper API (OpenAI)</td>
+                    <td>Zoom meeting transcription in real-time</td>
+                </tr>
+                <tr>
+                    <td><strong>Vector Database</strong></td>
+                    <td>Pinecone or Weaviate</td>
+                    <td>Long-term memory, semantic search</td>
+                </tr>
+                <tr>
+                    <td><strong>Knowledge Graph</strong></td>
+                    <td>Neo4j</td>
+                    <td>Entities, relationships, temporal graph</td>
+                </tr>
+                <tr>
+                    <td><strong>Primary Database</strong></td>
+                    <td>PostgreSQL</td>
+                    <td>Structured data (tasks, meetings, users)</td>
+                </tr>
+                <tr>
+                    <td><strong>Message Queue</strong></td>
+                    <td>Redis + Bull/BullMQ</td>
+                    <td>Async task processing, job scheduling</td>
+                </tr>
+                <tr>
+                    <td><strong>Backend API</strong></td>
+                    <td>Node.js + Express/Fastify</td>
+                    <td>Webhook handler, API gateway</td>
+                </tr>
+                <tr>
+                    <td><strong>Zoom Integration</strong></td>
+                    <td>Zoom Meeting SDK</td>
+                    <td>Join meetings, capture audio stream</td>
+                </tr>
+                <tr>
+                    <td><strong>Telegram Bot</strong></td>
+                    <td>node-telegram-bot-api</td>
+                    <td>Chat interface, notifications</td>
+                </tr>
+                <tr>
+                    <td><strong>Asana API</strong></td>
+                    <td>Asana JavaScript Client</td>
+                    <td>Task management automation</td>
+                </tr>
+                <tr>
+                    <td><strong>GitHub API</strong></td>
+                    <td>Octokit.js</td>
+                    <td>Create PRs, comments, track issues</td>
+                </tr>
+                <tr>
+                    <td><strong>Google Docs API</strong></td>
+                    <td>Google Workspace APIs</td>
+                    <td>Create/update meeting notes, ТЗ docs</td>
+                </tr>
+                <tr>
+                    <td><strong>Deployment</strong></td>
+                    <td>Docker + Kubernetes</td>
+                    <td>Containerization, orchestration</td>
+                </tr>
+                <tr>
+                    <td><strong>Monitoring</strong></td>
+                    <td>Prometheus + Grafana</td>
+                    <td>System health, usage metrics</td>
+                </tr>
+                <tr>
+                    <td><strong>Logging</strong></td>
+                    <td>ELK Stack (Elasticsearch)</td>
+                    <td>Centralized logging, debugging</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 9: IMPLEMENTATION ROADMAP -->
+        <section class="diagram-section">
+            <h2>9. Implementation Roadmap</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+gantt
+    title AI Project System Implementation Roadmap
+    dateFormat YYYY-MM
+    section Phase 1: Core Infrastructure
+    Setup infrastructure (DB, queues, APIs)    :2024-06, 2M
+    Claude API integration                      :2024-07, 1M
+    Basic memory system (Vector DB)             :2024-07, 2M
+    section Phase 2: Communication Channels
+    Telegram bot (basic)                        :2024-08, 1M
+    Asana integration                           :2024-08, 2M
+    GitHub integration                          :2024-09, 1M
+    Zoom integration (transcription)            :2024-09, 2M
+    section Phase 3: Intelligence Layer
+    Context understanding & extraction          :2024-10, 2M
+    Knowledge graph (Neo4j)                     :2024-11, 2M
+    Proactive suggestions engine                :2024-12, 2M
+    section Phase 4: Code Generation
+    Smart contract generation                   :2025-01, 2M
+    Test generation                             :2025-02, 1M
+    Documentation generation                    :2025-02, 1M
+    Full PR workflow automation                 :2025-03, 2M
+    section Phase 5: Advanced Features
+    Real-time Zoom participation                :2025-04, 2M
+    Advanced analytics & predictions            :2025-05, 2M
+    Multi-project support                       :2025-06, 2M
+                </div>
+            </div>
+
+            <h3>Phase 1: Core Infrastructure (MVP) - 2 Months</h3>
+
+            <div class="workflow-step">
+                <h4>Week 1-2: Setup</h4>
+                <ul>
+                    <li>✅ Setup infrastructure (AWS/GCP)</li>
+                    <li>✅ PostgreSQL, Redis, Pinecone accounts</li>
+                    <li>✅ Claude API key, OpenAI API key</li>
+                    <li>✅ Basic Node.js backend with Express</li>
+                </ul>
+            </div>
+
+            <div class="workflow-step">
+                <h4>Week 3-4: Claude Integration</h4>
+                <ul>
+                    <li>✅ Claude API wrapper with retry logic</li>
+                    <li>✅ Prompt engineering & templates</li>
+                    <li>✅ Basic conversation flow</li>
+                </ul>
+            </div>
+
+            <div class="workflow-step">
+                <h4>Week 5-8: Memory System</h4>
+                <ul>
+                    <li>✅ Embeddings generation pipeline</li>
+                    <li>✅ Pinecone vector storage</li>
+                    <li>✅ Semantic search implementation</li>
+                    <li>✅ PostgreSQL schema for structured data</li>
+                </ul>
+            </div>
+
+            <h3>MVP Features (End of Phase 1):</h3>
+
+            <div class="component-card">
+                <h4>✅ What Works in MVP</h4>
+                <ul>
+                    <li>📱 Basic Telegram bot - answers questions from memory</li>
+                    <li>🧠 Memory system - stores conversations, retrieves context</li>
+                    <li>💬 Simple conversation - "What did we discuss about X?"</li>
+                    <li>📝 Manual input - team can add key decisions manually</li>
+                </ul>
+                <p><strong>Goal:</strong> Prove the concept works, get team feedback</p>
+            </div>
+        </section>
+
+        <!-- SECTION 10: EXAMPLE WORKFLOWS -->
+        <section class="diagram-section">
+            <h2>10. Полный Workflow: От Идеи до Продакшена</h2>
+
+            <h3>Сценарий: "Добавить поддержку multi-signature wallets в DID contract"</h3>
+
+            <div class="workflow-step">
+                <h4>1️⃣ Обсуждение на Zoom (30 мин)</h4>
+                <div class="code-block">
+<strong>[10:00 AM]</strong> Team discusses multi-sig support need
+- Why: Enterprise users require multi-sig for security
+- What: Add multi-sig wallet support to DID creation
+- When: Target Milestone 3 (July)
+
+<strong>Claude AI (listening):</strong>
+└─ Detected: New feature request
+└─ Extracted: Technical requirement
+└─ Identified: Stakeholders (Max, Anna, Enterprise users)
+└─ Created: Draft task in memory
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>2️⃣ Claude Posts to Telegram (Immediately After)</h4>
+                <div class="code-block">
+<strong>Claude AI:</strong>
+📋 <strong>New Feature Request Detected</strong>
+
+From meeting today at 10:00 AM:
+
+<strong>Feature:</strong> Multi-signature wallet support for DID creation
+<strong>Rationale:</strong> Enterprise users need multi-sig for security
+<strong>Target:</strong> Milestone 3 (July)
+
+<strong>My Understanding:</strong>
+1. Modify DID contract to accept multi-sig as owner
+2. Update createDID() to validate multi-sig contracts
+3. Support popular multi-sig standards (Gnosis Safe, etc)
+
+<strong>Estimated Complexity:</strong> Medium (3-4 days)
+<strong>Dependencies:</strong> None
+
+Хочешь, чтобы я:
+[ ] Create detailed technical spec
+[ ] Create Asana task
+[ ] Start implementation immediately
+[ ] All of the above
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>3️⃣ Max Responds (5 min later)</h4>
+                <div class="code-block">
+<strong>Max:</strong> @pgpx_ai_bot да, создай ТЗ и задачу в Asana. Implementation начнём после Milestone 2.
+
+<strong>Claude AI:</strong> ✅ Понял!
+
+Создаю:
+1. Техническую спецификацию
+2. Задачу в Asana
+
+Начинаю...
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>4️⃣ Claude Creates Technical Spec (10 min)</h4>
+                <div class="code-block">
+<strong>Claude AI:</strong>
+✅ Создал документ:
+📄 <strong>tech-spec-multisig-did.md</strong>
+
+<strong>Содержание:</strong>
+1. Overview & Motivation
+2. Technical Requirements
+3. Contract Changes (Solidity code snippets)
+4. Multi-sig Standards Support (Gnosis Safe, etc)
+5. Security Considerations
+6. Testing Strategy
+7. Gas Cost Analysis
+8. Implementation Plan
+
+<strong>Link:</strong> google.docs.com/... (для команды)
+
+Можете review и добавить комментарии. Я отслеживаю изменения.
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>5️⃣ Claude Creates Asana Task (2 min)</h4>
+                <div class="code-block">
+<strong>Claude AI:</strong>
+✅ Создал задачу в Asana:
+
+<strong>Task #142:</strong> "Add Multi-Signature Wallet Support to DID Contract"
+
+<strong>Details:</strong>
+- Project: PGPX - Milestone 3
+- Assignee: Max Demchenko
+- Due Date: July 15, 2024
+- Priority: Medium
+- Dependencies: Milestone 2 completion
+- Link to tech spec: ✅
+
+<strong>Link:</strong> asana.com/...
+
+Буду мониторить прогресс и помогать при необходимости.
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>6️⃣ Time Passes... Milestone 2 Done (4 weeks later)</h4>
+                <div class="code-block">
+<strong>Claude AI:</strong> [Proactive message]
+
+👋 Привет, Max!
+
+Milestone 2 завершён (поздравляю! 🎉).
+
+Задача #142 "Multi-Sig DID Support" теперь unblocked и готова к работе.
+
+<strong>Хочешь, чтобы я:</strong>
+[ ] Напомню детали задачи
+[ ] Сгенерирую starter code
+[ ] Создам branch и PR template
+[ ] Всё вышеперечисленное
+
+Или можем подождать, пока ты будешь готов начать?
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>7️⃣ Max: "Давай начнём, сгенерируй код"</h4>
+                <div class="code-block">
+<strong>Max:</strong> @pgpx_ai_bot давай начнём, сгенерируй стартовый код
+
+<strong>Claude AI:</strong>
+Отлично! Генерирую implementation на основе tech spec...
+
+<strong>Creating:</strong>
+1. Modified DIDContract.sol with multi-sig support
+2. MultiSigValidator.sol helper contract
+3. Unit tests (Hardhat)
+4. Integration tests
+5. Gas optimization analysis
+6. Updated documentation
+
+<strong>This will take ~5 minutes...</strong>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>8️⃣ Claude Generates Full Implementation (5 min)</h4>
+                <div class="code-block">
+<strong>Claude AI:</strong>
+✅ <strong>Implementation Complete!</strong>
+
+<strong>Created Branch:</strong> feature/multisig-did-support
+<strong>Files Changed:</strong> 8 files
+<strong>Lines Added:</strong> 342 lines
+<strong>Tests Added:</strong> 15 unit tests, 5 integration tests
+
+<strong>Changes:</strong>
+├─ contracts/DIDContract.sol (modified)
+│  └─ Added isValidMultiSig() function
+│  └─ Updated createDID() to support multi-sig
+├─ contracts/MultiSigValidator.sol (new)
+│  └─ Gnosis Safe validation
+│  └─ Generic multi-sig interface
+├─ test/DIDContract.test.js (updated)
+│  └─ 15 new test cases
+├─ docs/did-contract.md (updated)
+└─ CHANGELOG.md (updated)
+
+<strong>Pull Request Created:</strong>
+github.com/pgpx/contracts/pull/87
+
+<strong>CI Status:</strong> 🔄 Running tests...
+
+Review когда будешь готов. Могу внести изменения если нужно.
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>9️⃣ CI/CD Runs, Tests Pass (10 min)</h4>
+                <div class="code-block">
+<strong>GitHub Actions:</strong>
+✅ All tests passed (32/32)
+✅ Code coverage: 94.2% (target: 90%)
+✅ Gas usage: 89,423 (under 100k limit ✅)
+✅ Linter: No issues
+✅ Security scan: No vulnerabilities
+
+<strong>Code Review Bot:</strong>
+✅ Code quality: A
+⚠️ Suggestion: Consider adding event for multi-sig updates (line 45)
+
+<strong>Claude AI:</strong>
+Все проверки прошли успешно! ✅
+
+Code review bot предложил добавить event для multi-sig updates.
+Это хорошая идея для трейсинга. Добавить?
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <h4>🔟 Max Reviews & Merges (1 day later)</h4>
+                <div class="code-block">
+<strong>Max:</strong> Looks great! Добавь event и merge.
+
+<strong>Claude AI:</strong>
+✅ Added MultiSigUpdated event
+✅ Pushed update
+✅ Tests still pass
+✅ Merged to main
+
+<strong>Updated Asana Task #142:</strong> Status → ✅ Done
+
+<strong>Deployment:</strong>
+Contract deployed to testnet:
+Address: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb4
+
+<strong>Next Steps:</strong>
+- [ ] Integration testing with frontend
+- [ ] Security audit review
+- [ ] Mainnet deployment (pending audit)
+
+Что-то ещё нужно?
+                </div>
+            </div>
+
+            <h3>🎉 Result: From Idea to Production in 5 Weeks</h3>
+
+            <div class="component-card">
+                <h4>Timeline Summary</h4>
+                <ul>
+                    <li><strong>Day 1:</strong> Idea discussed in Zoom → Task created</li>
+                    <li><strong>Day 1:</strong> Tech spec written (10 min)</li>
+                    <li><strong>Week 4:</strong> Milestone 2 done → Task unblocked</li>
+                    <li><strong>Week 5:</strong> Code generated (5 min) → PR created</li>
+                    <li><strong>Week 5:</strong> Review + merge (1 day) → Deployed to testnet</li>
+                </ul>
+                <p><strong>Traditional Approach:</strong> 6-8 weeks</p>
+                <p><strong>With Claude AI:</strong> 5 weeks (with most time in dependencies, actual coding: 1 day)</p>
+            </div>
+        </section>
+
+        <div class="vision-box">
+            <h2>💡 Заключение</h2>
+            <p><strong>AI Project Manager & Developer System</strong> превращает Claude в полноценного члена команды:</p>
+
+            <div style="margin: 30px 0; text-align: left;">
+                <h3 style="color: white;">Ключевые Преимущества:</h3>
+                <ul style="font-size: 1.1em; line-height: 1.8;">
+                    <li>🎧 <strong>Всегда слушает</strong> - Zoom, Telegram, Asana, GitHub</li>
+                    <li>🧠 <strong>Никогда не забывает</strong> - Vector DB + Knowledge Graph</li>
+                    <li>💡 <strong>Проактивный</strong> - Предлагает решения, находит проблемы</li>
+                    <li>⚡ <strong>Быстрый</strong> - От идеи до PR за минуты</li>
+                    <li>📋 <strong>Организованный</strong> - Автоматически обновляет Asana</li>
+                    <li>🎓 <strong>Обучается</strong> - Становится лучше с каждым днём</li>
+                    <li>🤝 <strong>Teamplayer</strong> - Понимает контекст, помнит решения</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.2em; margin-top: 30px;"><strong>Результат:</strong> Команда фокусируется на важных решениях, а Claude берёт на себя рутину, документацию и реализацию.</p>
+
+            <p style="font-size: 1.1em; margin-top: 20px;"><strong>Next Step:</strong> Начать с MVP (Phase 1) - Telegram бот + базовая память. Estimated time: 2 месяца.</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="index-pgpx.html">← Back to PGPX Home</a>
+            <a href="ai-improvements-proposal.html">AI Improvements</a>
+            <a href="gf-harm-reduction-hiv-model.html">Global Fund Model</a>
+            <a href="WHITEPAPER.md">Whitepaper</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3>PGPX - AI Project System Architecture</h3>
+            <p>Claude "Lives" in the Project - Persistent AI Teammate</p>
+            <div class="nav-links" style="justify-content: center;">
+                <a href="index-pgpx.html">PGPX Home</a>
+                <a href="ai-improvements-proposal.html">AI Improvements</a>
+                <a href="WHITEPAPER.md">Whitepaper</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            sequence: {
+                useMaxWidth: true,
+                actorMargin: 50,
+                messageMargin: 60
+            },
+            gantt: {
+                titleTopMargin: 25,
+                barHeight: 20,
+                barGap: 4,
+                topPadding: 50,
+                leftPadding: 75,
+                gridLineStartPadding: 35,
+                fontSize: 11
+            }
+        });
+    </script>
+</body>
+</html>

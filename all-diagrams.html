@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGPX - Complete System Diagrams</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="style-anthropic.css">
+    <style>
+        .page-container {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            align-items: start;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--color-bg);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--color-primary);
+        }
+
+        .sidebar h3 {
+            color: var(--color-text);
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+        }
+
+        .sidebar nav ul li {
+            margin: 8px 0;
+        }
+
+        .sidebar nav a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .sidebar nav a:hover {
+            background: var(--color-bg);
+            color: var(--color-primary);
+            padding-left: 16px;
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        .diagram-category {
+            margin-bottom: 50px;
+        }
+
+        .diagram-category h2 {
+            color: var(--color-text);
+            border-bottom: 3px solid var(--color-primary);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .diagram-item {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-left: 3px solid var(--color-primary);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .diagram-item h3 {
+            color: var(--color-text);
+            margin-bottom: 15px;
+        }
+
+        .diagram-item p {
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .legend {
+            background: var(--color-bg);
+            padding: 15px;
+            border-radius: var(--radius-sm);
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .legend h4 {
+            color: var(--color-text);
+            margin-bottom: 10px;
+        }
+
+        .legend-item {
+            display: inline-block;
+            margin: 5px 15px 5px 0;
+            color: var(--color-text-secondary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        @media (max-width: 1200px) {
+            .page-container {
+                grid-template-columns: 220px 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .page-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>PGPX - Complete System Diagrams</h1>
+        <p class="subtitle">Public Goods Protocol X - Visual Architecture Documentation</p>
+    </div>
+
+    <div class="page-container">
+        <aside class="sidebar">
+            <h3>Navigation</h3>
+            <nav>
+                <ul>
+                    <li><a href="#overview">System Overview</a></li>
+                    <li><a href="#grant-lifecycle">Grant Lifecycle</a></li>
+                    <li><a href="#identity">Identity & Reputation</a></li>
+                    <li><a href="#qf-integration">QF Integration</a></li>
+                    <li><a href="#blockchain">Blockchain & Smart Contracts</a></li>
+                    <li><a href="#impact-validation">Impact Validation</a></li>
+                    <li><a href="#system-architecture">System Architecture</a></li>
+                    <li><a href="#data-flow">Data Flow</a></li>
+                    <li><a href="#security">Security & Compliance</a></li>
+                    <li><a href="#deployment">Deployment</a></li>
+                    <li><a href="#integration">DHIS2 Integration</a></li>
+                    <li><a href="#ai-automation">AI Automation</a></li>
+                    <li><a href="#anti-sybil">Anti-Sybil</a></li>
+                    <li><a href="#comparison">System Comparison</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <!-- SECTION 1: SYSTEM OVERVIEW -->
+            <section id="overview" class="diagram-category">
+                <h2>1. System Overview</h2>
+
+                <div class="diagram-item">
+                    <h3>Complete System Integration - 4 Layers</h3>
+                    <p>High-level overview showing integration of Identity, Fundraising, Grant Management, and Validation layers.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    subgraph "LAYER 1: IDENTITY"
+        DID[Decentralized Identity<br/>W3C DID]
+        SBT[Soulbound Tokens<br/>Credentials]
+        REP[Reputation Oracle<br/>0-100 Score]
+    end
+
+    subgraph "LAYER 2: FUNDRAISING"
+        QF[Quadratic Funding<br/>Community Driven]
+        Match[Matching Pool<br/>Fair Distribution]
+    end
+
+    subgraph "LAYER 3: GRANT EXECUTION"
+        Award[Grant Award<br/>Smart Contracts]
+        Milestone[Milestone Management<br/>Automated]
+        Monitor[AI + DHIS2<br/>Real-time Monitoring]
+    end
+
+    subgraph "LAYER 4: VALIDATION & REWARDS"
+        Impact[Impact Validation<br/>Multi-layer]
+        NFT[Proof-of-Impact<br/>NFT Certificate]
+        Badge[Achievement Badges<br/>SBT]
+    end
+
+    DID --> QF
+    SBT --> Match
+    REP --> Match
+
+    QF --> Award
+    Match --> Award
+
+    Award --> Milestone
+    Milestone --> Monitor
+    Monitor --> Impact
+
+    Impact --> NFT
+    Impact --> Badge
+    Badge --> REP
+
+    style DID fill:#9c27b0
+    style SBT fill:#9c27b0
+    style REP fill:#ff9800
+    style QF fill:#2196f3
+    style Award fill:#4caf50
+    style NFT fill:#f3e5f5
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagram-item">
+                    <h3>Virtuous Cycle - Reputation Growth</h3>
+                    <p>How organizations build reputation and unlock better funding terms over time.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    Start([New Organization<br/>Bronze Tier]) --> FirstGrant[Participate in<br/>QF Round]
+
+    FirstGrant --> Funding{Receive<br/>Funding?}
+
+    Funding -->|Yes| Implement[Successful<br/>Implementation]
+    Funding -->|No| Improve[Improve & Retry]
+
+    Improve -.-> FirstGrant
+
+    Implement --> Impact[Validated<br/>Impact]
+
+    Impact --> RepUp[Reputation +15<br/>Gold Tier]
+
+    RepUp --> Benefits[Unlock Benefits:<br/>1.3x multiplier<br/>Fast-track access]
+
+    Benefits --> NextRound[Next QF Round<br/>Better Position]
+
+    NextRound --> MoreFunding[More Funding<br/>Received]
+
+    MoreFunding --> BiggerImpact[Bigger<br/>Impact]
+
+    BiggerImpact --> Platinum[Reputation +20<br/>Platinum Tier]
+
+    Platinum --> Elite[Elite Status:<br/>1.5x multiplier<br/>Auto-approvals<br/>Unlimited grants]
+
+    Elite --> Scale[Scale to<br/>Regional Hub]
+
+    style Start fill:#cd7f32
+    style RepUp fill:#ffd700
+    style Platinum fill:#e5e4e2
+    style Elite fill:#4caf50
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: GRANT LIFECYCLE -->
+            <section id="grant-lifecycle" class="diagram-category">
+                <h2>2. Grant Lifecycle</h2>
+
+                <div class="diagram-item">
+                    <h3>High-Level Grant Cycle Flow</h3>
+                    <p>Complete grant lifecycle from gap identification to closure.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    Start([Start: Crisis/Gap Detected]) --> GapID[Stage 1: Gap Identification]
+
+    GapID --> |DHIS2 Data + AI Analysis| Priority[Gap Prioritization]
+    Priority --> Fund[Stage 2: Funding Request]
+
+    Fund --> |AI Screening| Review[Stage 3: Grant Review]
+    Review --> |AI Scoring + Human Expert| Decision{Approval Decision}
+
+    Decision -->|Approved| Award[Stage 4: Grant Award]
+    Decision -->|Rejected| Feedback[Feedback to Applicant]
+    Feedback --> Fund
+
+    Award --> |Blockchain Registration| Disbursement[Stage 5: Fund Disbursement]
+    Disbursement --> |Smart Contracts| Implementation[Stage 6: Implementation]
+
+    Implementation --> |Real-time Monitoring| Reporting[Stage 7: Reporting & Compliance]
+    Reporting --> |AI Validation| Impact[Stage 8: Impact Evaluation]
+
+    Impact --> |Proof-of-Impact NFT| Closure[Grant Closure]
+    Closure --> |Lessons Learned| Knowledge[(Knowledge Base)]
+
+    Knowledge -.-> GapID
+
+    style GapID fill:#e1f5ff
+    style Review fill:#fff4e1
+    style Disbursement fill:#e8f5e9
+    style Impact fill:#f3e5f5
+    style Closure fill:#e0e0e0
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagram-item">
+                    <h3>Grant Lifecycle with Reputation Updates</h3>
+                    <p>Sequence diagram showing how reputation is updated throughout the grant lifecycle.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+sequenceDiagram
+    participant Org as Organization<br/>(with DID)
+    participant QF as QF Platform
+    participant Grant as Grant Mgmt
+    participant Monitor as Monitoring
+    participant Rep as Reputation<br/>System
+    participant SBT as SBT Issuer
+
+    Org->>QF: Apply to QF Round
+    QF->>Rep: Check Reputation Score
+    Rep-->>QF: Score: 65 (Silver Tier)
+
+    Note over QF: Multiplier = 1.15x
+
+    QF->>Org: Project Listed
+
+    Note over Org,QF: Community Voting Period
+
+    QF->>QF: Calculate QF Matching<br/>with Reputation Multiplier
+    QF->>Org: Funding Awarded: $75K
+
+    Org->>Grant: Accept Grant
+    Grant->>Rep: +5 points (Grant Awarded)
+
+    Org->>Grant: Complete Milestone 1
+    Grant->>Monitor: AI + DHIS2 Validation
+    Monitor-->>Grant: Validated
+    Grant->>Org: Disburse 30%
+    Grant->>Rep: +3 points (Milestone 1)
+
+    Note over Rep: Score now 73 (approaching Gold)
+
+    Org->>Grant: Complete Milestone 2
+    Grant->>Monitor: Validation
+    Monitor-->>Grant: Validated
+    Grant->>Org: Disburse 30%
+    Grant->>Rep: +3 points (Milestone 2)
+
+    Org->>Grant: Complete Final Milestone
+    Grant->>Monitor: Impact Validation
+    Monitor-->>Grant: Score: 92/100
+
+    Grant->>SBT: Mint Proof-of-Impact NFT
+    SBT-->>Org: NFT Issued
+
+    Grant->>SBT: Mint Platinum Badge SBT
+    SBT-->>Org: Badge Issued
+
+    Grant->>Rep: +15 points (Platinum Impact)
+    Rep-->>Org: New Score: 91 (Platinum Tier!)
+
+    Note over Org: Next round: 1.5x multiplier<br/>Fast-track eligibility<br/>Auto-approvals
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagram-item">
+                    <h3>Emergency Fast-Track Process</h3>
+                    <p>Accelerated 30-45 day process for emergency health situations vs standard 6-9 months.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph LR
+    subgraph "DAY 0-3: Crisis Detection"
+        C1[Gap Detected] --> C2[AI Rapid<br/>Assessment]
+        C2 --> C3[Priority<br/>Score]
+        C3 --> C4{Emergency?}
+        C4 -->|No| Standard[Standard<br/>Process<br/>6-9 months]
+        C4 -->|Yes| Fast[FAST-TRACK<br/>30-45 days]
+    end
+
+    subgraph "DAY 3-10: Application"
+        F1[Simplified<br/>Application]
+        F2[AI Pre-screening<br/>2-3 days]
+        F3[Auto-eligibility<br/>< 24h]
+
+        F1 --> F3
+        F3 --> F2
+    end
+
+    subgraph "DAY 10-20: Rapid Review"
+        R1[Parallel Review<br/>Technical + Financial]
+        R2[AI Risk Score]
+        R3[Expert Panel<br/>3-5 days]
+
+        R1 --> R2
+        R2 --> R3
+    end
+
+    subgraph "DAY 20-25: Approval"
+        A1[Expedited<br/>Committee]
+        A2[Conditional<br/>Approval]
+        A3[Smart Contract<br/>Setup]
+    end
+
+    subgraph "DAY 25-30: Disbursement"
+        D1[Rapid<br/>Compliance]
+        D2[Blockchain<br/>Transaction]
+        D3[Funds<br/>Released]
+    end
+
+    subgraph "ONGOING: Enhanced Monitoring"
+        M1[Real-time<br/>Tracking]
+        M2[AI Anomaly<br/>Detection]
+        M3[Weekly<br/>Check-ins]
+    end
+
+    Fast --> F1
+    F2 --> R1
+    R3 --> A1
+    A1 --> A2
+    A2 --> A3
+    A3 --> D1
+    D1 --> D2
+    D2 --> D3
+    D3 --> M1
+    M1 --> M2
+    M2 --> M3
+
+    style C2 fill:#ffeb3b
+    style C3 fill:#ffeb3b
+    style F2 fill:#ffeb3b
+    style F3 fill:#ffeb3b
+    style R2 fill:#ffeb3b
+    style M2 fill:#ffeb3b
+
+    style A3 fill:#4caf50
+    style D2 fill:#4caf50
+
+    style Fast fill:#ff5722,color:#fff
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: IDENTITY & REPUTATION -->
+            <section id="identity" class="diagram-category">
+                <h2>3. Identity & Reputation System</h2>
+
+                <div class="diagram-item">
+                    <h3>Identity Layer - DID + SBT</h3>
+                    <p>User onboarding with Decentralized Identity and Soulbound Token credentials.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph LR
+    subgraph "USER ONBOARDING"
+        Register[User Registration]
+        Create[Create DID]
+        Issue[Issue SBT<br/>Credentials]
+    end
+
+    subgraph "CREDENTIAL TYPES"
+        C1[Healthcare Worker<br/>SBT]
+        C2[Affected Population<br/>SBT]
+        C3[Health Authority<br/>SBT]
+        C4[Technical Expert<br/>SBT]
+        C5[Organization<br/>Verification SBT]
+    end
+
+    subgraph "VERIFICATION SOURCES"
+        V1[Professional<br/>Registry]
+        V2[Government<br/>Database]
+        V3[NGO<br/>Verification]
+        V4[Community<br/>Attestation]
+    end
+
+    Register --> Create
+    Create --> Issue
+
+    Issue --> C1 & C2 & C3 & C4 & C5
+
+    V1 --> C1
+    V2 --> C2 & C3
+    V3 --> C5
+    V4 --> C2
+
+    C1 & C2 & C3 & C4 --> Weight[Stakeholder<br/>Weighting in QF]
+    C5 --> Eligibility[Project<br/>Eligibility]
+
+    style Create fill:#9c27b0
+    style Issue fill:#9c27b0
+    style Weight fill:#2196f3
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagram-item">
+                    <h3>Reputation Growth Flow</h3>
+                    <p>How organizations progress from Bronze to Platinum tier through successful project delivery.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    Start([New Organization]) --> Initial[Initial Score: 50<br/>Bronze Tier]
+
+    Initial --> FirstGrant[Apply to QF Round]
+
+    FirstGrant --> Community[Community Validation<br/>+5 score]
+
+    Community --> Funding{Receive<br/>Funding?}
+
+    Funding -->|Yes| Implement[Implementation<br/>Phase]
+    Funding -->|No| Feedback[Improve + Reapply<br/>No score change]
+
+    Feedback -.-> FirstGrant
+
+    Implement --> M1[Milestone 1 Complete<br/>+3 score]
+    M1 --> M2[Milestone 2 Complete<br/>+3 score]
+    M2 --> M3[Milestone 3 Complete<br/>+3 score]
+    M3 --> Final[Impact Validation]
+
+    Final --> Excellent{Score?}
+
+    Excellent -->|>= 90| Platinum[Platinum Badge SBT<br/>+15 score]
+    Excellent -->|>= 75| Gold[Gold Badge SBT<br/>+10 score]
+    Excellent -->|>= 60| Silver[Silver Badge SBT<br/>+5 score]
+    Excellent -->|< 60| Bronze[Bronze Badge SBT<br/>+2 score]
+
+    Platinum & Gold & Silver & Bronze --> NextRound[Next QF Round<br/>Higher Multiplier]
+
+    NextRound --> Advantage[Tier Advantages:<br/>- Higher matching<br/>- Fast-track<br/>- Auto-approvals]
+
+    style Initial fill:#cd7f32
+    style Platinum fill:#e5e4e2
+    style Gold fill:#ffd700
+    style Silver fill:#c0c0c0
+    style Advantage fill:#4caf50
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-box" style="border-top: 3px solid #e5e4e2;">
+                            <div class="number">90+</div>
+                            <div class="label">Platinum Tier</div>
+                            <p style="margin-top: 10px; font-size: 0.85em;">1.5x multiplier<br/>Auto-approvals<br/>Fast-track</p>
+                        </div>
+                        <div class="stat-box" style="border-top: 3px solid #ffd700;">
+                            <div class="number">75+</div>
+                            <div class="label">Gold Tier</div>
+                            <p style="margin-top: 10px; font-size: 0.85em;">1.3x multiplier<br/>Fast-track<br/>Priority support</p>
+                        </div>
+                        <div class="stat-box" style="border-top: 3px solid #c0c0c0;">
+                            <div class="number">60+</div>
+                            <div class="label">Silver Tier</div>
+                            <p style="margin-top: 10px; font-size: 0.85em;">1.15x multiplier<br/>Standard review<br/>Full support</p>
+                        </div>
+                        <div class="stat-box" style="border-top: 3px solid #cd7f32;">
+                            <div class="number">0-59</div>
+                            <div class="label">Bronze Tier</div>
+                            <p style="margin-top: 10px; font-size: 0.85em;">1.0x multiplier<br/>Enhanced diligence</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: QF INTEGRATION -->
+            <section id="qf-integration" class="diagram-category">
+                <h2>4. Quadratic Funding Integration</h2>
+
+                <div class="diagram-item">
+                    <h3>Enhanced QF with DID & Reputation</h3>
+                    <p>Quadratic Funding formula enhanced with reputation multipliers and stakeholder weighting.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    subgraph "DONOR SIDE"
+        Donor[Donor] --> CheckDID{Has DID?}
+
+        CheckDID -->|No| CreateDID[Create DID<br/>Basic Verification]
+        CheckDID -->|Yes| LoadRep[Load Reputation<br/>Score]
+
+        CreateDID --> BasicMulti[1.0x Base<br/>Multiplier]
+
+        LoadRep --> RepCheck{Reputation<br/>Tier?}
+
+        RepCheck -->|Platinum| Multi15[1.5x Multiplier]
+        RepCheck -->|Gold| Multi13[1.3x Multiplier]
+        RepCheck -->|Silver| Multi115[1.15x Multiplier]
+        RepCheck -->|Bronze| Multi10[1.0x Multiplier]
+
+        BasicMulti & Multi15 & Multi13 & Multi115 & Multi10 --> AddStake[Add Stakeholder<br/>Type Multiplier]
+
+        AddStake --> Healthcare{SBT Type?}
+
+        Healthcare -->|Healthcare Worker| Extra13[+0.3x]
+        Healthcare -->|Affected Pop| Extra25[+0.25x]
+        Healthcare -->|Health Auth| Extra20[+0.2x]
+        Healthcare -->|Tech Expert| Extra15[+0.15x]
+        Healthcare -->|None| Extra0[+0.0x]
+
+        Extra13 & Extra25 & Extra20 & Extra15 & Extra0 --> FinalMulti[Final QF<br/>Multiplier]
+    end
+
+    subgraph "PROJECT SIDE"
+        Project[Project] --> OrgDID{Has Org<br/>DID + SBT?}
+
+        OrgDID -->|No| Reject[Rejected:<br/>Must verify]
+        OrgDID -->|Yes| OrgRep[Check Org<br/>Reputation]
+
+        OrgRep --> OrgTier{Tier?}
+
+        OrgTier -->|Platinum| FastTrack[Fast-track<br/>Verification]
+        OrgTier -->|Gold/Silver| Standard[Standard<br/>Review]
+        OrgTier -->|Bronze| Enhanced[Enhanced<br/>Due Diligence]
+
+        FastTrack & Standard & Enhanced --> Eligible[Eligible for<br/>QF Round]
+    end
+
+    FinalMulti --> Donate[Donate to<br/>Project]
+    Eligible --> Donate
+
+    Donate --> QFCalc[QF Algorithm<br/>with Multipliers]
+
+    QFCalc --> MatchDist[Matching<br/>Distribution]
+
+    style CreateDID fill:#9c27b0
+    style LoadRep fill:#9c27b0
+    style Multi15 fill:#e5e4e2
+    style QFCalc fill:#2196f3
+    style MatchDist fill:#4caf50
+                        </div>
+                    </div>
+
+                    <div class="legend">
+                        <h4>Modified QF Formula</h4>
+                        <p><strong>Match for Project P = (Σ(√ci × Mi × Si))²</strong></p>
+                        <p style="margin-top: 10px;">Where:</p>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>ci = contribution i to project P</li>
+                            <li>Mi = Reputation multiplier of donor (1.0 - 1.5)</li>
+                            <li>Si = Stakeholder type multiplier of donor (1.0 - 1.3)</li>
+                            <li>Final multiplier: Mi × Si</li>
+                            <li>Max possible: 1.5 × 1.3 = 1.95x</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="diagram-item">
+                    <h3>Donor Incentives & Reputation</h3>
+                    <p>Reward system for donors based on their tier and project success.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    Donate[Donor Donates<br/>$100 to Project] --> Track[Track Donation<br/>On-chain]
+
+    Track --> Check{Donor Has<br/>DID?}
+
+    Check -->|No| Basic[Basic Reward:<br/>100 tokens]
+    Check -->|Yes| Tier{Donor<br/>Tier?}
+
+    Tier -->|Platinum| Reward150[150 tokens<br/>+ NFT badge]
+    Tier -->|Gold| Reward130[130 tokens]
+    Tier -->|Silver| Reward115[115 tokens]
+    Tier -->|Bronze| Reward100[100 tokens]
+
+    Basic & Reward150 & Reward130 & Reward115 & Reward100 --> Outcome{Project<br/>Succeeds?}
+
+    Outcome -->|Yes<br/>High Impact| Bonus[Bonus Tokens<br/>+ Rep Points]
+    Outcome -->|Yes<br/>Medium Impact| Small[Small Bonus]
+    Outcome -->|No<br/>Failed| NoBonus[No Bonus]
+
+    Bonus --> RepUp[Donor Rep +5]
+    Small --> RepUp2[Donor Rep +2]
+
+    RepUp & RepUp2 --> NextDonation[Next Donation:<br/>Higher Multiplier]
+
+    style Donate fill:#2196f3
+    style Reward150 fill:#e5e4e2
+    style Bonus fill:#4caf50
+    style RepUp fill:#9c27b0
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: BLOCKCHAIN -->
+            <section id="blockchain" class="diagram-category">
+                <h2>5. Blockchain & Smart Contracts</h2>
+
+                <div class="diagram-item">
+                    <h3>Blockchain Integration Flow</h3>
+                    <p>Complete sequence of blockchain interactions from application to disbursement.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+sequenceDiagram
+    participant App as Applicant
+    participant Portal as Web Portal
+    participant API as API Gateway
+    participant Grant as Grant Service
+    participant BC as Blockchain Service
+    participant SC as Smart Contract
+    participant IPFS as IPFS Storage
+    participant Chain as Ethereum/Polygon
+
+    App->>Portal: Submit Grant Application
+    Portal->>API: POST /applications
+    API->>Grant: Create Application
+
+    Note over Grant: AI Eligibility Check
+
+    Grant->>IPFS: Store Application Documents
+    IPFS-->>Grant: Return IPFS Hash
+
+    Grant->>BC: Register Application
+    BC->>SC: createApplication(hash, metadata)
+    SC->>Chain: Transaction
+    Chain-->>SC: Transaction Hash
+    SC-->>BC: Application ID + Tx Hash
+    BC-->>Grant: Blockchain Record
+
+    Note over Grant: Review Process (AI + Human)
+
+    Grant->>BC: Update Status: Approved
+    BC->>SC: approveGrant(grantId)
+    SC->>Chain: State Change
+
+    Note over SC: Smart Contract:<br/>Grant Agreement Created
+
+    Grant->>BC: Create Milestones
+    BC->>SC: defineMilestones(grantId, milestones[])
+    SC->>Chain: Milestone Data
+
+    Note over App: Grant Implementation
+
+    App->>Portal: Submit Milestone Evidence
+    Portal->>IPFS: Store Evidence Files
+    IPFS-->>Portal: Evidence Hash
+
+    Portal->>Grant: Complete Milestone + Evidence
+    Grant->>BC: Validate & Disburse
+
+    Note over BC: AI Validation:<br/>- Evidence Check<br/>- Fraud Detection<br/>- DHIS2 Cross-check
+
+    BC->>SC: completeMilestone(grantId, milestoneId, evidenceHash)
+    SC->>Chain: Update State
+    SC->>Chain: Transfer Funds
+    Chain-->>App: Funds Released
+
+    Note over App: All Milestones Complete
+
+    Grant->>BC: Request Impact Validation
+
+    Note over BC: Multi-layer AI Validation:<br/>1. Data Validation<br/>2. Evidence Assessment<br/>3. Impact Scoring
+
+    BC->>SC: mintProofOfImpact(grantId, impactData)
+    SC->>Chain: Create NFT
+    Chain-->>BC: NFT Token ID
+    BC-->>Grant: Proof-of-Impact Certificate
+
+    Grant->>App: Grant Closure + NFT Certificate
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagram-item">
+                    <h3>Smart Contract Stack</h3>
+                    <p>Four-layer smart contract architecture for complete system.</p>
+                    <div class="legend">
+                        <h4>Contract Organization</h4>
+                        <p><strong>LAYER 1: Identity & Credentials</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>DIDRegistry.sol</li>
+                            <li>SBTIssuer.sol</li>
+                            <li>CredentialVerifier.sol</li>
+                            <li>ReputationOracle.sol</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>LAYER 2: QF Mechanism</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>QFMatchingPool.sol</li>
+                            <li>DonationRouter.sol (with DID verification)</li>
+                            <li>MultiStakeholderQF.sol (weighted calculation)</li>
+                            <li>AntiSybil.sol</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>LAYER 3: Grant Management</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>GrantAgreement.sol</li>
+                            <li>MilestoneManager.sol</li>
+                            <li>EvidenceStorage.sol (IPFS)</li>
+                            <li>DisbursementEngine.sol</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>LAYER 4: Proof & Rewards</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>ProofOfImpactNFT.sol</li>
+                            <li>BadgeIssuer.sol (SBTs)</li>
+                            <li>ReputationUpdater.sol</li>
+                            <li>DonorRewards.sol</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: IMPACT VALIDATION -->
+            <section id="impact-validation" class="diagram-category">
+                <h2>6. Impact Validation</h2>
+
+                <div class="diagram-item">
+                    <h3>Proof-of-Impact 4-Layer Validation</h3>
+                    <p>Multi-layer validation process ensuring impact authenticity before NFT minting.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    Start([Impact Measurement Triggered]) --> Collect[Collect Impact Data]
+
+    Collect --> Source1[DHIS2 Data]
+    Collect --> Source2[Field Reports]
+    Collect --> Source3[Photos/Videos]
+    Collect --> Source4[Financial Records]
+    Collect --> Source5[Beneficiary Surveys]
+
+    Source1 & Source2 & Source3 & Source4 & Source5 --> Layer1[LAYER 1: Automated Data Validation]
+
+    subgraph "LAYER 1: Automated Validation"
+        L1A[Cross-check vs DHIS2]
+        L1B[Statistical Plausibility]
+        L1C[Time-series Consistency]
+        L1D[Peer Benchmarking]
+    end
+
+    Layer1 --> L1A & L1B & L1C & L1D
+    L1A & L1B & L1C & L1D --> Score1{Score >= 70%?}
+
+    Score1 -->|No| Flag1[Flag for Manual Review]
+    Score1 -->|Yes| Layer2[LAYER 2: AI Evidence Assessment]
+
+    subgraph "LAYER 2: AI Evidence"
+        L2A[Computer Vision:<br/>Photo Analysis]
+        L2B[NLP:<br/>Report Analysis]
+        L2C[Geolocation<br/>Verification]
+        L2D[Timestamp<br/>Verification]
+    end
+
+    Layer2 --> L2A & L2B & L2C & L2D
+    L2A & L2B & L2C & L2D --> Score2{Score >= 75%?}
+
+    Score2 -->|No| Flag2[Flag for Manual Review]
+    Score2 -->|Yes| Layer3[LAYER 3: Smart Contract Verification]
+
+    subgraph "LAYER 3: Blockchain"
+        L3A[Multi-validator<br/>Consensus]
+        L3B[Weighted Scoring<br/>by Reputation]
+        L3C[On-chain<br/>Record]
+    end
+
+    Layer3 --> L3A
+    L3A --> L3B
+    L3B --> L3C
+    L3C --> Score3{Consensus >= 80%?}
+
+    Score3 -->|No| Flag3[Flag for Manual Review]
+    Score3 -->|Yes| Sample{High-value<br/>Grant?}
+
+    Sample -->|Yes >$500K| Layer4[LAYER 4: Human Expert Review]
+    Sample -->|No| Approve[Generate PoI Certificate]
+
+    subgraph "LAYER 4: Human Expert"
+        L4A[Spot Check<br/>Sample]
+        L4B[Independent<br/>Evaluation]
+        L4C[Beneficiary<br/>Verification]
+    end
+
+    Layer4 --> L4A & L4B & L4C
+    L4A & L4B & L4C --> Final{Expert<br/>Approval?}
+
+    Final -->|Yes| Approve
+    Final -->|No| Reject[Reject PoI]
+
+    Flag1 & Flag2 & Flag3 --> Manual[Manual Investigation]
+    Manual --> ManualDecision{Decision}
+    ManualDecision -->|Approve| Approve
+    ManualDecision -->|Reject| Reject
+
+    Approve --> NFT[Mint PoI NFT]
+    NFT --> Blockchain[Record on Blockchain]
+    Blockchain --> Certificate[Issue Certificate]
+
+    Reject --> Feedback[Detailed Feedback]
+    Feedback --> Remediation[Remediation Plan]
+
+    style L1A fill:#e3f2fd
+    style L1B fill:#e3f2fd
+    style L1C fill:#e3f2fd
+    style L1D fill:#e3f2fd
+
+    style L2A fill:#fff9c4
+    style L2B fill:#fff9c4
+    style L2C fill:#fff9c4
+    style L2D fill:#fff9c4
+
+    style L3A fill:#c8e6c9
+    style L3B fill:#c8e6c9
+    style L3C fill:#c8e6c9
+
+    style L4A fill:#f8bbd0
+    style L4B fill:#f8bbd0
+    style L4C fill:#f8bbd0
+                        </div>
+                    </div>
+
+                    <div class="legend">
+                        <h4>Validation Layers</h4>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #e3f2fd;"></span>
+                            <span>Layer 1: Automated Data Validation</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #fff9c4;"></span>
+                            <span>Layer 2: AI Evidence Assessment</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #c8e6c9;"></span>
+                            <span>Layer 3: Blockchain Verification</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #f8bbd0;"></span>
+                            <span>Layer 4: Human Expert Review</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 7: SYSTEM ARCHITECTURE -->
+            <section id="system-architecture" class="diagram-category">
+                <h2>7. System Architecture</h2>
+
+                <div class="diagram-item">
+                    <h3>Layered System Architecture</h3>
+                    <p>Complete microservices architecture with AI/ML and blockchain layers.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    subgraph "PRESENTATION LAYER"
+        UI1[Web Portal - React]
+        UI2[Mobile Apps - React Native]
+        UI3[Admin Dashboard]
+        UI4[API Gateway]
+    end
+
+    subgraph "APPLICATION LAYER - Microservices"
+        MS1[Application Service]
+        MS2[Review Service]
+        MS3[Financial Service]
+        MS4[Monitoring Service]
+        MS5[Reporting Service]
+        MS6[Notification Service]
+    end
+
+    subgraph "AI/ML LAYER"
+        AI1[NLP Service<br/>GPT-4/Claude]
+        AI2[ML Scoring Engine<br/>TensorFlow/PyTorch]
+        AI3[Computer Vision<br/>OpenCV/Detectron2]
+        AI4[Fraud Detection<br/>Anomaly ML]
+        AI5[Predictive Analytics<br/>Time-series ML]
+    end
+
+    subgraph "BLOCKCHAIN LAYER"
+        BC1[Smart Contract Engine<br/>Solidity/Web3]
+        BC2[Transaction Manager]
+        BC3[Ethereum/Polygon Node]
+        BC4[IPFS Storage]
+    end
+
+    subgraph "INTEGRATION LAYER"
+        INT1[DHIS2 Connector]
+        INT2[Payment Gateway]
+        INT3[Email/SMS Service]
+        INT4[External APIs]
+    end
+
+    subgraph "DATA LAYER"
+        DB1[(PostgreSQL<br/>Relational Data)]
+        DB2[(MongoDB<br/>Documents)]
+        DB3[(Redis<br/>Cache)]
+        DB4[(Elasticsearch<br/>Search/Analytics)]
+    end
+
+    UI1 & UI2 & UI3 --> UI4
+    UI4 --> MS1 & MS2 & MS3 & MS4 & MS5 & MS6
+
+    MS1 --> AI1
+    MS2 --> AI2
+    MS3 --> AI4
+    MS4 --> AI3 & AI5
+
+    MS1 & MS2 & MS3 --> BC1
+    BC1 --> BC2
+    BC2 --> BC3
+    BC3 --> BC4
+
+    MS4 --> INT1
+    MS3 --> INT2
+    MS6 --> INT3
+    MS1 & MS2 & MS4 --> INT4
+
+    MS1 & MS2 & MS3 & MS4 & MS5 --> DB1
+    MS1 & MS5 --> DB2
+    MS1 & MS2 & MS3 --> DB3
+    MS4 & MS5 --> DB4
+
+    style AI1 fill:#fff9c4
+    style AI2 fill:#fff9c4
+    style AI3 fill:#fff9c4
+    style AI4 fill:#fff9c4
+    style AI5 fill:#fff9c4
+
+    style BC1 fill:#c8e6c9
+    style BC2 fill:#c8e6c9
+    style BC3 fill:#c8e6c9
+    style BC4 fill:#c8e6c9
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 8: DATA FLOW -->
+            <section id="data-flow" class="diagram-category">
+                <h2>8. Data Flow Architecture</h2>
+
+                <div class="diagram-item">
+                    <h3>End-to-End Data Flow</h3>
+                    <p>Data movement from external sources through processing to consumption.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph LR
+    subgraph "EXTERNAL DATA SOURCES"
+        EXT1[DHIS2<br/>Health Data]
+        EXT2[Applicant<br/>Submissions]
+        EXT3[Bank<br/>Systems]
+        EXT4[Field<br/>Reports]
+    end
+
+    subgraph "DATA INGESTION"
+        ING1[API Gateway]
+        ING2[ETL Pipeline]
+        ING3[Data Validation]
+        ING4[Streaming Processor]
+    end
+
+    subgraph "DATA PROCESSING"
+        PROC1[AI/ML<br/>Processing]
+        PROC2[Business<br/>Logic]
+        PROC3[Blockchain<br/>Validation]
+        PROC4[Aggregation<br/>& Analytics]
+    end
+
+    subgraph "DATA STORAGE"
+        STORE1[(Operational<br/>Database)]
+        STORE2[(Document<br/>Store)]
+        STORE3[(Blockchain<br/>Ledger)]
+        STORE4[(Data<br/>Warehouse)]
+    end
+
+    subgraph "DATA CONSUMPTION"
+        CONS1[Dashboards]
+        CONS2[Reports]
+        CONS3[Alerts]
+        CONS4[APIs]
+        CONS5[Analytics]
+    end
+
+    EXT1 --> ING1
+    EXT2 --> ING1
+    EXT3 --> ING2
+    EXT4 --> ING4
+
+    ING1 --> ING3
+    ING2 --> ING3
+    ING4 --> ING3
+
+    ING3 --> PROC1
+    ING3 --> PROC2
+    ING3 --> PROC3
+
+    PROC1 --> STORE1
+    PROC2 --> STORE1
+    PROC3 --> STORE3
+
+    STORE1 --> PROC4
+    STORE2 --> PROC4
+    STORE3 --> PROC4
+
+    PROC4 --> STORE4
+
+    STORE1 --> CONS1
+    STORE4 --> CONS2
+    PROC1 --> CONS3
+    STORE1 --> CONS4
+    STORE4 --> CONS5
+
+    style PROC1 fill:#ffe082
+    style PROC3 fill:#a5d6a7
+    style STORE3 fill:#a5d6a7
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 9: SECURITY -->
+            <section id="security" class="diagram-category">
+                <h2>9. Security & Compliance</h2>
+
+                <div class="diagram-item">
+                    <h3>Multi-Layer Security Architecture</h3>
+                    <p>Defense-in-depth security with authentication, network, application, and data layers.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    subgraph "ENTRY POINTS"
+        E1[Web Portal]
+        E2[Mobile Apps]
+        E3[APIs]
+        E4[Admin Access]
+    end
+
+    subgraph "SECURITY LAYER 1: Authentication"
+        S1[Multi-Factor Auth<br/>MFA]
+        S2[OAuth2/OIDC]
+        S3[Role-Based Access<br/>RBAC]
+        S4[Session Management]
+    end
+
+    subgraph "SECURITY LAYER 2: Network"
+        N1[WAF<br/>Web Application<br/>Firewall]
+        N2[DDoS<br/>Protection]
+        N3[SSL/TLS<br/>Encryption]
+        N4[API Rate<br/>Limiting]
+    end
+
+    subgraph "SECURITY LAYER 3: Application"
+        A1[Input Validation]
+        A2[SQL Injection<br/>Prevention]
+        A3[XSS Protection]
+        A4[CSRF Tokens]
+    end
+
+    subgraph "SECURITY LAYER 4: Data"
+        D1[Encryption<br/>at Rest]
+        D2[Encryption<br/>in Transit]
+        D3[Data<br/>Anonymization]
+        D4[Audit Logs]
+    end
+
+    subgraph "COMPLIANCE LAYER"
+        C1[GDPR<br/>Compliance]
+        C2[AML/KYC<br/>Checks]
+        C3[Financial<br/>Regulations]
+        C4[Humanitarian<br/>Standards]
+    end
+
+    subgraph "MONITORING LAYER"
+        M1[SIEM<br/>Security Info]
+        M2[Intrusion<br/>Detection]
+        M3[Anomaly<br/>Detection AI]
+        M4[Incident<br/>Response]
+    end
+
+    E1 & E2 & E3 & E4 --> S1 & S2 & S3 & S4
+    S1 & S2 & S3 & S4 --> N1 & N2 & N3 & N4
+    N1 & N2 & N3 & N4 --> A1 & A2 & A3 & A4
+    A1 & A2 & A3 & A4 --> D1 & D2 & D3 & D4
+
+    D1 & D2 & D3 & D4 --> C1 & C2 & C3 & C4
+
+    S1 & S2 & S3 & S4 -.-> M1
+    N1 & N2 -.-> M2
+    A1 & A2 & A3 & A4 -.-> M3
+    D4 -.-> M1
+
+    M1 & M2 & M3 --> M4
+
+    style M3 fill:#ffeb3b
+    style D1 fill:#4caf50
+    style D2 fill:#4caf50
+    style C2 fill:#ff9800
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 10: DEPLOYMENT -->
+            <section id="deployment" class="diagram-category">
+                <h2>10. Deployment Architecture</h2>
+
+                <div class="diagram-item">
+                    <h3>Kubernetes Deployment</h3>
+                    <p>Production-ready Kubernetes cluster with microservices, AI/ML, and blockchain nodes.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    subgraph "INTERNET"
+        USER[Users]
+        CDN[CloudFlare CDN]
+    end
+
+    subgraph "LOAD BALANCING"
+        LB[AWS/Azure<br/>Load Balancer]
+        IG[Ingress<br/>Controller]
+    end
+
+    subgraph "KUBERNETES CLUSTER"
+        subgraph "Frontend Namespace"
+            POD1[Web Portal<br/>Pods x3]
+            POD2[Admin UI<br/>Pods x2]
+        end
+
+        subgraph "Application Namespace"
+            POD3[Grant Service<br/>Pods x5]
+            POD4[Review Service<br/>Pods x3]
+            POD5[Financial Service<br/>Pods x3]
+            POD6[Monitoring Service<br/>Pods x4]
+        end
+
+        subgraph "AI/ML Namespace"
+            POD7[NLP Service<br/>GPU Pods x2]
+            POD8[ML Scoring<br/>GPU Pods x2]
+            POD9[CV Service<br/>GPU Pods x2]
+        end
+
+        subgraph "Blockchain Namespace"
+            POD10[Blockchain Service<br/>Pods x3]
+            POD11[IPFS Node<br/>Pods x2]
+        end
+
+        subgraph "Data Namespace"
+            POD12[PostgreSQL<br/>StatefulSet]
+            POD13[MongoDB<br/>StatefulSet]
+            POD14[Redis Cluster]
+            POD15[Elasticsearch<br/>Cluster]
+        end
+    end
+
+    subgraph "EXTERNAL SERVICES"
+        EXT1[Ethereum/Polygon<br/>Node]
+        EXT2[DHIS2<br/>API]
+        EXT3[Payment<br/>Gateway]
+    end
+
+    USER --> CDN
+    CDN --> LB
+    LB --> IG
+
+    IG --> POD1
+    IG --> POD2
+
+    POD1 --> POD3
+    POD2 --> POD3 & POD4 & POD5 & POD6
+
+    POD3 & POD4 --> POD7 & POD8
+    POD6 --> POD9
+    POD3 & POD4 & POD5 --> POD10
+
+    POD3 & POD4 & POD5 & POD6 --> POD12 & POD13 & POD14 & POD15
+
+    POD10 --> EXT1
+    POD10 --> POD11
+    POD6 --> EXT2
+    POD5 --> EXT3
+
+    style POD7 fill:#fff9c4
+    style POD8 fill:#fff9c4
+    style POD9 fill:#fff9c4
+
+    style POD10 fill:#c8e6c9
+    style POD11 fill:#c8e6c9
+
+    style POD12 fill:#e1bee7
+    style POD13 fill:#e1bee7
+    style POD14 fill:#e1bee7
+    style POD15 fill:#e1bee7
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 11: DHIS2 INTEGRATION -->
+            <section id="integration" class="diagram-category">
+                <h2>11. DHIS2 Integration</h2>
+
+                <div class="diagram-item">
+                    <h3>DHIS2 Integration Architecture</h3>
+                    <p>Real-time integration with DHIS2 for gap detection, monitoring, and impact validation.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    subgraph "DHIS2 ECOSYSTEM"
+        DHIS1[DHIS2 Core<br/>Health Data]
+        DHIS2[Facility Data]
+        DHIS3[Commodity Data]
+        DHIS4[Indicators DB]
+    end
+
+    subgraph "INTEGRATION LAYER"
+        INT1[REST API<br/>Connector]
+        INT2[OAuth2<br/>Authentication]
+        INT3[Data Mapping<br/>Engine]
+        INT4[ETL Pipeline]
+        INT5[Real-time<br/>Webhooks]
+    end
+
+    subgraph "GRANT MANAGEMENT SYSTEM"
+        GMS1[Gap Detection<br/>Service]
+        GMS2[Monitoring<br/>Service]
+        GMS3[Impact<br/>Validation]
+        GMS4[Reporting<br/>Engine]
+    end
+
+    subgraph "AI/ML PROCESSING"
+        AI1[Gap Analysis<br/>ML Model]
+        AI2[Anomaly<br/>Detection]
+        AI3[Impact<br/>Measurement]
+    end
+
+    subgraph "DATA STORE"
+        DS1[(Time-series<br/>DB)]
+        DS2[(Analytics<br/>DB)]
+        DS3[(Blockchain<br/>Evidence)]
+    end
+
+    DHIS1 & DHIS2 & DHIS3 & DHIS4 --> INT1
+    INT1 --> INT2
+    INT2 --> INT3
+    INT3 --> INT4
+    INT4 --> INT5
+
+    INT5 --> GMS1
+    INT5 --> GMS2
+
+    GMS1 --> AI1
+    GMS2 --> AI2
+    GMS3 --> AI3
+
+    AI1 --> DS1
+    AI2 --> DS1
+    AI3 --> DS2
+
+    DS1 --> GMS4
+    DS2 --> GMS4
+
+    GMS3 --> DS3
+
+    INT5 -.->|Real-time Sync| GMS2
+
+    style INT1 fill:#90caf9
+    style INT5 fill:#90caf9
+
+    style AI1 fill:#fff176
+    style AI2 fill:#fff176
+    style AI3 fill:#fff176
+
+    style DS3 fill:#a5d6a7
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 12: AI AUTOMATION -->
+            <section id="ai-automation" class="diagram-category">
+                <h2>12. AI Automation</h2>
+
+                <div class="diagram-item">
+                    <h3>AI Automation Decision Matrix</h3>
+                    <p>Framework for determining when to automate vs require human oversight.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    Start([Grant Process Step]) --> Q1{Data<br/>Quality?}
+
+    Q1 -->|Poor| Manual1[Manual Process]
+    Q1 -->|Good| Q2{Risk<br/>Level?}
+
+    Q2 -->|Critical| Manual2[Human Decision<br/>+ AI Support]
+    Q2 -->|Medium/Low| Q3{Proven<br/>Tech?}
+
+    Q3 -->|No| Manual3[Phased Rollout<br/>+ Testing]
+    Q3 -->|Yes| Q4{Volume?}
+
+    Q4 -->|Low <100/day| Manual4[Optional<br/>Automation]
+    Q4 -->|High >100/day| Auto[Full<br/>Automation]
+
+    Manual2 --> HumanLoop[Human-in-the-Loop<br/>AI Assistant]
+
+    Manual3 --> Pilot[Pilot Program]
+    Pilot --> Test{Success?}
+    Test -->|Yes| Scale[Scale Up]
+    Test -->|No| Iterate[Iterate]
+
+    Auto --> Monitor[Continuous<br/>Monitoring]
+    Monitor --> Audit[Regular<br/>Audits]
+
+    HumanLoop --> Examples1["Examples:<br/>- Grant Approval<br/>- High-value disbursement<br/>- Complex evaluations"]
+
+    Auto --> Examples2["Examples:<br/>- Eligibility screening<br/>- Document classification<br/>- Completeness checks<br/>- Fraud detection alerts"]
+
+    Scale --> Examples3["Examples:<br/>- Application scoring<br/>- Risk assessment<br/>- Budget analysis<br/>- Impact validation"]
+
+    style Auto fill:#4caf50,color:#fff
+    style HumanLoop fill:#ff9800,color:#fff
+    style Scale fill:#2196f3,color:#fff
+    style Manual1 fill:#f44336,color:#fff
+    style Manual2 fill:#ff9800,color:#fff
+    style Manual3 fill:#9c27b0,color:#fff
+    style Manual4 fill:#607d8b,color:#fff
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 13: ANTI-SYBIL -->
+            <section id="anti-sybil" class="diagram-category">
+                <h2>13. Anti-Sybil Detection</h2>
+
+                <div class="diagram-item">
+                    <h3>Enhanced Multi-Layer Sybil Detection</h3>
+                    <p>DID-based Sybil resistance combining traditional, blockchain, and AI methods.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph TB
+    subgraph "TRADITIONAL CHECKS"
+        T1[Email/Phone<br/>Verification]
+        T2[Address Clustering]
+        T3[Pairwise Analysis]
+    end
+
+    subgraph "DID-BASED CHECKS"
+        D1[DID Uniqueness]
+        D2[Credential Verification]
+        D3[SBT Possession]
+        D4[Reputation History]
+    end
+
+    subgraph "BEHAVIORAL ANALYSIS"
+        B1[Donation Patterns]
+        B2[Time-series Analysis]
+        B3[Social Graph]
+        B4[Device Fingerprinting]
+    end
+
+    subgraph "AI DETECTION"
+        AI1[Anomaly Detection<br/>ML]
+        AI2[Clustering<br/>Algorithms]
+        AI3[Natural Behavior<br/>Classification]
+    end
+
+    T1 & T2 & T3 --> Score1[Traditional<br/>Score]
+    D1 & D2 & D3 & D4 --> Score2[DID<br/>Score]
+    B1 & B2 & B3 & B4 --> Score3[Behavioral<br/>Score]
+
+    Score1 & Score2 & Score3 --> AI1 & AI2 & AI3
+
+    AI1 & AI2 & AI3 --> Final{Final<br/>Assessment}
+
+    Final -->|High Confidence<br/>Genuine| Accept[Accept Donation<br/>Full Multiplier]
+    Final -->|Medium<br/>Uncertain| Review[Human Review<br/>Reduced Multiplier]
+    Final -->|High Risk<br/>Sybil| Reject[Reject<br/>+ Flag Account]
+
+    style D1 fill:#9c27b0
+    style D2 fill:#9c27b0
+    style D3 fill:#9c27b0
+    style D4 fill:#9c27b0
+    style AI1 fill:#fff9c4
+    style AI2 fill:#fff9c4
+    style AI3 fill:#fff9c4
+    style Accept fill:#4caf50
+    style Reject fill:#ff5722
+                        </div>
+                    </div>
+
+                    <div class="legend">
+                        <h4>DID-based Advantages</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Unique DID required:</strong> Cannot create 100 accounts</li>
+                            <li><strong>SBT verification:</strong> Must prove real identity</li>
+                            <li><strong>Reputation stake:</strong> Sybil attack risks reputation</li>
+                            <li><strong>Cross-round tracking:</strong> Cannot reset identity</li>
+                            <li><strong>Social graph:</strong> Real networks look different</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 14: COMPARISON -->
+            <section id="comparison" class="diagram-category">
+                <h2>14. System Comparison</h2>
+
+                <div class="diagram-item">
+                    <h3>Traditional vs Pure QF vs Our Hybrid System</h3>
+                    <p>Comparison showing how our hybrid approach combines the best of both worlds.</p>
+                    <div class="diagram-wrapper">
+                        <div class="mermaid">
+graph LR
+    subgraph "TRADITIONAL GRANTS"
+        T1[6-9 months]
+        T2[Top-down]
+        T3[15-25% overhead]
+        T4[Limited transparency]
+    end
+
+    subgraph "PURE QF PLATFORMS"
+        P1[2-4 weeks]
+        P2[Democratic]
+        P3[5-8% overhead]
+        P4[No implementation support]
+    end
+
+    subgraph "OUR HYBRID SYSTEM"
+        H1[4-6 weeks]
+        H2[Democratic + Expert validation]
+        H3[10-15% overhead]
+        H4[Full lifecycle support]
+        H5[DID + Reputation]
+        H6[Multi-layer validation]
+    end
+
+    style T1 fill:#ff9800
+    style P1 fill:#2196f3
+    style H1 fill:#4caf50
+    style H5 fill:#9c27b0
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <h4 style="color: var(--color-primary); margin-bottom: 10px;">Traditional Grants</h4>
+                            <p>6-9 months timeline<br/>Top-down decisions<br/>15-25% overhead<br/>Limited transparency</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4 style="color: var(--color-primary); margin-bottom: 10px;">Pure QF</h4>
+                            <p>2-4 weeks timeline<br/>Democratic voting<br/>5-8% overhead<br/>No support after funding</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4 style="color: var(--color-primary); margin-bottom: 10px;">Our Hybrid</h4>
+                            <p>4-6 weeks timeline<br/>Democratic + Expert<br/>10-15% overhead<br/>Full lifecycle support</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagram-item">
+                    <h3>Key Innovations Summary</h3>
+                    <div class="legend">
+                        <h4>What Makes This System Unique</h4>
+                        <p><strong>1. Persistent Identity Across Funding Cycles</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Traditional: New application every time</li>
+                            <li>Our system: DID + reputation carries over</li>
+                            <li>Platinum organizations get fast-tracked</li>
+                            <li>Trust builds over time</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><strong>2. Stakeholder-Weighted QF</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Traditional QF: 1 dollar = 1 sqrt vote</li>
+                            <li>Our system: Multipliers based on verified stakeholder type</li>
+                            <li>Healthcare workers get 1.3x weight</li>
+                            <li>Affected populations get 1.25x weight</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><strong>3. Reputation-Based Benefits</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Platinum tier: Auto-approvals, 1.5x multiplier</li>
+                            <li>Gold tier: Fast-track verification, 1.3x multiplier</li>
+                            <li>Silver tier: Standard review, 1.15x multiplier</li>
+                            <li>Bronze tier: Enhanced due diligence, 1.0x multiplier</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><strong>4. Impact → Reputation Loop</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Good impact → Higher reputation</li>
+                            <li>Higher reputation → Better funding terms</li>
+                            <li>Better funding → More capacity</li>
+                            <li>More capacity → Bigger impact</li>
+                            <li>Result: Virtuous cycle</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3>PGPX - Complete System Documentation</h3>
+            <p>All architectural diagrams for Public Goods Protocol X</p>
+            <div class="nav-links" style="margin-top: 20px;">
+                <a href="index-pgpx.html">PGPX Home</a>
+                <a href="index-main.html">Use Cases Overview</a>
+                <a href="traditional-grants.html">Traditional Comparison</a>
+                <a href="miro-board.html">Miro Board</a>
+                <a href="WHITEPAPER.md">Whitepaper</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

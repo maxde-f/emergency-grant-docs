@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGPX - Extended Architecture Diagrams from Miro</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="style-anthropic.css">
+    <style>
+        .diagram-section {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .diagram-section h2 {
+            color: var(--color-text);
+            border-bottom: 3px solid var(--color-primary);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .diagram-section h3 {
+            color: var(--color-text);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .diagram-section p {
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .diagram-wrapper {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius-md);
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .source-note {
+            background: var(--color-bg);
+            padding: 15px;
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--radius-sm);
+            margin: 20px 0;
+            font-size: 0.9em;
+            color: var(--color-text-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .nav-links a {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>PGPX - Extended Architecture Diagrams</h1>
+        <p class="subtitle">Advanced Concepts from Miro Board - Public Good Ecosystem & WebX Integration</p>
+    </div>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="index-pgpx.html">PGPX Home</a>
+            <a href="all-diagrams.html">Core System Diagrams</a>
+            <a href="miro-board.html">Interactive Miro Board</a>
+            <a href="WHITEPAPER.md">Whitepaper</a>
+        </div>
+
+        <div class="source-note">
+            <strong>Source:</strong> These diagrams are recreated from the original Miro board concepts, adapted for PGPX protocol documentation. Original concepts by the PGP/PGPX team.
+        </div>
+
+        <!-- DIAGRAM 1: 4-LEVEL CORE ARCHITECTURE -->
+        <section class="diagram-section">
+            <h2>1. Four-Level Core Architecture</h2>
+            <p>Complete system architecture showing the progression from base infrastructure (Level 0) through operational layers (Levels 1-4) to final evolution.</p>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "LEVEL 0: Central Coordination"
+        L0[ControllerCore<br/>Центральный Координатор]
+    end
+
+    subgraph "LEVEL 1: Memory & Security"
+        L1A[MemoryCore<br/>Память и Опыт]
+        L1B[SecurityCore<br/>Базовая Безопасность]
+    end
+
+    subgraph "LEVEL 2: Core Processes"
+        L2A[CognitionCore<br/>Познавательные Процессы]
+        L2B[MetabolismCore<br/>Обмен Ресурсов]
+    end
+
+    subgraph "LEVEL 3: Internal Regulation"
+        L3A[RegulationCore<br/>Внутренняя Регуляция]
+        L3B[TemporalCore<br/>Управление Временем]
+    end
+
+    subgraph "LEVEL 4: Specialized Functions"
+        L4A[AdaptationCore<br/>Самоадаптация]
+        L4B[ReproductionCore<br/>Размножение]
+        L4C[EvolutionCore<br/>Эволюционное Развитие]
+    end
+
+    L0 --> L1A & L1B
+    L0 --> CommunicationCore[CommunicationCore<br/>Базовая Коммуникация]
+
+    L1A --> L2A
+    L1B --> L2A
+
+    L1A & L1B --> L2B
+
+    L2A --> L3A
+    L2B --> L3B
+
+    L3A --> L4A
+    L3B --> L4B
+    L4A & L4B --> L4C
+
+    L1A -.->|"1. Поток Информации (L0 - L1)"| L2A
+    L2A -.->|"2. Трансляция (L1 - L2)"| L3A
+    L3A -.->|"3. Процессинг (L2 - L3)"| L4A
+    L4A -.->|"4. Регуляция (L3 - L4)"| L4C
+    L4C -.->|"5. Репликация (L4 цикла)"| L0
+
+    style L0 fill:#ff6b6b
+    style L1A fill:#4ecdc4
+    style L1B fill:#4ecdc4
+    style L2A fill:#ffe66d
+    style L2B fill:#ffe66d
+    style L3A fill:#a8e6cf
+    style L3B fill:#a8e6cf
+    style L4A fill:#95a5ff
+    style L4B fill:#ffd93d
+    style L4C fill:#c4c4c4
+                </div>
+            </div>
+
+            <div class="source-note">
+                <strong>Key Insight:</strong> This architecture shows how PGPX evolves through 5 distinct information flows:
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>L0→L1: Information intake and basic security</li>
+                    <li>L1→L2: Translation into cognitive and metabolic processes</li>
+                    <li>L2→L3: Processing and temporal regulation</li>
+                    <li>L3→L4: Regulated evolution and adaptation</li>
+                    <li>L4→L0: Replication cycle - successful patterns propagate</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- DIAGRAM 2: PUBLIC GOOD ECOSYSTEM - WEBX -->
+        <section class="diagram-section">
+            <h2>2. Public Good EcoSystem - WebX Integration</h2>
+            <p>The bridge between Web3 blockchain technology and Web2 traditional systems, creating a unified Public Good ecosystem.</p>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "WEB3 ECOSYSTEM"
+        BlockchainTop[Blockchain<br/>Smart Contracts]
+        ImpactFeedback[Impact Feedback]
+
+        BlockchainTop --> WebXFunding[WebX Funding, Foundations, Resources<br/>for Public Good Initiatives]
+    end
+
+    subgraph "PUBLIC GOOD ECOSYSTEM - WEBX"
+        PublicCore[Public Good<br/>EcoSystem<br/>WebX<br/>AI-RMI]
+
+        SustainEnd[Evaluate Sustainability EoL]
+        Decentralized[Decentralized Infrastructure]
+        SocialImpact[SOCIAL IMPACT FUND<br/>ReFi DAO]
+
+        KeyActors[Key Actors]
+        BridgeWeb[Bridged in Web3 and<br/>diversity Participant in<br/>Execution of Actors]
+
+        PublicFunds[Decentralized Public Goods Funds]
+
+        subgraph "Funding Sources"
+            Emergency[Emergency Fund]
+            RepHealth[Reproductive Health<br/>& Community Fund]
+            Decentralized2[Decentralized<br/>Env+Justice Fund]
+            SocialSupply[Decentralized Social<br/>Supply Chain]
+            Reproductive[Reproductive Supplies<br/>System Fund]
+            AlternativeHealth[Alternative Health Fund]
+        end
+    end
+
+    subgraph "RAPID FUNDING MECHANISM"
+        RapidFund[Rapid Funding<br/>Mechanism]
+        EmergencyAid[Emergency Aid]
+    end
+
+    subgraph "BRIDGING WEB3 AND WEB2"
+        BridgeZone[Bridging Web3 and Web2<br/>Task<br/>Seal]
+    end
+
+    subgraph "WEB2 ECOSYSTEM"
+        subgraph "Key Stakeholders"
+            Traditional[Traditional<br/>Donors]
+            Private[Private Sector]
+            Government[Governments<br/>and State<br/>Agencies]
+            Academia[Academia]
+            NonProfits[Non-Profits]
+            Communities[Communities]
+        end
+
+        subgraph "Implementation Services"
+            ServiceDelivery[Service Delivery]
+            DistSysReturn[Distribution and<br/>System Return]
+            HumanResource[Human Resource<br/>Management]
+            ProductsTech[Products and<br/>Technologies]
+            InfoTech[Information<br/>Technologies and<br/>Data Management]
+            ProcurementSupply[Procurement and<br/>Supply Chains]
+        end
+
+        RealFunding[Building Bonds and<br/>Financing]
+    end
+
+    BlockchainTop --> PublicCore
+    WebXFunding --> PublicCore
+
+    PublicCore --> SocialImpact
+    SocialImpact --> PublicFunds
+    PublicFunds --> Emergency & RepHealth & Decentralized2 & SocialSupply & Reproductive & AlternativeHealth
+
+    PublicCore --> KeyActors
+    KeyActors --> BridgeZone
+
+    BridgeZone --> RapidFund
+    RapidFund --> EmergencyAid
+    EmergencyAid --> Traditional
+
+    Traditional & Private & Government & Academia & NonProfits & Communities --> RealFunding
+    RealFunding --> ServiceDelivery & DistSysReturn & HumanResource & ProductsTech & InfoTech & ProcurementSupply
+
+    style PublicCore fill:#7bed9f
+    style BlockchainTop fill:#ffd93d
+    style BridgeZone fill:#74b9ff
+    style SocialImpact fill:#ff6b6b
+    style EmergencyAid fill:#ffeaa7
+                </div>
+            </div>
+
+            <div class="source-note">
+                <strong>WebX Concept:</strong> PGPX acts as the bridge between:
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Web3:</strong> Blockchain, smart contracts, decentralized funding</li>
+                    <li><strong>Web2:</strong> Traditional donors, governments, service delivery organizations</li>
+                    <li><strong>Impact:</strong> Social Impact Fund (ReFi DAO) ensures both worlds contribute to public goods</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- DIAGRAM 3: RESOURCE ALLOCATION FLOW -->
+        <section class="diagram-section">
+            <h2>3. Complete Resource Allocation Flow</h2>
+            <p>End-to-end flow from funding sources through PGP Protocol to implementation and impact measurement.</p>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "FUNDING SOURCES"
+        Traditional[Traditional Grants<br/>Foundations, Philanthropies]
+        Individuals[Individuals]
+        Investors[Impact Investors]
+    end
+
+    subgraph "PROPOSAL LAYER"
+        Proposal[Proposal from<br/>Aggregated Funding]
+    end
+
+    subgraph "PGP PROTOCOL"
+        AIProtocol[AI Protocol Layer]
+
+        ApplicationAnalysis[Application Analysis<br/>NLP Processing<br/>ML-based<br/>Success Prediction]
+
+        SmartMatching[Smart Matching<br/>Historical Comparison<br/>Priority Ranking<br/>Resource Optimization]
+
+        CommunityReview[Community Review]
+
+        subgraph "Expert Review"
+            ExpertDonor[Expert Donor<br/>Project Expertise<br/>Domain Knowledge<br/>Traditional Validation]
+
+            StakeholderInput[Stakeholder Input<br/>Transparency Report<br/>Grantees Community<br/>External Assessments]
+        end
+
+        AIScoring[AI Scoring Engine]
+
+        FinalDecision[Final Decision<br/>Risk-balanced Allocation<br/>Tracked Optimization]
+
+        SmartContract[Smart Contract Execution<br/>Blockchain Release<br/>Milestone Tracking<br/>Compliance Monitoring]
+    end
+
+    subgraph "IMPLEMENTATION"
+        NGOs[NGOs]
+        Government[Government]
+        ResearchInst[Research Institutions]
+        Foundations[Foundations]
+    end
+
+    subgraph "REAL TIME MONITORING"
+        ProgressTracking[Progress Tracking<br/>Automated Data Collection<br/>Milestone Verification<br/>Compliance Validation]
+
+        AlertSystem[Alert System<br/>Deviation Identification<br/>Early-risk Detection<br/>Escalation Response]
+    end
+
+    subgraph "IMPACT MEASUREMENT"
+        ImpactMetrics[Impact Metrics<br/>Health Outcomes<br/>Quantitative Assessment<br/>Beneficiary Feedback]
+
+        BlockchainVerification[Blockchain Verification<br/>Immutable Records<br/>Audit Trail<br/>Transparency Reports]
+    end
+
+    subgraph "LEARNING AND OPTIMIZATION"
+        OutcomeAnalysis[Outcome Analysis<br/>Success Factors<br/>Failure Analysis<br/>Best Practices]
+
+        AlgorithmImprovement[Algorithm Improvement<br/>Model Retraining<br/>Predictive Accuracy<br/>Resource Efficiency]
+    end
+
+    Traditional & Individuals & Investors --> Proposal
+    Proposal --> AIProtocol
+
+    AIProtocol --> ApplicationAnalysis
+    ApplicationAnalysis --> SmartMatching
+    SmartMatching --> CommunityReview
+
+    CommunityReview --> ExpertDonor
+    CommunityReview --> StakeholderInput
+
+    ExpertDonor & StakeholderInput --> AIScoring
+    AIScoring --> FinalDecision
+    FinalDecision --> SmartContract
+
+    SmartContract --> NGOs & Government & ResearchInst & Foundations
+
+    NGOs & Government & ResearchInst & Foundations --> ProgressTracking
+    ProgressTracking --> AlertSystem
+    AlertSystem --> ImpactMetrics
+
+    ImpactMetrics --> BlockchainVerification
+    BlockchainVerification --> OutcomeAnalysis
+    OutcomeAnalysis --> AlgorithmImprovement
+
+    AlgorithmImprovement -.-> ApplicationAnalysis
+    BlockchainVerification -.-> Proposal
+
+    style AIProtocol fill:#ffeb3b
+    style SmartContract fill:#4caf50
+    style ImpactMetrics fill:#2196f3
+    style BlockchainVerification fill:#4caf50
+    style AlgorithmImprovement fill:#9c27b0
+                </div>
+            </div>
+
+            <div class="source-note">
+                <strong>Key Innovation:</strong> The complete feedback loop:
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Input:</strong> Funding from multiple sources aggregated</li>
+                    <li><strong>Analysis:</strong> AI + Community + Expert triple validation</li>
+                    <li><strong>Execution:</strong> Smart contract automated disbursement</li>
+                    <li><strong>Monitoring:</strong> Real-time tracking with early warning alerts</li>
+                    <li><strong>Validation:</strong> Blockchain-verified impact measurement</li>
+                    <li><strong>Learning:</strong> Algorithm improves with each cycle</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- DIAGRAM 4: ECOSYSTEM MAP WITH PGP PROTOCOL LAYER -->
+        <section class="diagram-section">
+            <h2>4. Complete Ecosystem Map</h2>
+            <p>How PGPX Protocol Layer connects existing platforms, implementation layer, and funding ecosystem.</p>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "EXISTING PLATFORMS"
+        Salesforce[Salesforce<br/>CRM]
+        Asana[Asana<br/>Project Mgmt]
+        Grantbridge[Grantbridge<br/>Portal]
+        FoundationCenter[Foundation<br/>Center]
+    end
+
+    subgraph "PGP PROTOCOL LAYER"
+        IntegrationAPI[Integration APIs]
+
+        subgraph "Core Functions"
+            DIDManagement[W3C Protocol<br/>DID Management]
+            DocumentMgmt[Document Management]
+            SPSCompliance[SPS Standard Compliance]
+            BlockchainNetworks[Blockchain Networks]
+            CommunityPlatforms[Community Platforms]
+            AsanaAPI[Asana API]
+            FinancialSystems[Financial Systems]
+        end
+
+        subgraph "Decision Support"
+            AIDecisionSupport[AI Enhanced Decision Support]
+            ImpactVerification[Impact Verification and<br/>Fact-Health Records]
+            CommunityGovernance[Community Governance and<br/>Voting]
+            ResourceOptimization[Resource Optimization and<br/>Analytics]
+        end
+    end
+
+    subgraph "IMPLEMENTATION LAYER"
+        NGOsImpl[NGOs<br/>Programme Delivery<br/>Impact Tracking]
+        GovtImpl[Governments<br/>Public Programmes<br/>Policy]
+        FoundationsImpl[Foundations<br/>Grant Making<br/>Portfolio Management]
+        ResearchImpl[Research<br/>Impact Analysis<br/>Policy Research]
+    end
+
+    subgraph "COMMUNITY AND IMPACT LAYER"
+        GlobalKnowledge[Global Knowledge Base<br/>Best Practices<br/>Lessons Repository<br/>Learning Resources]
+
+        PolicyInfluence[Policy Influence<br/>Evidence-Based Policy<br/>SDG Progress<br/>Advocacy]
+
+        OpenSourceCommunity[Open Source Community<br/>Developer Ecosystem<br/>Contributors<br/>Innovators]
+
+        StandardsDevelopment[Standards Development<br/>SDG Standards<br/>Interoperability<br/>Best Practices]
+    end
+
+    subgraph "GLOBAL FUNDING ECOSYSTEM"
+        TraditionalFunding[Traditional Funding]
+        Web3Funding[Web3 Funding]
+        PrivateFunding[Private Funding]
+    end
+
+    Salesforce & Asana & Grantbridge & FoundationCenter --> IntegrationAPI
+
+    IntegrationAPI --> DIDManagement & DocumentMgmt & SPSCompliance & BlockchainNetworks & CommunityPlatforms & AsanaAPI & FinancialSystems
+
+    DIDManagement & DocumentMgmt & SPSCompliance --> AIDecisionSupport
+    BlockchainNetworks & CommunityPlatforms --> ImpactVerification
+    AsanaAPI & FinancialSystems --> CommunityGovernance
+    FinancialSystems --> ResourceOptimization
+
+    AIDecisionSupport & ImpactVerification & CommunityGovernance & ResourceOptimization --> NGOsImpl & GovtImpl & FoundationsImpl & ResearchImpl
+
+    NGOsImpl & GovtImpl & FoundationsImpl & ResearchImpl --> GlobalKnowledge & PolicyInfluence & OpenSourceCommunity & StandardsDevelopment
+
+    TraditionalFunding & Web3Funding & PrivateFunding --> IntegrationAPI
+
+    style IntegrationAPI fill:#4ecdc4
+    style AIDecisionSupport fill:#ffeb3b
+    style ImpactVerification fill:#4caf50
+    style CommunityGovernance fill:#ff9800
+    style GlobalKnowledge fill:#2196f3
+                </div>
+            </div>
+
+            <div class="source-note">
+                <strong>Protocol Layer Advantages:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Interoperability:</strong> Connects existing platforms (Salesforce, Asana, Grantbridge)</li>
+                    <li><strong>Standardization:</strong> W3C DID, SPS compliance, blockchain networks</li>
+                    <li><strong>Intelligence:</strong> AI decision support, impact verification, resource optimization</li>
+                    <li><strong>Community:</strong> Open governance, developer ecosystem, knowledge sharing</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- DIAGRAM 5: MAPPING OUT KEY COMPONENTS -->
+        <section class="diagram-section">
+            <h2>5. Layered Component Architecture</h2>
+            <p>Five-layer architecture from global funding down to community impact.</p>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "GLOBAL FUNDING ECOSYSTEM"
+        TradFunding[Traditional Funding<br/>Foundations, Multilateral,<br/>Bilateral, Private Funds]
+        Web3Fund[Web3 Funding<br/>Gitcoin, Arbitrum DAO,<br/>Optimism Retroactive,<br/>Radicle Fund]
+        PrivateSector[Private Sector Funding<br/>Impact Investments,<br/>Sponsorships,<br/>Corporate Social<br/>Responsibility, CSR]
+    end
+
+    subgraph "EXISTING PLATFORMS LAYER"
+        Salesforce2[Salesforce<br/>CRM,<br/>Management]
+        Asana2[Asana]
+        Grantbridge2[Grantbridge]
+        FoundationCtr[FoundationCenter<br/>FIMS]
+    end
+
+    subgraph "PGP LAYER"
+        AIFinancial[AI Financial<br/>Decision<br/>Support]
+        ImpactBlock[Impact<br/>Blockchain<br/>Records]
+        Community[Community<br/>Governance and<br/>Voting]
+        ResourceOpt[Resource<br/>Optimization<br/>and Analytics]
+
+        IntegrationAPIs[Integration APIs and Protocols]
+
+        W3Protocol[W3P (Adapted Content Protocol) for AI Integration]
+        SPSCompliance2[SPS Standard Compliance]
+        IdentityVerification[Identity Verification]
+        DocumentMgmt2[Document Management]
+        BlockchainInteg[Blockchain Networks]
+        CommunityPlat[Community Platforms]
+    end
+
+    subgraph "IMPLEMENTATION LAYER"
+        NGOsLayer[NGOs<br/>Programme<br/>Delivery,<br/>Impact<br/>Tracking]
+        GovtLayer[Government<br/>Public<br/>Programmes,<br/>Policy,<br/>Digital Gov,<br/>Portals]
+        FoundLayer[Foundations<br/>Grant<br/>Making,<br/>Portfolio<br/>Management]
+        ResLayer[Research<br/>Institutions<br/>Impact<br/>Analysis,<br/>Policy<br/>Research]
+    end
+
+    subgraph "COMMUNITY AND IMPACT LAYER"
+        GlobalKnow[Global<br/>Knowledge<br/>Base<br/>Best Practices,<br/>Impact<br/>Database,<br/>Learning<br/>Resources]
+        PolicyInfl[Policy<br/>Influence<br/>Evidence-Based<br/>Policy,<br/>SDG Progress<br/>Advocacy]
+        OpenSource[Open Source<br/>Community<br/>Contributors,<br/>Innovators]
+        Standards[Standards<br/>Development<br/>SDG Standards,<br/>Interoperability]
+    end
+
+    TradFunding & Web3Fund & PrivateSector --> Salesforce2 & Asana2 & Grantbridge2 & FoundationCtr
+
+    Salesforce2 & Asana2 & Grantbridge2 & FoundationCtr --> IntegrationAPIs
+
+    IntegrationAPIs --> W3Protocol & SPSCompliance2 & IdentityVerification & DocumentMgmt2 & BlockchainInteg & CommunityPlat
+
+    W3Protocol --> AIFinancial & ImpactBlock
+    IdentityVerification & DocumentMgmt2 --> AIFinancial
+    BlockchainInteg --> ImpactBlock
+    SPSCompliance2 & CommunityPlat --> Community
+    IdentityVerification & BlockchainInteg --> ResourceOpt
+
+    AIFinancial & ImpactBlock & Community & ResourceOpt --> NGOsLayer & GovtLayer & FoundLayer & ResLayer
+
+    NGOsLayer & GovtLayer & FoundLayer & ResLayer --> GlobalKnow & PolicyInfl & OpenSource & Standards
+
+    style IntegrationAPIs fill:#4ecdc4
+    style AIFinancial fill:#ffeb3b
+    style ImpactBlock fill:#4caf50
+    style Community fill:#ff9800
+    style ResourceOpt fill:#9c27b0
+                </div>
+            </div>
+        </section>
+
+        <!-- DIAGRAM 6: CRYPTO DONORS / IMPACT FUNDERS ARCHITECTURE -->
+        <section class="diagram-section">
+            <h2>6. Crypto Donors & Impact Funders Architecture</h2>
+            <p>Comprehensive architecture showing how crypto donors, impact-driven funds, and traditional funding converge through governance and management systems.</p>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "FUNDING SOURCES"
+        CryptoDonors[Crypto Donors<br/>Impact Funders]
+    end
+
+    subgraph "FUNDING ARCHITECTURE"
+        CPM[Crypto Pledge Mechanism CPM]
+        IDF[Impact Driven Fund IDF]
+
+        CPM -.->|"Recurring, programmable on-chain<br/>funding system through which crypto<br/>companies and philanthropists pledge<br/>regular contributions to core<br/>humanitarian ecosystem"| IDF
+    end
+
+    subgraph "GOVERNANCE ARCHITECTURE"
+        GovernanceTop[Governance Architecture]
+        ImpactDAO[Global Impact DAO<br/>IS-HIV DAO<br/>IS-HIV eDAO]
+        ImpactNote["Impact Driven Fund IS governed via Global<br/>HIV DAO (IS-HIV eDAO): A decentralized<br/>governance platform where communities,<br/>donors, and partners jointly decide priorities<br/>through transparent, on-chain voting"]
+    end
+
+    subgraph "MANAGEMENT ARCHITECTURES"
+        ManagementTop[Management Architectures]
+
+        subgraph "Transparency & Accountability"
+            ProofImpact[Proof of Impact Ledger]
+            SmartGrant[Smart Contract Grant<br/>Management Protocol]
+            BlockchainVerif[Blockchain-based<br/>verification layer recording<br/>Impact data, financial flows,<br/>milestone achievements<br/>ensuring that every dollar<br/>and every outcome can be<br/>traced and verified]
+            BlockchainVerif2[Blockchain-based<br/>verification layer recording<br/>Impact data, financial flows,<br/>milestone achievements<br/>ensuring that every dollar<br/>and every outcome can be<br/>traced and verified]
+        end
+
+        subgraph "Operational Efficiency"
+            EquityHub[Community<br/>Equity Hub]
+            ParticleBlockchain[Particle<br/>Blockchain]
+        end
+
+        subgraph "Resilience"
+            GlobalNetwork[Global Continuity Networks<br/>GDCN - AI predicted<br/>coordination mechanisms<br/>across various countries<br/>AI-SCM]
+            DataSystems[Data Systems & Digital<br/>Infrastructure]
+        end
+
+        subgraph "Financing"
+            DeepFunding[Deep Funding DF]
+            RetroactiveFunding[Retroactive Funding RF]
+            QuadraticFunding[Quadratic Funding QF]
+            DemoFinancing[Democratic Financing<br/>Mechanisms]
+        end
+
+        subgraph "Crypto Philanthropy"
+            Gitcoin[Gitcoin]
+            CryptoAltrui[Crypto<br/>Altruism]
+            EmergencyPrograms[Emergency programs, skills<br/>projects, community aid<br/>initiatives,<br/>Advocacy initiatives, Voice<br/>by investing greater<br/>support to early-stage<br/>solutions through rapid<br/>broad, grassroots backing]
+            HRDBusiness[Human Resource<br/>Development, Capability<br/>Building and System<br/>Strengthening]
+            GlobalWeb3[Global Web3 and HIV<br/>Sustainability Academy]
+        end
+
+        subgraph "Diversifying Funding"
+            DiversifyNGO[Diversifying Nonprofit &<br/>Community-Led Organizations Fundraising<br/>via Gitcoin]
+        end
+    end
+
+    subgraph "HIV STAKEHOLDERS"
+        MedicalFacilities[Medical Facilities,<br/>Hospitals, etc.]
+        GovtHealthAgencies[Governments and State<br/>Health Agencies]
+        AcademiaResearch[Academia and Research<br/>Institutions]
+        NonProfitService[Non-Profits and Service<br/>Providers]
+        CommunitiesAdvocates[Communities and<br/>Advocates]
+    end
+
+    subgraph "META DAO"
+        MetaDAOBox[META DAO]
+        MetaDAONote["META DAO ensures meaningful, powerful<br/>and sustained community engagement in<br/>HIV response through deep, decentralized funding,<br/>advocacy, ecosystem building, transparency,<br/>and resource allocation through<br/>decentralized, democratic, community-<br/>governed mechanisms"]
+
+        CommunityNetworks[Community<br/>Networks]
+    end
+
+    CryptoDonors --> CPM
+    CPM --> IDF
+
+    IDF --> GovernanceTop
+    GovernanceTop --> ImpactDAO
+
+    ImpactDAO --> ManagementTop
+
+    ManagementTop --> ProofImpact
+    ManagementTop --> SmartGrant
+    ManagementTop --> EquityHub
+    ManagementTop --> ParticleBlockchain
+    ManagementTop --> GlobalNetwork
+    ManagementTop --> DataSystems
+    ManagementTop --> DeepFunding
+    ManagementTop --> RetroactiveFunding
+    ManagementTop --> QuadraticFunding
+    ManagementTop --> DemoFinancing
+    ManagementTop --> Gitcoin
+    ManagementTop --> CryptoAltrui
+    ManagementTop --> DiversifyNGO
+
+    ProofImpact --> BlockchainVerif
+    SmartGrant --> BlockchainVerif2
+
+    DeepFunding --> EmergencyPrograms
+    RetroactiveFunding --> EmergencyPrograms
+    QuadraticFunding --> EmergencyPrograms
+
+    EmergencyPrograms --> HRDBusiness
+    HRDBusiness --> GlobalWeb3
+
+    GlobalNetwork & DataSystems & DeepFunding & RetroactiveFunding & QuadraticFunding & Gitcoin & CryptoAltrui & DiversifyNGO --> MedicalFacilities & GovtHealthAgencies & AcademiaResearch & NonProfitService & CommunitiesAdvocates
+
+    MetaDAOBox -.->|Ensures meaningful engagement| ManagementTop
+    CommunityNetworks -.->|Feeds into| MetaDAOBox
+
+    style CryptoDonors fill:#4ecdc4
+    style IDF fill:#74b9ff
+    style ImpactDAO fill:#a29bfe
+    style ProofImpact fill:#4caf50
+    style SmartGrant fill:#4caf50
+    style DeepFunding fill:#ffd93d
+    style QuadraticFunding fill:#ffd93d
+    style Gitcoin fill:#74b9ff
+    style MetaDAOBox fill:#ff6b6b
+                </div>
+            </div>
+
+            <div class="source-note">
+                <strong>Advanced Funding Architecture:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Crypto Pledge Mechanism (CPM):</strong> Recurring, programmable on-chain funding from crypto companies and philanthropists</li>
+                    <li><strong>Impact Driven Fund (IDF):</strong> Governed by Global HIV DAO through transparent, on-chain voting</li>
+                    <li><strong>Multiple Financing Mechanisms:</strong>
+                        <ul style="margin-left: 20px;">
+                            <li>Deep Funding (DF) - Essential platforms, core systems</li>
+                            <li>Retroactive Funding (RF) - Mature programs with evidence of sustainability</li>
+                            <li>Quadratic Funding (QF) - Democratic, community-driven allocation</li>
+                        </ul>
+                    </li>
+                    <li><strong>Blockchain Verification:</strong> Every dollar and every outcome traced and verified</li>
+                    <li><strong>META DAO:</strong> Ensures deep, decentralized funding through democratic, community-governed mechanisms</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- DIAGRAM 7: INTEGRATED PUBLIC GOOD ECOSYSTEM WITH BRIDGE -->
+        <section class="diagram-section">
+            <h2>7. Public Good Ecosystem with Bridge Layer</h2>
+            <p>Shows how PGPX bridges between Public Good Ecosystem (top) and Traditional Systems (bottom) through various key actors.</p>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "PUBLIC GOOD ECOSYSTEM"
+        ImpactFunders[Impact Funders]
+
+        subgraph "Funding Architecture"
+            FundArch[Funding Architecture]
+            CPMArch[Crypto Pledge Mechanism<br/>CPM]
+            ImpactGrants[Impact Grants Fund IDF]
+            ManagementArch[Management Architectures]
+        end
+
+        subgraph "Governance"
+            GlobalImpactDAO[Global Impact DAO and Governance<br/>DAO-based governance and transparent<br/>community-led decision-making]
+
+            GovArchNote["Impact-Driven Fund is governed via<br/>Global Impact DAO: A decentralized<br/>governance platform where communities,<br/>donors and partners jointly decide<br/>priorities based on impact"]
+        end
+
+        subgraph "Management Systems"
+            TransparencyAccount[Transparency & Accountability<br/>Systems]
+
+            ProofImpactLedger[Proof of Impact Ledger<br/>Smart Contract grant management<br/>Transparent ledger recording every grant<br/>Blockchain-based verification layer]
+
+            OperationalEff[Operational Efficiency & Automation<br/>AI-RMI]
+
+            DataInfrastructure[Data & Business Continuity<br/>AI-powered global emergency<br/>coordination mechanisms]
+
+            FinancingMech[Financing Mechanisms<br/>Deep Funding DF, Retroactive Funding RF,<br/>Quadratic Funding QF]
+
+            CryptoPhilanthropy[Crypto Philanthropy<br/>Gitcoin]
+
+            DiversifyFunding[Diversify Community & Nonprofit<br/>Fundraising via Gitcoin]
+
+            DigitalSystems[Data Systems & Digital Infrastructure]
+        end
+    end
+
+    subgraph "BRIDGE LAYER"
+        BridgeCenter[BRIDGE]
+
+        HumanResource[Human Resource<br/>Development, Capability<br/>Building and System<br/>Strengthening]
+
+        GlobalAcademy[Global Web3 and HIV<br/>Sustainability Academy]
+
+        KeyTransitionNote[KEY STAKEHOLDERS]
+    end
+
+    subgraph "TRADITIONAL SYSTEMS"
+        PrivateSectorTrad[Private Sector]
+        NonProfitsTrad[Non-Profits]
+        CommunitiesTrad[Communities]
+        AcademiaTrad[Academia]
+        GovtAgenciesTrad[Government and State Agencies]
+
+        ProductsServices[Products and Services]
+        MedicalActivity[Medical Activity, Hospitals]
+        ServiceProviders[Service Providers]
+        EducationOutreach[Education and Outreach]
+        RegistryAuthorities[Registry Authorities]
+        HivTestingService[HIV Testing and Services]
+    end
+
+    ImpactFunders --> FundArch
+    FundArch --> CPMArch
+    CPMArch --> ImpactGrants
+    ImpactGrants --> GlobalImpactDAO
+
+    GlobalImpactDAO --> ManagementArch
+
+    ManagementArch --> TransparencyAccount
+    ManagementArch --> OperationalEff
+    ManagementArch --> DataInfrastructure
+    ManagementArch --> FinancingMech
+    ManagementArch --> CryptoPhilanthropy
+    ManagementArch --> DiversifyFunding
+    ManagementArch --> DigitalSystems
+
+    TransparencyAccount & OperationalEff & DataInfrastructure & FinancingMech & CryptoPhilanthropy & DiversifyFunding & DigitalSystems --> BridgeCenter
+
+    BridgeCenter --> HumanResource
+    HumanResource --> GlobalAcademy
+    GlobalAcademy --> KeyTransitionNote
+
+    KeyTransitionNote --> PrivateSectorTrad & NonProfitsTrad & CommunitiesTrad & AcademiaTrad & GovtAgenciesTrad
+
+    PrivateSectorTrad --> ProductsServices & MedicalActivity
+    NonProfitsTrad --> ServiceProviders & EducationOutreach
+    CommunitiesTrad --> ServiceProviders & EducationOutreach
+    AcademiaTrad --> EducationOutreach & RegistryAuthorities
+    GovtAgenciesTrad --> RegistryAuthorities & HivTestingService
+
+    style ImpactFunders fill:#4ecdc4
+    style GlobalImpactDAO fill:#a29bfe
+    style TransparencyAccount fill:#4caf50
+    style FinancingMech fill:#ffd93d
+    style BridgeCenter fill:#74b9ff
+    style HumanResource fill:#ffb8b8
+    style GlobalAcademy fill:#ff6b6b
+                </div>
+            </div>
+
+            <div class="source-note">
+                <strong>Bridge Layer Concept:</strong>
+                <p style="margin-top: 10px;">PGPX acts as the critical bridge between:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Top (Public Good Ecosystem):</strong> Crypto funding, DAOs, blockchain verification, AI-powered systems</li>
+                    <li><strong>Bottom (Traditional Systems):</strong> Private sector, governments, NGOs, academia delivering actual services</li>
+                    <li><strong>Bridge Mechanisms:</strong>
+                        <ul style="margin-left: 20px;">
+                            <li>Human Resource Development & Capability Building</li>
+                            <li>Global Web3 and HIV Sustainability Academy</li>
+                            <li>Key Stakeholders coordination</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Result:</strong> Crypto-native funding reaches traditional service providers efficiently through verified, transparent channels.</p>
+            </div>
+        </section>
+
+        <!-- DIAGRAM 8: PERFORMANCE METRICS MIND MAP -->
+        <section class="diagram-section">
+            <h2>8. Performance Metrics and Evaluation Framework</h2>
+            <p>Comprehensive metrics framework for evaluating PGPX system performance across all dimensions: quality management, monitoring & evaluation, health systems, project management, fundraising, human resources, operations, communications, and more.</p>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    Root[Performance/Metrics]
+
+    %% Main Branch 1: Monitoring and Evaluation
+    Root --> ME[Monitoring and Evaluation]
+
+    ME --> QMS[Quality Management Systems ISO 9001]
+    QMS --> RiskAssessment[Risk Assessment & Analysis]
+    QMS --> DecisionTracking[Decision Detection & Bias]
+    QMS --> IncidentManagement[Incident Detection & Alert]
+    QMS --> BarriersIdentification[Barriers/Peer Activation]
+    QMS --> BCM[Business Continuity Management ISO 22301]
+    QMS --> SupplyChain[Supply Chain Monitoring]
+    QMS --> FlowBottleneck[Flow Barriers & Bottlenecks]
+    QMS --> DocumentControl[Document Control]
+    QMS --> PerformanceMeasures[Performance Measures]
+    QMS --> ContinuousImprovement[Continuous Improvement]
+    QMS --> DocumentManagement[Document Management]
+    QMS --> NonConformanceDetection[Non-Conformance Detection]
+    QMS --> InternalExternalAudits[Internal/External Audits]
+    QMS --> SupplierManagement[Supplier Quality Management]
+    QMS --> ProcessMonitoring[Process Monitoring]
+    QMS --> RiskCause[Risk Cause Analysis]
+    QMS --> InternalAudit[Internal Audit Management]
+    QMS --> CorrectiveAction[Corrective/Action Tracking]
+    QMS --> ManagementReview[Management Review]
+    QMS --> TrainingManagement[Training Management]
+    QMS --> PerformanceAnalysis[Performance Management]
+    QMS --> ChangeControl[Change Control]
+
+    %% Main Branch 2: Health Systems
+    Root --> HS[Health Systems]
+
+    HS --> EmergencyMeasures[Emergency Response Measures]
+    HS --> HealthPrograms[Health Programs Allocation & Efficacy]
+    HS --> BestPracticesDB[Best Practices Scheduling & follow-up]
+    HS --> ContingencyPlanning[Contingency Planning]
+
+    %% Main Branch 3: Project Management and Operational Excellence
+    Root --> PM[Project Management, Planning and Management]
+
+    PM --> FinancialManagement[Financial Management]
+    PM --> BudgetOptimization[Budget optimization]
+    PM --> PartnerRelationships[Partner/Relationships]
+    PM --> ProblemAnalysis[Problem Analysis & Needs Assessment]
+    PM --> StakeholderMapping[Stakeholder Mapping]
+    PM --> LogFrame[LogFrame Design]
+    PM --> GoalSetting[Goal & Indicator Setting]
+    PM --> RoadMap[Road-Plan/Workplan Development]
+    PM --> RiskManagement[Risk Assessment & Mitigation Plan]
+
+    PM --> Critically[Critically Applied Operational Excellence for Non-Profits]
+    Critically --> DPM[Design Project Planning and Management]
+    DPM --> StrategicPlanning[Strategic planning insights]
+    DPM --> PolicyReview[Policy review & new]
+    DPM --> FinancialMgmt[Financial Management]
+    DPM --> ExpenseCategories[Expense categorization and reporting]
+
+    %% Main Branch 4: Human Resources
+    Root --> HR[Human Resources]
+
+    HR --> InterviewScheduling[Interview scheduling & confirmations]
+    HR --> TrainingOnboarding[Training and onboarding]
+
+    %% Main Branch 5: Operations & Administration
+    Root --> OA[Operations & Administration]
+
+    OA --> MeetingTranscripts[Meeting transcription and summary]
+    OA --> ContactAnalysis[Contact analysis]
+
+    %% Main Branch 6: Communications and Outreach
+    Root --> CO[Communications and Outreach]
+
+    CO --> EmailCampaigns[Email campaigns/ personalization]
+    CO --> ImpactStorytelling[Impact storytelling]
+    CO --> ContentGeneration[Content creation/ repurpose/ images, blogs and campaigns]
+    CO --> MediaOutreach[Media, Outreach and Reporting]
+    CO --> DataStoryValidation[Data Cleaning & Validation]
+    CO --> CustomerAnalytics[Customer Data Analysis]
+
+    %% Main Branch 7: Fundraising and Resource Development
+    Root --> FRD[Fundraising and Resource Development]
+
+    FRD --> ProposalDevelopment[Grant Reporting/ Donor communication]
+    FRD --> FundRecoveryCoaching[Grant Recovery and Coaching]
+    FRD --> CapacityIncreasing[Capacity-Inclusive Structuring]
+
+    %% Main Branch 8: Feedback
+    Root --> Feedback[Feedback]
+
+    Feedback --> AtLeastDelivery[At Least Service Delivery]
+    Feedback --> Tutorials[Tutorials]
+    Feedback --> UserInteractions[User-Interactions]
+
+    %% Main Branch 9: Database Research & Data Systems
+    Root --> Database[Database Research and Generating Strategic Information]
+
+    Database --> DataCollectionManagement[Data Collections & Management]
+    Database --> ComplianceMonitoring[Compliance Verification & Research Insights]
+
+    %% Main Branch 10: Literature Reviews
+    Root --> Literature[Literature Reviews & Knowledge Synthesis]
+
+    Literature --> DatabaseResearch[Database Research, Securing accessible and quality data]
+    Literature --> SummaryAnalysis[Summary & Analysis]
+    Literature --> IdentifyingGaps[Identifying Gaps, trends, research plan and internal reports to inform decisions]
+    Literature --> AlignResearchTools[Align researches with accessible schedules, persons people and end user semantics]
+
+    %% Styling
+    style Root fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    style ME fill:#4ecdc4,stroke:#0a8a7f
+    style QMS fill:#95e1d3,stroke:#38ada9
+    style HS fill:#a8e6cf,stroke:#56ab91
+    style PM fill:#ffd93d,stroke:#f39c12
+    style Critically fill:#ffbe76,stroke:#e17055
+    style DPM fill:#fab1a0,stroke:#e17055
+    style HR fill:#74b9ff,stroke:#0984e3
+    style OA fill:#a29bfe,stroke:#6c5ce7
+    style CO fill:#fd79a8,stroke:#e84393
+    style FRD fill:#fdcb6e,stroke:#e17055
+    style Feedback fill:#55efc4,stroke:#00b894
+    style Database fill:#81ecec,stroke:#00cec9
+    style Literature fill:#dfe6e9,stroke:#636e72
+                </div>
+            </div>
+
+            <div class="source-note">
+                <strong>Comprehensive Metrics Framework:</strong>
+                <p style="margin-top: 10px;">This mind map represents the full spectrum of performance evaluation criteria across PGPX operations:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Quality Management (ISO 9001):</strong> Risk assessment, incident management, business continuity, supplier quality, process monitoring, continuous improvement</li>
+                    <li><strong>Health Systems:</strong> Emergency response measures, health program allocation & efficacy, best practices scheduling, contingency planning</li>
+                    <li><strong>Project Management:</strong> Financial management, budget optimization, stakeholder mapping, LogFrame design, goal setting, risk mitigation</li>
+                    <li><strong>Operational Excellence:</strong> Strategic planning, policy review, expense categorization, financial reporting</li>
+                    <li><strong>Human Resources:</strong> Interview scheduling, training and onboarding, capacity building</li>
+                    <li><strong>Operations & Admin:</strong> Meeting transcription, contact analysis, administrative efficiency</li>
+                    <li><strong>Communications:</strong> Email campaigns, impact storytelling, content creation, media outreach, data validation</li>
+                    <li><strong>Fundraising:</strong> Grant reporting, donor communication, grant recovery, capacity-inclusive structuring</li>
+                    <li><strong>Feedback Systems:</strong> Service delivery monitoring, tutorials, user interaction tracking</li>
+                    <li><strong>Data Systems:</strong> Data collection & management, compliance verification, research insights</li>
+                    <li><strong>Literature & Research:</strong> Database research, gap identification, trend analysis, research alignment</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Integration with PGPX:</strong> These metrics are built into PGPX's 4-layer Proof-of-Impact validation system, providing comprehensive evaluation across technical, operational, impact, and community dimensions.</p>
+            </div>
+        </section>
+
+        <div class="nav-links">
+            <a href="index-pgpx.html">← Back to PGPX Home</a>
+            <a href="all-diagrams.html">Core System Diagrams</a>
+            <a href="miro-board.html">Interactive Miro Board</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3>PGPX - Extended Architecture</h3>
+            <p>Advanced concepts from Miro board integrated into PGPX protocol documentation</p>
+            <div class="nav-links" style="justify-content: center;">
+                <a href="index-pgpx.html">PGPX Home</a>
+                <a href="WHITEPAPER.md">Whitepaper</a>
+                <a href="README.md">Documentation</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

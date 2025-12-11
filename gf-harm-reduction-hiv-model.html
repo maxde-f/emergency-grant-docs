@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGPX - Global Fund: Harm Reduction & HIV Services Model</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="style-anthropic.css">
+    <style>
+        .hero-gf {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gf h1 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .hero-gf .subtitle {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.3em;
+            max-width: 900px;
+            margin: 0 auto 30px;
+        }
+
+        .diagram-section {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .diagram-section h2 {
+            color: var(--color-text);
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .use-case-box {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(231, 76, 60, 0.3);
+        }
+
+        .use-case-box h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+        }
+
+        .challenge-card {
+            background: white;
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .challenge-card h4 {
+            color: #e74c3c;
+            margin-top: 0;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric-card {
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+            border-color: #e74c3c;
+        }
+
+        .metric-number {
+            font-size: 3em;
+            font-weight: 500;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            color: var(--color-text-secondary);
+            font-size: 1.1em;
+        }
+
+        .diagram-wrapper {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius-md);
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .example-scenario {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: var(--radius-md);
+        }
+
+        .example-scenario h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+
+        .stakeholder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stakeholder-card {
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stakeholder-card strong {
+            color: #e74c3c;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .comparison-table th {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--color-bg-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .nav-links a {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-gf">
+        <h1>🩺 Global Fund: Harm Reduction & HIV Services</h1>
+        <p class="subtitle">Adaptive AI Smart Contracts Model for Life-Saving Programs</p>
+        <div style="margin-top: 30px; font-size: 1.1em;">
+            <strong>Снижение Вреда + ВИЧ-сервисы через Адаптивные Контракты</strong>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="index-pgpx.html">PGPX Home</a>
+            <a href="ai-improvements-proposal.html">AI Improvements</a>
+            <a href="all-diagrams.html">Core Diagrams</a>
+            <a href="WHITEPAPER.md">Whitepaper</a>
+        </div>
+
+        <!-- SECTION 1: CONTEXT & CHALLENGES -->
+        <section class="diagram-section">
+            <h2>1. Контекст: Global Fund Harm Reduction & HIV Programs</h2>
+
+            <div class="use-case-box">
+                <h2>🎯 Целевая Группа: Ключевые Популяции</h2>
+                <p>Программы Глобального Фонда фокусируются на наиболее уязвимых группах:</p>
+                <div class="stakeholder-grid">
+                    <div class="stakeholder-card">
+                        <strong>💉 ЛУИН</strong>
+                        <p>Люди, употребляющие инъекционные наркотики</p>
+                    </div>
+                    <div class="stakeholder-card">
+                        <strong>👥 МСМ</strong>
+                        <p>Мужчины, имеющие секс с мужчинами</p>
+                    </div>
+                    <div class="stakeholder-card">
+                        <strong>👩 СР</strong>
+                        <p>Секс-работники</p>
+                    </div>
+                    <div class="stakeholder-card">
+                        <strong>🏳️‍⚧️ Трансгендеры</strong>
+                        <p>Трансгендерные люди</p>
+                    </div>
+                    <div class="stakeholder-card">
+                        <strong>👶 ЛЖВС</strong>
+                        <p>Люди, живущие с ВИЧ</p>
+                    </div>
+                    <div class="stakeholder-card">
+                        <strong>⚖️ МЛС</strong>
+                        <p>Места лишения свободы</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Специфические Вызовы Программ Снижения Вреда:</h3>
+
+            <div class="challenge-card">
+                <h4>🚨 1. Стигма и Криминализация</h4>
+                <ul>
+                    <li><strong>Проблема:</strong> Употребление наркотиков криминализировано в большинстве стран</li>
+                    <li><strong>Влияние на данные:</strong> Бенефициары боятся идентификации</li>
+                    <li><strong>Решение PGPX:</strong> Анонимные хэши DID, zero-knowledge proofs для подтверждения услуг без раскрытия личности</li>
+                </ul>
+            </div>
+
+            <div class="challenge-card">
+                <h4>⏱️ 2. Критическое Значение Времени</h4>
+                <ul>
+                    <li><strong>Overdose Prevention:</strong> Каждая минута критична - налоксон должен быть доступен немедленно</li>
+                    <li><strong>PrEP/PEP:</strong> Пост-экспозиционная профилактика эффективна только в течение 72 часов</li>
+                    <li><strong>АРВТ:</strong> Перерывы в лечении быстро приводят к развитию резистентности</li>
+                    <li><strong>Решение PGPX:</strong> Real-time мониторинг запасов, автоматические алерты, emergency adaptations</li>
+                </ul>
+            </div>
+
+            <div class="challenge-card">
+                <h4>📊 3. Сложность Измерения Impact</h4>
+                <ul>
+                    <li><strong>Проблема:</strong> Как измерить успех программы игольного обмена?</li>
+                    <li><strong>Традиционные метрики:</strong> "Выдано 10,000 шприцев" (output, не impact)</li>
+                    <li><strong>Истинный impact:</strong> "Снижение ВИЧ инфекций на 25%"</li>
+                    <li><strong>Решение PGPX:</strong> Goal Keeper фокусируется на health outcomes, а не на outputs</li>
+                </ul>
+            </div>
+
+            <div class="challenge-card">
+                <h4>🌐 4. Многоуровневая Структура</h4>
+                <ul>
+                    <li><strong>Global Fund (Женева)</strong> → финансирование</li>
+                    <li><strong>Country Coordination Mechanism (CCM)</strong> → координация на уровне страны</li>
+                    <li><strong>Principal Recipient (PR)</strong> → главный получатель гранта</li>
+                    <li><strong>Sub-Recipients (SR)</strong> → локальные NGO</li>
+                    <li><strong>Community Service Providers</strong> → прямые сервисы</li>
+                    <li><strong>Решение PGPX:</strong> Communication Hub связывает все уровни с прозрачностью</li>
+                </ul>
+            </div>
+
+            <div class="challenge-card">
+                <h4>🔄 5. Необходимость Быстрой Адаптации</h4>
+                <ul>
+                    <li><strong>Изменение эпидемиологии:</strong> Новые синтетические наркотики → нужны новые тест-полоски</li>
+                    <li><strong>Политические изменения:</strong> Декриминализация → резкое увеличение спроса на услуги</li>
+                    <li><strong>Кризисы:</strong> COVID-19 → переход на доставку на дом</li>
+                    <li><strong>Решение PGPX:</strong> Adaptation Engine с автоматическими или быстрыми ручными адаптациями</li>
+                </ul>
+            </div>
+
+            <h3>Типичные Метрики Impact:</h3>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-number">↓ 30%</div>
+                    <div class="metric-label">Снижение новых ВИЧ инфекций среди ЛУИН</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">↑ 85%</div>
+                    <div class="metric-label">Охват тестированием ключевых популяций</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">↑ 90%</div>
+                    <div class="metric-label">Удержание на АРВТ (retention on ART)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">↓ 50%</div>
+                    <div class="metric-label">Снижение передозировок (overdoses)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">↑ 70%</div>
+                    <div class="metric-label">Viral suppression among PLHIV</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">↑ 95%</div>
+                    <div class="metric-label">Доступ к стерильным инструментам</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: STAKEHOLDER ARCHITECTURE -->
+        <section class="diagram-section">
+            <h2>2. Архитектура Стейкхолдеров: Кто Участвует</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "GLOBAL LEVEL - Женева"
+        GF[Global Fund<br/>Донор]
+        TRP[Technical Review Panel<br/>Технический Обзор]
+    end
+
+    subgraph "COUNTRY LEVEL - Страна"
+        CCM[Country Coordination Mechanism<br/>CCM<br/>Координация стейкхолдеров]
+
+        subgraph "CCM Members"
+            Gov[Government<br/>Министерство Здравоохранения]
+            UN[UN Agencies<br/>UNAIDS, WHO, UNDP]
+            CSO[Civil Society<br/>NGO, Community Groups]
+            PLHIV[PLHIV Networks<br/>Сети ЛЖВС]
+            KP[Key Populations<br/>Представители ЛУИН, МСМ, СР]
+            Private[Private Sector<br/>Бизнес]
+        end
+    end
+
+    subgraph "IMPLEMENTATION LEVEL"
+        PR[Principal Recipient<br/>Главный Получатель<br/>Ministry or Large NGO]
+
+        subgraph "Service Delivery"
+            SR1[Sub-Recipient 1<br/>NGO: Needle Exchange]
+            SR2[Sub-Recipient 2<br/>NGO: HIV Testing]
+            SR3[Sub-Recipient 3<br/>NGO: OST Programs]
+            SR4[Sub-Recipient 4<br/>Community Centers]
+        end
+
+        subgraph "Field Services"
+            Outreach[Outreach Workers<br/>Аутрич-работники]
+            Clinics[Health Clinics<br/>Клиники]
+            Mobile[Mobile Units<br/>Мобильные бригады]
+            Peers[Peer Navigators<br/>Равные консультанты]
+        end
+    end
+
+    subgraph "BENEFICIARIES - Бенефициары"
+        PWID[People Who Inject Drugs<br/>ЛУИН]
+        MSM[Men Who Have Sex with Men<br/>МСМ]
+        SW[Sex Workers<br/>СР]
+        Trans[Transgender People<br/>Трансгендеры]
+        PLH[People Living with HIV<br/>ЛЖВС]
+    end
+
+    subgraph "AI AGENT LAYER"
+        AICore[PGPX AI Agent<br/>Адаптивный Смарт-Контракт]
+
+        Translator[Contract Translator<br/>Перевод условий]
+        ImpactVal[Impact Validator<br/>Валидация результатов]
+        GoalKeeper[Goal Keeper<br/>Фокус на цели]
+        CommHub[Communication Hub<br/>Координация]
+        AdaptEngine[Adaptation Engine<br/>Гибкость]
+    end
+
+    subgraph "DATA SOURCES"
+        HMIS[HMIS/DHIS2<br/>Health Data]
+        PharmacyStock[Pharmacy Stock<br/>Запасы препаратов]
+        LabData[Lab Results<br/>Лабораторные данные]
+        GPS[GPS Tracking<br/>Аутрич маршруты]
+        Surveys[Client Surveys<br/>Опросы клиентов]
+    end
+
+    %% Connections
+    GF --> CCM
+    TRP --> CCM
+    CCM --> Gov & UN & CSO & PLHIV & KP & Private
+    CCM --> PR
+
+    PR --> SR1 & SR2 & SR3 & SR4
+    SR1 --> Outreach & Mobile
+    SR2 --> Clinics & Mobile
+    SR3 --> Clinics
+    SR4 --> Peers
+
+    Outreach --> PWID & MSM & SW & Trans
+    Clinics --> PWID & MSM & SW & Trans & PLH
+    Mobile --> PWID & SW
+    Peers --> PWID & MSM & SW & Trans & PLH
+
+    %% AI Integration
+    GF --> AICore
+    CCM --> AICore
+    PR --> AICore
+    SR1 --> AICore
+    SR2 --> AICore
+    Peers --> AICore
+
+    AICore --> Translator
+    AICore --> ImpactVal
+    AICore --> GoalKeeper
+    AICore --> CommHub
+    AICore --> AdaptEngine
+
+    HMIS --> ImpactVal
+    PharmacyStock --> ImpactVal
+    LabData --> ImpactVal
+    GPS --> ImpactVal
+    Surveys --> ImpactVal
+
+    %% Feedback Loop
+    ImpactVal --> GoalKeeper
+    GoalKeeper --> AdaptEngine
+    AdaptEngine -.->|Adaptations| PR
+    CommHub -.->|Alerts| GF
+
+    %% Styling
+    style GF fill:#e74c3c,stroke:#c0392b,color:#fff
+    style AICore fill:#667eea,stroke:#764ba2,color:#fff
+    style CCM fill:#3498db,stroke:#2980b9
+    style PR fill:#f39c12,stroke:#e67e22
+    style GoalKeeper fill:#2ecc71,stroke:#27ae60
+    style ImpactVal fill:#9b59b6,stroke:#8e44ad
+                </div>
+            </div>
+
+            <h3>Роли и Интересы:</h3>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Стейкхолдер</th>
+                    <th>Роль</th>
+                    <th>Интерес</th>
+                    <th>Как Адаптивный Контракт Помогает</th>
+                </tr>
+                <tr>
+                    <td><strong>Global Fund</strong></td>
+                    <td>Донор</td>
+                    <td>Максимальный impact за $, прозрачность, отчетность</td>
+                    <td>Real-time dashboard с impact metrics, автоматические отчеты</td>
+                </tr>
+                <tr>
+                    <td><strong>CCM</strong></td>
+                    <td>Координатор</td>
+                    <td>Согласование интересов всех сторон</td>
+                    <td>Communication Hub для всех участников, голосование по адаптациям</td>
+                </tr>
+                <tr>
+                    <td><strong>Principal Recipient</strong></td>
+                    <td>Исполнитель</td>
+                    <td>Выполнить программу, получить финансирование</td>
+                    <td>Milestone-based payments, гибкость в методах, поддержка AI</td>
+                </tr>
+                <tr>
+                    <td><strong>Sub-Recipients</strong></td>
+                    <td>Прямые сервисы</td>
+                    <td>Финансовая стабильность, поддержка, автономия</td>
+                    <td>Быстрые выплаты при достижении целей, предсказуемость</td>
+                </tr>
+                <tr>
+                    <td><strong>Key Populations</strong></td>
+                    <td>Бенефициары</td>
+                    <td>Качественные услуги, конфиденциальность, уважение</td>
+                    <td>Анонимные опросы влияют на адаптации, voice в системе</td>
+                </tr>
+                <tr>
+                    <td><strong>Community</strong></td>
+                    <td>Мониторинг</td>
+                    <td>Community-led monitoring, прозрачность</td>
+                    <td>Доступ к dashboard, возможность сигнализировать о проблемах</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 3: ADAPTIVE CONTRACT DESIGN -->
+        <section class="diagram-section">
+            <h2>3. Дизайн Адаптивного Контракта для Harm Reduction</h2>
+
+            <h3>3.1 Структура Контракта</h3>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph TB
+    subgraph "IMMUTABLE GOAL - Неизменная Цель"
+        Goal[Reduce new HIV infections<br/>among PWID by 30%<br/>within 24 months<br/><br/>Снизить новые ВИЧ инфекции<br/>среди ЛУИН на 30%<br/>за 24 месяца]
+    end
+
+    subgraph "FLEXIBLE INTERVENTIONS - Гибкие Методы"
+        I1[Needle & Syringe Programs<br/>Программы обмена игл]
+        I2[Opioid Substitution Therapy<br/>OST: Метадон/Бупренорфин]
+        I3[HIV Testing & Counseling<br/>Тестирование и консультирование]
+        I4[ART for PWID<br/>АРВТ для ЛУИН]
+        I5[Naloxone Distribution<br/>Раздача налоксона]
+        I6[Peer Navigation<br/>Равное консультирование]
+        I7[Legal Aid<br/>Юридическая помощь]
+    end
+
+    subgraph "MILESTONES - Вехи Программы"
+        M1[Milestone 1: Setup<br/>Month 0-3<br/>Establish services]
+        M2[Milestone 2: Scale-Up<br/>Month 4-9<br/>Reach 5000 PWID]
+        M3[Milestone 3: Retention<br/>Month 10-15<br/>85% retention on services]
+        M4[Milestone 4: Impact<br/>Month 16-24<br/>Demonstrate 30% reduction]
+    end
+
+    subgraph "EVIDENCE REQUIREMENTS - Требования к Доказательствам"
+        E1[Service Statistics<br/>Статистика услуг]
+        E2[HIV Testing Results<br/>Результаты тестов]
+        E3[Retention Data<br/>Удержание на программе]
+        E4[Viral Load Data<br/>Вирусная нагрузка]
+        E5[Client Satisfaction<br/>Удовлетворенность клиентов]
+        E6[Community Validation<br/>Проверка сообществом]
+    end
+
+    subgraph "AI VALIDATION LOGIC"
+        Auto[Automated Data Checks<br/>Cross-check with HMIS]
+        AIAnalysis[AI Evidence Assessment<br/>Photo/GPS verification]
+        Blockchain[Blockchain Consensus<br/>Immutable record]
+        Expert[Expert Review<br/>For high-value milestones]
+    end
+
+    Goal --> I1 & I2 & I3 & I4 & I5 & I6 & I7
+    I1 --> M1 & M2 & M3
+    I2 --> M1 & M2 & M3
+    I3 --> M1 & M2 & M3
+    I4 --> M2 & M3 & M4
+    I5 --> M1 & M2
+    I6 --> M2 & M3 & M4
+    I7 --> M1 & M2
+
+    M1 --> E1 & E5
+    M2 --> E1 & E2 & E3 & E5
+    M3 --> E1 & E2 & E3 & E4 & E5
+    M4 --> E1 & E2 & E3 & E4 & E5 & E6
+
+    E1 --> Auto
+    E2 --> Auto
+    E3 --> Auto
+    E4 --> Auto
+    E5 --> AIAnalysis
+    E6 --> AIAnalysis
+
+    Auto --> Blockchain
+    AIAnalysis --> Blockchain
+    Blockchain --> Expert
+    Expert -.->|Approve/Reject| M1 & M2 & M3 & M4
+
+    style Goal fill:#e74c3c,stroke:#c0392b,color:#fff
+    style Auto fill:#3498db,stroke:#2980b9
+    style AIAnalysis fill:#9b59b6,stroke:#8e44ad
+    style Blockchain fill:#16a085,stroke:#148f77
+    style Expert fill:#f39c12,stroke:#e67e22
+                </div>
+            </div>
+
+            <h3>3.2 Human-Readable Translation Example</h3>
+
+            <div class="code-block">
+<strong>📋 SMART CONTRACT → HUMAN LANGUAGE (Russian)</strong>
+
+═══════════════════════════════════════════════════════════════
+
+<strong style="color: #4ecdc4;">🎯 ГЛАВНАЯ ЦЕЛЬ (Immutable):</strong>
+Снизить новые случаи ВИЧ-инфекции среди людей, употребляющих
+инъекционные наркотики (ЛУИН), на 30% в течение 24 месяцев.
+
+<strong style="color: #f39c12;">💰 ОБЩИЙ БЮДЖЕТ:</strong> $2,500,000 USD
+
+<strong style="color: #3498db;">📊 ВЕХА 1: Запуск Сервисов (Месяцы 0-3)</strong>
+├─ Действия:
+│  ├─ Открыть 5 точек обмена игл (NSP)
+│  ├─ Запустить 2 клиники OST (метадон/бупренорфин)
+│  ├─ Обучить 30 аутрич-работников
+│  └─ Установить систему учета клиентов
+├─ Требования:
+│  ├─ Фото открытых точек (AI проверит)
+│  ├─ Сертификаты обученного персонала
+│  └─ 500+ клиентов зарегистрировано
+├─ Выплата: $400,000 при достижении 75% критериев
+└─ Дедлайн: 90 дней (может быть продлен ИИ при форс-мажоре)
+
+<strong style="color: #9b59b6;">📊 ВЕХА 2: Масштабирование (Месяцы 4-9)</strong>
+├─ Действия:
+│  ├─ Охват 5,000 ЛУИН услугами NSP
+│  ├─ 1,000 ЛУИН на OST терапии
+│  ├─ 3,000 протестировано на ВИЧ
+│  └─ 500 ВИЧ+ начали АРВТ
+├─ Требования:
+│  ├─ Статистика из HMIS (авто-проверка)
+│  ├─ GPS треки аутрич-работников
+│  ├─ Лабораторные результаты тестов
+│  └─ 80%+ удовлетворенность клиентов (SMS опрос)
+├─ Выплата: $800,000 при достижении 80% критериев
+└─ Дедлайн: 6 месяцев
+
+<strong style="color: #2ecc71;">📊 ВЕХА 3: Удержание (Месяцы 10-15)</strong>
+├─ Цель: 85% клиентов продолжают получать услуги
+├─ Критерии:
+│  ├─ 85% retention на NSP (ежемесячные посещения)
+│  ├─ 90% retention на OST (не пропущено >7 дней)
+│  ├─ 80% ВИЧ+ на АРВТ с viral suppression
+│  └─ 0 случаев передозировок со смертельным исходом
+├─ Выплата: $700,000
+└─ Дедлайн: 6 месяцев
+
+<strong style="color: #e74c3c;">📊 ВЕХА 4: Доказательство Impact (Месяцы 16-24)</strong>
+├─ Цель: Подтвердить 30% снижение новых ВИЧ инфекций
+├─ Методология:
+│  ├─ Сравнение с baseline (до программы)
+│  ├─ Эпидемиологическое моделирование
+│  ├─ Независимая экспертная оценка
+│  └─ Community validation
+├─ Выплата: $600,000 + Bonus до $200,000 если >35% снижение
+└─ Дедлайн: 8 месяцев
+
+═══════════════════════════════════════════════════════════════
+
+<strong style="color: #f39c12;">🔄 АДАПТАЦИИ (Flexible):</strong>
+
+ИИ может автоматически адаптировать:
+✅ Продлить дедлайны при форс-мажоре (COVID, криминализация)
+✅ Перераспределить бюджет между NSP/OST (если один эффективнее)
+✅ Изменить географию (если одна зона показывает лучшие результаты)
+✅ Добавить новые интервенции (если появились новые наркотики)
+
+ИИ НЕ может изменить без одобрения CCM/Donor:
+❌ Главную цель (30% снижение)
+❌ Общий бюджет ($2.5M)
+❌ Целевую популяцию (ЛУИН)
+❌ Критические сроки (24 месяца максимум)
+
+═══════════════════════════════════════════════════════════════
+            </div>
+
+            <h3>3.3 Adaptive Scenarios - Реальные Примеры</h3>
+
+            <div class="example-scenario">
+                <h4>📈 Сценарий 1: Ahead of Schedule (Опережение Графика)</h4>
+                <p><strong>Ситуация:</strong> После 5 месяцев (вместо 9) достигнут охват 5,000 ЛУИН</p>
+
+                <p><strong>ИИ Детектирует:</strong></p>
+                <ul>
+                    <li>Веха 2 выполнена на 100% за 5 месяцев (на 4 месяца раньше)</li>
+                    <li>Качество данных высокое (95% confidence)</li>
+                    <li>Retention уже на 87% (выше требуемого)</li>
+                </ul>
+
+                <p><strong>ИИ Действие:</strong></p>
+                <div class="code-block">
+✅ Automatic early payment: $800,000 released immediately
+✅ Reputation bonus: +75 points → Provider moves to Gold Tier
+✅ Proposal: Use saved 4 months to expand to additional district
+✅ Notify CCM: "Program performing exceptionally, propose expansion"
+
+<strong>Human Translation → CCM:</strong>
+"Программа опережает график на 4 месяца с отличными результатами.
+ИИ рекомендует досрочную выплату $800K и расширение на доп. район.
+Ваше одобрение? (Авто-одобрение через 48ч если нет возражений)"
+                </div>
+            </div>
+
+            <div class="example-scenario">
+                <h4>🚨 Сценарий 2: External Crisis (Внешний Кризис)</h4>
+                <p><strong>Ситуация:</strong> Правительство усилило рейды полиции → ЛУИН боятся приходить в точки NSP</p>
+
+                <p><strong>ИИ Детектирует:</strong></p>
+                <ul>
+                    <li>Резкое падение посещений NSP (-60% за 2 недели)</li>
+                    <li>GPS аутрич-работников показывает избегание обычных локаций</li>
+                    <li>SMS опросы: "Боюсь ареста"</li>
+                    <li>Новостные источники: "Усиление полицейских рейдов"</li>
+                </ul>
+
+                <p><strong>ИИ Действие:</strong></p>
+                <div class="code-block">
+🚨 Emergency Adaptation (Auto-approved):
+├─ Pause milestone deadlines for 60 days
+├─ Propose method change: Fixed sites → Mobile outreach only
+├─ Reallocate budget: +30% for mobile units, -30% from fixed sites
+└─ Emergency alert to Global Fund + CCM
+
+<strong>Human Translation → All Parties:</strong>
+"КРИТИЧЕСКАЯ СИТУАЦИЯ: Полицейские рейды снизили доступ к услугам на 60%.
+
+ИИ автоматически:
+✅ Приостановил дедлайны на 60 дней
+✅ Предлагает переход на 100% мобильный аутрич
+✅ Перераспределяет бюджет: больше на мобильные бригады
+
+Цель (30% снижение ВИЧ) остается неизменной.
+Метод адаптирован под новую реальность.
+
+Action: PR, пожалуйста, подтвердите план перехода на мобильные услуги."
+                </div>
+            </div>
+
+            <div class="example-scenario">
+                <h4>💡 Сценарий 3: Method Optimization (Оптимизация Методов)</h4>
+                <p><strong>Ситуация:</strong> Данные показывают, что OST имеет гораздо больший impact на снижение ВИЧ, чем NSP в этом регионе</p>
+
+                <p><strong>ИИ Детектирует:</strong></p>
+                <ul>
+                    <li>OST клиенты: 95% retention, 0% новых ВИЧ инфекций</li>
+                    <li>NSP-only клиенты: 60% retention, 5% новых ВИЧ инфекций</li>
+                    <li>Literature review: OST 3x more cost-effective in this context</li>
+                </ul>
+
+                <p><strong>ИИ Действие:</strong></p>
+                <div class="code-block">
+💡 Optimization Proposal (Requires CCM approval):
+├─ Data Analysis: OST shows 3x better impact per $ spent
+├─ Recommendation: Shift 40% of NSP budget to expand OST capacity
+├─ Projected outcome: Achieve 35% reduction (vs 30% goal)
+└─ Risk assessment: Low (NSP still maintained at sufficient level)
+
+<strong>Human Translation → CCM + Global Fund:</strong>
+"ИИ обнаружил возможность оптимизации для ПРЕВЫШЕНИЯ цели:
+
+📊 Данные за 9 месяцев:
+- OST: 95% удержание, 0% новых ВИЧ
+- NSP: 60% удержание, 5% новых ВИЧ
+
+💡 Предложение:
+Перенаправить 40% бюджета NSP → OST
+($400K → расширение OST клиник с 2 до 4)
+
+📈 Прогноз:
+- Цель: 30% снижение ВИЧ
+- С адаптацией: 35% снижение ВИЧ
+- NSP сохраняется на достаточном уровне
+
+Голосование CCM: Одобрить изменение?
+[ Approve ] [ Reject ] [ Request More Data ]"
+                </div>
+            </div>
+
+            <div class="example-scenario">
+                <h4>⚠️ Сценарий 4: Underperformance (Недостижение Целей)</h4>
+                <p><strong>Ситуация:</strong> После 15 месяцев только 15% снижение ВИЧ (вместо ожидаемых 22% к этому моменту)</p>
+
+                <p><strong>ИИ Детектирует:</strong></p>
+                <ul>
+                    <li>Off-track: Проекция показывает только 20% итоговое снижение (вместо 30%)</li>
+                    <li>Root cause analysis: Low uptake of ART among PWID (only 40% vs target 80%)</li>
+                    <li>Beneficiary feedback: "Clinic hours inconvenient, stigma from staff"</li>
+                </ul>
+
+                <p><strong>ИИ Действие:</strong></p>
+                <div class="code-block">
+⚠️ RISK ALERT - Goal Achievement Threatened
+
+<strong>Analysis:</strong>
+├─ Current: 15% reduction (Month 15)
+├─ Required: 22% reduction (to reach 30% by Month 24)
+├─ Projection: Only 20% final reduction ❌
+└─ Root cause: Low ART uptake (40% vs 80% target)
+
+<strong>AI Recommendations (3 options):</strong>
+
+<strong>Option 1: Extend Timeline + Add Resources</strong>
+├─ Extend program to 30 months (+ 6 months)
+├─ Add $300K for community-based ART delivery
+├─ Hire 10 peer navigators (PWID living with HIV)
+└─ Probability of success: 85%
+
+<strong>Option 2: Reduce Goal</strong>
+├─ Adjust goal: 30% → 22% reduction
+├─ No additional resources needed
+├─ Complete on schedule (24 months)
+└─ Probability of success: 95%
+
+<strong>Option 3: Pivot Strategy</strong>
+├─ Partner with mobile health clinic for evening hours
+├─ Mandatory sensitivity training for all clinic staff
+├─ Cash incentives for ART adherence (proven effective)
+├─ Reallocate $200K from other interventions
+└─ Probability of success: 70%
+
+<strong>Human Translation → CCM Emergency Meeting:</strong>
+"ТРЕБУЕТСЯ РЕШЕНИЕ: Программа отстает от цели
+
+Текущая ситуация: Только 15% снижение ВИЧ (вместо 22% к этому моменту)
+Причина: Только 40% ВИЧ+ ЛУИН начали АРВТ (цель 80%)
+Проблемы: Неудобные часы работы клиник, стигма от персонала
+
+ИИ предлагает 3 варианта действий [см. выше]
+
+CCM, пожалуйста, выберите:
+1️⃣ Продлить + доп.ресурсы (выше шанс успеха, больше $)
+2️⃣ Снизить цель до 22% (реалистично, без доп.$)
+3️⃣ Изменить стратегию (средний риск, в рамках бюджета)
+
+Голосование в течение 7 дней. Goal Keeper не позволит завершить
+программу без достижения согласованной цели."
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: IMPLEMENTATION DETAILS -->
+        <section class="diagram-section">
+            <h2>4. Технические Детали Реализации</h2>
+
+            <h3>4.1 Data Integration Flow</h3>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+sequenceDiagram
+    participant SP as Service Provider<br/>Sub-Recipient
+    participant HMIS as HMIS/DHIS2<br/>Health Info System
+    participant GPS as GPS/Mobile App<br/>Outreach Workers
+    participant Lab as Laboratory<br/>Testing Results
+    participant Survey as SMS Survey<br/>Client Feedback
+    participant AI as AI Oracle<br/>PGPX System
+    participant SC as Smart Contract<br/>On-Chain
+    participant GF as Global Fund<br/>Dashboard
+
+    Note over SP,GF: Daily Operations - Real-Time Data Flow
+
+    SP->>HMIS: Enter client service data<br/>(NSP visits, OST doses, etc)
+    GPS->>AI: GPS tracks of outreach<br/>(verify service delivery)
+    Lab->>HMIS: HIV test results<br/>Viral load data
+    Survey->>AI: SMS responses<br/>"Quality of service?"
+
+    AI->>HMIS: Fetch aggregated data<br/>(API call)
+    HMIS-->>AI: Return service statistics
+
+    AI->>AI: Cross-validate data sources<br/>HMIS + GPS + Survey
+    AI->>AI: Calculate impact metrics<br/>"Are we on track to 30%?"
+
+    Note over AI: Impact Assessment
+
+    alt Data Quality High (>90%)
+        AI->>SC: Update on-chain:<br/>Progress 67% to goal ✅
+        SC->>GF: Real-time dashboard update
+    else Data Quality Low (<70%)
+        AI->>SP: Alert: "Data quality issues"<br/>Request clarification
+        SP->>AI: Submit additional evidence
+        AI->>AI: Re-validate
+    end
+
+    Note over SP,GF: Milestone Completion
+
+    SP->>SC: Submit milestone completion<br/>Evidence hash (IPFS)
+    SC->>AI: Validate evidence
+    AI->>Lab: Cross-check lab results
+    AI->>HMIS: Cross-check service stats
+    AI->>Survey: Check client satisfaction
+
+    AI->>AI: Multi-layer validation<br/>Automated + AI + Blockchain
+
+    alt Validation Score >= 75%
+        AI->>SC: Approve milestone ✅<br/>Score: 88%
+        SC->>SC: Release funds automatically
+        SC->>SP: Transfer $800,000
+        SC->>GF: Milestone completed<br/>Funds released
+        GF->>GF: Update donor report
+    else Validation Score < 75%
+        AI->>SC: Reject milestone ❌<br/>Score: 62%
+        SC->>SP: Evidence insufficient<br/>Reasons: [list]
+        SP->>AI: Submit additional docs
+    end
+
+    Note over AI,SC: Continuous Monitoring
+
+    loop Every 24 hours
+        AI->>HMIS: Check stock levels<br/>(syringes, methadone, ARV)
+        alt Stock < 30 days
+            AI->>SP: 🚨 ALERT: Low stock<br/>Order supplies now
+            AI->>SC: Propose budget adaptation<br/>Release emergency funds
+        end
+
+        AI->>AI: Analyze trends<br/>Goal progress trajectory
+        alt Off-track detected
+            AI->>SC: Propose adaptation
+            SC->>GF: Alert: Program needs adjustment
+        end
+    end
+                </div>
+            </div>
+
+            <h3>4.2 Privacy & Anonymity Protections</h3>
+
+            <div class="challenge-card">
+                <h4>🔒 Protecting Key Populations from Harm</h4>
+                <p><strong>Challenge:</strong> ЛУИН, МСМ, СР живут в странах где их активности криминализированы. Данные должны быть полезны для impact measurement, но безопасны для бенефициаров.</p>
+
+                <p><strong>PGPX Solution:</strong></p>
+
+                <div class="code-block">
+<strong>Layer 1: Anonymous Client IDs</strong>
+├─ Each client gets anonymous hash ID
+├─ ID = keccak256(biometrics + salt + timestamp)
+├─ No PII stored on-chain or in public systems
+└─ Mapping stored only locally, encrypted
+
+<strong>Example:</strong>
+Real client: "Ivan Petrov, 35, address: ..."
+On-chain ID: "0x7f3a9b2c..." (irreversible hash)
+Services recorded under hash only
+
+<strong>Layer 2: Zero-Knowledge Proofs for Service Verification</strong>
+├─ Client proves: "I received NSP service today"
+├─ Without revealing: Name, location, identity
+├─ ZK-SNARK generates proof
+└─ Smart contract verifies proof ✅
+
+<strong>Example:</strong>
+Outreach worker's mobile app:
+1. Client shows QR code (anonymous)
+2. App records: Handed 10 syringes, 5 alcohol wipes
+3. Client signs with private key (no identity revealed)
+4. ZK proof generated: "Service delivered ✅"
+5. Proof submitted to smart contract
+6. Impact counted, but client anonymous
+
+<strong>Layer 3: Aggregated Data Only</strong>
+├─ Individual records: NEVER on-chain
+├─ Only aggregated stats: "500 clients served this week"
+├─ GPS: Only general area ("District A"), not exact coordinates
+└─ Demographics: Age ranges, not exact ages
+
+<strong>Layer 4: Community Data Trusts</strong>
+├─ Key populations control their own data
+├─ Community representatives hold decryption keys
+├─ Research access requires community approval
+└─ Built-in "right to be forgotten"
+
+<strong>Result:</strong>
+✅ Impact can be measured and verified
+✅ Clients remain completely anonymous
+✅ Even if system hacked, no PII exposed
+✅ Compliance with GDPR, local privacy laws
+                </div>
+            </div>
+
+            <h3>4.3 Integration with Global Fund Systems</h3>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph LR
+    subgraph "Global Fund Current Systems"
+        PF[Portfolio Manager<br/>GF Staff]
+        LFA[Local Fund Agent<br/>M&E Oversight]
+        PSMS[Procurement & Supply<br/>Management System]
+        PQR[Progress Update &<br/>Disbursement Request]
+    end
+
+    subgraph "PGPX Integration Layer"
+        Bridge[PGPX Bridge API]
+        Translator[Data Translator<br/>GF Format ↔ PGPX]
+        Dashboard[Unified Dashboard<br/>GF + PGPX views]
+    end
+
+    subgraph "PGPX Adaptive Contract"
+        SC[Smart Contract]
+        AI[AI Oracle]
+        IPFS[IPFS Documents]
+    end
+
+    subgraph "Country Systems"
+        HMIS[HMIS/DHIS2]
+        CCM[CCM Portal]
+        PR[PR System]
+    end
+
+    PF --> Dashboard
+    LFA --> Dashboard
+    Dashboard --> Bridge
+
+    Bridge --> Translator
+    Translator --> SC
+    Translator --> AI
+    Translator --> IPFS
+
+    HMIS --> AI
+    CCM --> Bridge
+    PR --> SC
+
+    SC -.->|Auto-generate| PQR
+    AI -.->|Real-time data| LFA
+    IPFS -.->|Evidence docs| PF
+
+    SC --> PSMS
+    PSMS -.->|Stock alerts| AI
+
+    style Bridge fill:#667eea,stroke:#764ba2,color:#fff
+    style Dashboard fill:#3498db,stroke:#2980b9
+    style SC fill:#e74c3c,stroke:#c0392b
+                </div>
+            </div>
+
+            <h3>4.4 Solidity Implementation (Simplified)</h3>
+
+            <div class="code-block">
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract GlobalFundHarmReductionGrant {
+
+    // ========== IMMUTABLE GOAL ==========
+    struct ImmutableGoal {
+        string description; // "Reduce HIV infections among PWID by 30%"
+        uint256 targetReduction; // 30 (percentage)
+        uint256 totalBudget; // 2,500,000 * 10**6 (USDC)
+        uint256 duration; // 730 days (24 months)
+        uint256 startTime;
+    }
+
+    ImmutableGoal public immutable goal;
+
+    // ========== STAKEHOLDERS ==========
+    address public immutable globalFund;  // Donor
+    address public immutable ccm;  // Country Coordination Mechanism
+    address public immutable principalRecipient;
+    address[] public subRecipients;
+    IAIOracle public immutable aiOracle;
+
+    // ========== KEY POPULATIONS ==========
+    enum KeyPopulation {
+        PWID,      // People Who Inject Drugs
+        MSM,       // Men who have sex with men
+        SW,        // Sex workers
+        Transgender,
+        PLHIV      // People living with HIV
+    }
+
+    // ========== INTERVENTIONS ==========
+    enum Intervention {
+        NSP,       // Needle & Syringe Program
+        OST,       // Opioid Substitution Therapy
+        HIVTesting,
+        ART,       // Antiretroviral Therapy
+        Naloxone,
+        PeerNav,   // Peer Navigation
+        LegalAid
+    }
+
+    struct InterventionBudget {
+        Intervention intervention;
+        uint256 allocatedBudget;
+        uint256 spentBudget;
+        bool flexible;  // Can be reallocated by AI
+    }
+
+    mapping(Intervention => InterventionBudget) public interventionBudgets;
+
+    // ========== MILESTONES ==========
+    struct Milestone {
+        uint8 milestoneId;
+        string description;
+        uint256 deadline;
+        uint256 actualDeadline;  // Can be extended by AI
+        uint256 fundsAllocated;
+        bool completed;
+
+        // Service targets
+        uint256 targetPWIDReached;
+        uint256 targetOSTClients;
+        uint256 targetHIVTests;
+        uint256 targetRetentionRate; // percentage
+
+        // Evidence requirements
+        bytes32[] evidenceHashes;  // IPFS hashes
+        uint256 validationScore;   // AI-calculated 0-100
+        bool communityValidated;
+    }
+
+    Milestone[] public milestones;
+
+    // ========== IMPACT METRICS ==========
+    struct ImpactData {
+        uint256 timestamp;
+        uint256 pwidsReached;
+        uint256 newHIVInfections;
+        uint256 retentionRate;
+        uint256 viralSuppressionRate;
+        uint256 overdosePrevented;
+        bytes32 hmisDataHash;  // Link to HMIS data
+    }
+
+    ImpactData[] public impactHistory;
+
+    // ========== ADAPTATIONS ==========
+    struct Adaptation {
+        uint256 adaptationId;
+        AdaptationType adaptType;
+        string reason;
+        string humanReadable;  // AI translation
+        bytes adaptationData;
+        uint256 aiConfidence;  // 0-100
+        bool requiresApproval;
+        bool approved;
+        address approver;
+        uint256 proposedAt;
+        uint256 executedAt;
+    }
+
+    enum AdaptationType {
+        EXTEND_DEADLINE,
+        REBALANCE_INTERVENTION_BUDGET,
+        ADD_INTERVENTION,
+        CHANGE_SERVICE_MODEL,  // e.g., fixed site → mobile
+        EMERGENCY_PAUSE,
+        SCALE_UP_EFFECTIVE_INTERVENTION
+    }
+
+    Adaptation[] public adaptations;
+
+    // ========== EVENTS ==========
+    event MilestoneCompleted(
+        uint8 milestoneId,
+        uint256 validationScore,
+        uint256 fundsReleased,
+        string aiAnalysis
+    );
+
+    event AdaptationProposed(
+        uint256 adaptationId,
+        AdaptationType adaptType,
+        string humanReadable,
+        bool autoApproved
+    );
+
+    event AdaptationExecuted(
+        uint256 adaptationId,
+        string description
+    );
+
+    event ImpactDataSubmitted(
+        uint256 timestamp,
+        uint256 pwidsReached,
+        uint256 newHIVInfections,
+        string progressToGoal
+    );
+
+    event EmergencyAlert(
+        string alertType,
+        string description,
+        string aiRecommendation
+    );
+
+    event GoalAchieved(
+        uint256 finalReduction,
+        uint256 bonusAwarded,
+        string successStory
+    );
+
+    // ========== MODIFIERS ==========
+    modifier onlyPR() {
+        require(msg.sender == principalRecipient, "Only PR");
+        _;
+    }
+
+    modifier onlyCCM() {
+        require(msg.sender == ccm, "Only CCM");
+        _;
+    }
+
+    modifier onlyAIOracle() {
+        require(msg.sender == address(aiOracle), "Only AI Oracle");
+        _;
+    }
+
+    // ========== CONSTRUCTOR ==========
+    constructor(
+        address _globalFund,
+        address _ccm,
+        address _principalRecipient,
+        address _aiOracle,
+        string memory _goalDescription,
+        uint256 _targetReduction,
+        uint256 _totalBudget
+    ) {
+        globalFund = _globalFund;
+        ccm = _ccm;
+        principalRecipient = _principalRecipient;
+        aiOracle = IAIOracle(_aiOracle);
+
+        goal = ImmutableGoal({
+            description: _goalDescription,
+            targetReduction: _targetReduction,
+            totalBudget: _totalBudget,
+            duration: 730 days,
+            startTime: block.timestamp
+        });
+
+        _initializeMilestones();
+        _initializeInterventionBudgets();
+    }
+
+    // ========== MILESTONE COMPLETION ==========
+    function completeMilestone(
+        uint8 _milestoneId,
+        bytes32[] memory _evidenceHashes
+    ) external onlyPR {
+        require(_milestoneId < milestones.length, "Invalid milestone");
+        Milestone storage milestone = milestones[_milestoneId];
+        require(!milestone.completed, "Already completed");
+        require(block.timestamp <= milestone.actualDeadline, "Deadline passed");
+
+        milestone.evidenceHashes = _evidenceHashes;
+
+        // AI validates evidence
+        (
+            uint256 validationScore,
+            string memory analysis,
+            bool communityValidated
+        ) = aiOracle.validateMilestoneEvidence(
+            _milestoneId,
+            _evidenceHashes,
+            goal.description
+        );
+
+        require(validationScore >= 75, "Validation score too low");
+
+        milestone.validationScore = validationScore;
+        milestone.communityValidated = communityValidated;
+        milestone.completed = true;
+
+        // Release funds
+        uint256 amount = milestone.fundsAllocated;
+        _releaseFunds(principalRecipient, amount);
+
+        emit MilestoneCompleted(
+            _milestoneId,
+            validationScore,
+            amount,
+            analysis
+        );
+
+        // Check if goal achieved
+        _checkGoalAchievement();
+    }
+
+    // ========== IMPACT DATA SUBMISSION ==========
+    function submitImpactData(
+        uint256 _pwidsReached,
+        uint256 _newHIVInfections,
+        uint256 _retentionRate,
+        uint256 _viralSuppressionRate,
+        uint256 _overdosePrevented,
+        bytes32 _hmisDataHash
+    ) external onlyPR {
+        ImpactData memory newData = ImpactData({
+            timestamp: block.timestamp,
+            pwidsReached: _pwidsReached,
+            newHIVInfections: _newHIVInfections,
+            retentionRate: _retentionRate,
+            viralSuppressionRate: _viralSuppressionRate,
+            overdosePrevented: _overdosePrevented,
+            hmisDataHash: _hmisDataHash
+        });
+
+        impactHistory.push(newData);
+
+        // AI analyzes progress
+        string memory progressAnalysis = aiOracle.analyzeImpactProgress(
+            impactHistory,
+            goal.targetReduction
+        );
+
+        emit ImpactDataSubmitted(
+            block.timestamp,
+            _pwidsReached,
+            _newHIVInfections,
+            progressAnalysis
+        );
+    }
+
+    // ========== ADAPTATION PROPOSAL ==========
+    function proposeAdaptation(
+        AdaptationType _adaptType,
+        bytes memory _adaptationData,
+        string memory _reason
+    ) external {
+        require(
+            msg.sender == principalRecipient ||
+            msg.sender == address(aiOracle) ||
+            msg.sender == ccm,
+            "Unauthorized"
+        );
+
+        // AI analyzes if adaptation threatens goal
+        (
+            bool goalAligned,
+            uint256 confidence,
+            string memory humanReadable
+        ) = aiOracle.analyzeAdaptation(
+            _adaptType,
+            _adaptationData,
+            goal.description,
+            impactHistory
+        );
+
+        require(goalAligned, "Adaptation threatens goal achievement");
+
+        bool requiresApproval = _needsApproval(_adaptType, confidence);
+
+        uint256 adaptationId = adaptations.length;
+        adaptations.push(Adaptation({
+            adaptationId: adaptationId,
+            adaptType: _adaptType,
+            reason: _reason,
+            humanReadable: humanReadable,
+            adaptationData: _adaptationData,
+            aiConfidence: confidence,
+            requiresApproval: requiresApproval,
+            approved: !requiresApproval,  // Auto-approve if high confidence
+            approver: address(0),
+            proposedAt: block.timestamp,
+            executedAt: 0
+        }));
+
+        emit AdaptationProposed(
+            adaptationId,
+            _adaptType,
+            humanReadable,
+            !requiresApproval
+        );
+
+        // Execute immediately if auto-approved
+        if (!requiresApproval) {
+            _executeAdaptation(adaptationId, address(aiOracle));
+        }
+    }
+
+    function approveAdaptation(uint256 _adaptationId) external onlyCCM {
+        require(_adaptationId < adaptations.length, "Invalid ID");
+        Adaptation storage adaptation = adaptations[_adaptationId];
+        require(adaptation.requiresApproval, "Not pending");
+        require(!adaptation.approved, "Already approved");
+
+        adaptation.approved = true;
+        adaptation.approver = msg.sender;
+
+        _executeAdaptation(_adaptationId, msg.sender);
+    }
+
+    function _executeAdaptation(uint256 _adaptationId, address _approver)
+        internal
+    {
+        Adaptation storage adaptation = adaptations[_adaptationId];
+
+        if (adaptation.adaptType == AdaptationType.EXTEND_DEADLINE) {
+            (uint8 milestoneId, uint256 extension) =
+                abi.decode(adaptation.adaptationData, (uint8, uint256));
+            milestones[milestoneId].actualDeadline += extension;
+        }
+        else if (adaptation.adaptType == AdaptationType.REBALANCE_INTERVENTION_BUDGET) {
+            (Intervention from, Intervention to, uint256 amount) =
+                abi.decode(adaptation.adaptationData, (Intervention, Intervention, uint256));
+
+            require(
+                interventionBudgets[from].flexible,
+                "Source intervention not flexible"
+            );
+            require(
+                interventionBudgets[from].allocatedBudget >= amount,
+                "Insufficient budget"
+            );
+
+            interventionBudgets[from].allocatedBudget -= amount;
+            interventionBudgets[to].allocatedBudget += amount;
+        }
+        else if (adaptation.adaptType == AdaptationType.EMERGENCY_PAUSE) {
+            uint256 pauseDuration = abi.decode(adaptation.adaptationData, (uint256));
+
+            // Extend all pending milestone deadlines
+            for (uint i = 0; i < milestones.length; i++) {
+                if (!milestones[i].completed) {
+                    milestones[i].actualDeadline += pauseDuration;
+                }
+            }
+        }
+        // ... other adaptation types
+
+        adaptation.executedAt = block.timestamp;
+        emit AdaptationExecuted(_adaptationId, adaptation.humanReadable);
+    }
+
+    // ========== AI EMERGENCY ALERTS ==========
+    function triggerEmergencyAlert(
+        string memory _alertType,
+        string memory _description,
+        string memory _recommendation
+    ) external onlyAIOracle {
+        emit EmergencyAlert(_alertType, _description, _recommendation);
+
+        // If critical (e.g., stock outage), auto-approve emergency funding
+        // Implementation depends on specific alert type
+    }
+
+    // ========== GOAL ACHIEVEMENT CHECK ==========
+    function _checkGoalAchievement() internal {
+        (bool achieved, uint256 actualReduction, uint256 bonusAmount) =
+            aiOracle.checkGoalAchievement(goal.description, impactHistory);
+
+        if (achieved) {
+            // Release any remaining funds + bonus
+            uint256 remainingFunds = address(this).balance;
+            uint256 totalPayout = remainingFunds + bonusAmount;
+
+            _releaseFunds(principalRecipient, totalPayout);
+
+            // Update reputation
+            aiOracle.updateReputation(principalRecipient, 100); // Major boost
+
+            emit GoalAchieved(
+                actualReduction,
+                bonusAmount,
+                aiOracle.generateSuccessStory(impactHistory)
+            );
+        }
+    }
+
+    function _releaseFunds(address _recipient, uint256 _amount) internal {
+        // Transfer USDC or native token
+        // Implementation depends on token type
+    }
+
+    function _needsApproval(AdaptationType _type, uint256 _confidence)
+        internal pure returns (bool)
+    {
+        // High confidence AI + minor changes = auto-approve
+        if (_confidence >= 90 &&
+            (_type == AdaptationType.EXTEND_DEADLINE ||
+             _type == AdaptationType.EMERGENCY_PAUSE)) {
+            return false;
+        }
+
+        // Significant changes need CCM approval
+        if (_type == AdaptationType.REBALANCE_INTERVENTION_BUDGET ||
+            _type == AdaptationType.CHANGE_SERVICE_MODEL) {
+            return true;
+        }
+
+        return true; // Default: require approval
+    }
+
+    function _initializeMilestones() internal {
+        // Milestone 1: Setup (Months 0-3)
+        milestones.push(Milestone({
+            milestoneId: 1,
+            description: "Establish harm reduction services",
+            deadline: block.timestamp + 90 days,
+            actualDeadline: block.timestamp + 90 days,
+            fundsAllocated: 400000 * 10**6, // $400K USDC
+            completed: false,
+            targetPWIDReached: 500,
+            targetOSTClients: 0,
+            targetHIVTests: 100,
+            targetRetentionRate: 0,
+            evidenceHashes: new bytes32 ,
+            validationScore: 0,
+            communityValidated: false
+        }));
+
+        // Milestone 2: Scale-Up (Months 4-9)
+        milestones.push(Milestone({
+            milestoneId: 2,
+            description: "Scale harm reduction to 5000 PWID",
+            deadline: block.timestamp + 270 days,
+            actualDeadline: block.timestamp + 270 days,
+            fundsAllocated: 800000 * 10**6, // $800K
+            completed: false,
+            targetPWIDReached: 5000,
+            targetOSTClients: 1000,
+            targetHIVTests: 3000,
+            targetRetentionRate: 0,
+            evidenceHashes: new bytes32[](0),
+            validationScore: 0,
+            communityValidated: false
+        }));
+
+        // Milestones 3 and 4...
+    }
+
+    function _initializeInterventionBudgets() internal {
+        interventionBudgets[Intervention.NSP] = InterventionBudget({
+            intervention: Intervention.NSP,
+            allocatedBudget: 600000 * 10**6,
+            spentBudget: 0,
+            flexible: true  // Can be reallocated
+        });
+
+        interventionBudgets[Intervention.OST] = InterventionBudget({
+            intervention: Intervention.OST,
+            allocatedBudget: 800000 * 10**6,
+            spentBudget: 0,
+            flexible: true
+        });
+
+        // Other interventions...
+    }
+
+    // ========== VIEW FUNCTIONS ==========
+    function getProgressToGoal() external view returns (string memory) {
+        return aiOracle.translateProgress(impactHistory, goal.description);
+    }
+
+    function getContractInHumanLanguage(string memory _language)
+        external view returns (string memory)
+    {
+        return aiOracle.translateContract(address(this), _language);
+    }
+}
+
+interface IAIOracle {
+    function validateMilestoneEvidence(
+        uint8 milestoneId,
+        bytes32[] memory evidenceHashes,
+        string memory goalDescription
+    ) external returns (uint256 score, string memory analysis, bool communityValidated);
+
+    function analyzeImpactProgress(
+        ImpactData[] memory history,
+        uint256 targetReduction
+    ) external view returns (string memory progressAnalysis);
+
+    function analyzeAdaptation(
+        AdaptationType adaptType,
+        bytes memory data,
+        string memory goalDescription,
+        ImpactData[] memory history
+    ) external returns (bool goalAligned, uint256 confidence, string memory humanReadable);
+
+    function checkGoalAchievement(
+        string memory goalDescription,
+        ImpactData[] memory history
+    ) external view returns (bool achieved, uint256 actualReduction, uint256 bonusAmount);
+
+    function updateReputation(address recipient, uint256 points) external;
+
+    function generateSuccessStory(ImpactData[] memory history)
+        external view returns (string memory);
+
+    function translateContract(address contractAddr, string memory language)
+        external view returns (string memory);
+
+    function translateProgress(ImpactData[] memory history, string memory goal)
+        external view returns (string memory);
+}
+            </div>
+        </section>
+
+        <!-- SECTION 5: EXPECTED OUTCOMES -->
+        <section class="diagram-section">
+            <h2>5. Ожидаемые Результаты</h2>
+
+            <div class="use-case-box">
+                <h2>📊 Success Metrics for Global Fund Harm Reduction Program</h2>
+
+                <table class="comparison-table" style="margin-top: 20px;">
+                    <tr>
+                        <th>Метрика</th>
+                        <th>Traditional Global Fund Grant</th>
+                        <th>PGPX Adaptive Contract</th>
+                        <th>Улучшение</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Time to First Disbursement</strong></td>
+                        <td>6-9 months</td>
+                        <td>2-3 weeks</td>
+                        <td><span style="color: #2ecc71;">✅ 80% faster</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reporting Burden</strong></td>
+                        <td>60+ page quarterly reports</td>
+                        <td>Auto-generated from data</td>
+                        <td><span style="color: #2ecc71;">✅ 90% reduction</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Adaptation Speed</strong></td>
+                        <td>6-12 months for reprogramming</td>
+                        <td>24-72 hours</td>
+                        <td><span style="color: #2ecc71;">✅ 99% faster</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transparency</strong></td>
+                        <td>Reports every 6 months</td>
+                        <td>Real-time dashboard</td>
+                        <td><span style="color: #2ecc71;">✅ 24/7 visibility</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Goal Achievement Rate</strong></td>
+                        <td>65% of grants meet goals</td>
+                        <td>85% projected (with AI)</td>
+                        <td><span style="color: #2ecc71;">✅ +31% improvement</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Community Voice</strong></td>
+                        <td>Limited (CCM meetings)</td>
+                        <td>Continuous (SMS surveys, alerts)</td>
+                        <td><span style="color: #2ecc71;">✅ Direct participation</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fraud Detection</strong></td>
+                        <td>Audit-based (after the fact)</td>
+                        <td>Real-time AI monitoring</td>
+                        <td><span style="color: #2ecc71;">✅ Proactive prevention</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost per PWID Reached</strong></td>
+                        <td>$500 (high overhead)</td>
+                        <td>$350 (automated)</td>
+                        <td><span style="color: #2ecc71;">✅ 30% more efficient</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Real-World Impact Projection:</h3>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-number">5,000+</div>
+                    <div class="metric-label">ЛУИН получают услуги быстрее</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">150+</div>
+                    <div class="metric-label">ВИЧ инфекций предотвращено</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">$750K</div>
+                    <div class="metric-label">Экономия на админ. расходах</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">50+</div>
+                    <div class="metric-label">Жизней спасено от передозировок</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">85%</div>
+                    <div class="metric-label">Удовлетворенность бенефициаров</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">3 мес</div>
+                    <div class="metric-label">Экономия времени до запуска</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: NEXT STEPS -->
+        <section class="diagram-section">
+            <h2>6. Roadmap Внедрения</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+gantt
+    title Global Fund Harm Reduction - PGPX Implementation Roadmap
+    dateFormat YYYY-MM
+    section Phase 1: Pilot Design
+    Partnership with Global Fund          :2024-07, 1M
+    Select pilot country (e.g., Ukraine)  :2024-07, 1M
+    Design adaptive contract               :2024-08, 2M
+    Legal & compliance review              :2024-09, 1M
+    section Phase 2: Technical Build
+    Smart contract development             :2024-10, 2M
+    AI Oracle integration                  :2024-11, 2M
+    HMIS/DHIS2 integration                :2024-12, 2M
+    Privacy & anonymity systems            :2025-01, 2M
+    section Phase 3: Pilot Launch
+    Train CCM & PR on system              :2025-02, 1M
+    Deploy to testnet                      :2025-03, 1M
+    Pilot with 3 sub-recipients            :2025-04, 6M
+    Monitor & iterate                      :2025-04, 6M
+    section Phase 4: Scale
+    Independent evaluation                 :2025-10, 2M
+    Deploy to mainnet                      :2025-12, 1M
+    Scale to 10+ countries                 :2026-01, 12M
+                </div>
+            </div>
+
+            <div class="challenge-card">
+                <h4>🎯 Immediate Next Steps (July-September 2024)</h4>
+                <ol>
+                    <li><strong>Partnership:</strong> Engage Global Fund technical team, present PGPX model</li>
+                    <li><strong>Pilot Country:</strong> Select country with:
+                        <ul>
+                            <li>✅ Active harm reduction program</li>
+                            <li>✅ Good HMIS data quality</li>
+                            <li>✅ Progressive legal environment</li>
+                            <li>✅ Strong community organizations</li>
+                            <li><strong>Candidates:</strong> Ukraine, Georgia, Albania, Kenya</li>
+                        </ul>
+                    </li>
+                    <li><strong>Design Workshop:</strong> 3-day workshop with CCM, PR, community to co-design contract</li>
+                    <li><strong>Legal Review:</strong> Ensure compliance with Global Fund policies, local laws</li>
+                    <li><strong>Technical Spec:</strong> Detailed technical specifications for development</li>
+                </ol>
+            </div>
+        </section>
+
+        <div class="use-case-box">
+            <h2>💡 Заключение</h2>
+            <p><strong>Адаптивные Смарт-Контракты для Global Fund Harm Reduction Programs</strong> представляют собой revolutionary подход к финансированию жизненно важных услуг для ключевых популяций:</p>
+
+            <div style="margin: 30px 0; text-align: left;">
+                <h3 style="color: white;">Ключевые Преимущества:</h3>
+                <ul style="font-size: 1.1em; line-height: 1.8;">
+                    <li>✅ <strong>Скорость:</strong> Услуги запускаются на месяцы быстрее → спасены жизни</li>
+                    <li>✅ <strong>Гибкость:</strong> Адаптация к кризисам и изменениям без bureaucracy</li>
+                    <li>✅ <strong>Фокус на Impact:</strong> Goal Keeper гарантирует фокус на снижении ВИЧ, не на процессах</li>
+                    <li>✅ <strong>Прозрачность:</strong> Real-time visibility для всех стейкхолдеров</li>
+                    <li>✅ <strong>Приватность:</strong> Zero-knowledge proofs защищают ключевые популяции</li>
+                    <li>✅ <strong>Community Voice:</strong> Бенефициары влияют на адаптации через опросы</li>
+                    <li>✅ <strong>Эффективность:</strong> 30% экономия → больше денег на услуги, меньше на админ</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.2em; margin-top: 30px;"><strong>Результат:</strong> Более эффективное, прозрачное и impact-ориентированное финансирование программ, которые спасают жизни людей из маргинализированных групп.</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="index-pgpx.html">← Back to PGPX Home</a>
+            <a href="ai-improvements-proposal.html">AI Improvements</a>
+            <a href="all-diagrams.html">Core Diagrams</a>
+            <a href="WHITEPAPER.md">Whitepaper</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3>PGPX - Global Fund Harm Reduction Model</h3>
+            <p>Adaptive AI Smart Contracts for HIV & Harm Reduction Services</p>
+            <div class="nav-links" style="justify-content: center;">
+                <a href="index-pgpx.html">PGPX Home</a>
+                <a href="ai-improvements-proposal.html">AI Improvements</a>
+                <a href="WHITEPAPER.md">Whitepaper</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            sequence: {
+                useMaxWidth: true,
+                actorMargin: 50,
+                messageMargin: 60
+            },
+            gantt: {
+                titleTopMargin: 25,
+                barHeight: 20,
+                barGap: 4,
+                topPadding: 50,
+                leftPadding: 75,
+                gridLineStartPadding: 35,
+                fontSize: 11
+            }
+        });
+    </script>
+</body>
+</html>

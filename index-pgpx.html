@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGPX - Public Goods Protocol X</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="style-anthropic.css">
+    <style>
+        .hero-pgpx {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-pgpx::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)" /></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-pgpx .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-pgpx h1 {
+            color: white;
+            font-size: 4em;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero-pgpx .tagline {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.5em;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .hero-pgpx .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hero-pgpx .stat {
+            text-align: center;
+        }
+
+        .hero-pgpx .stat-number {
+            font-size: 3em;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .hero-pgpx .stat-label {
+            color: rgba(255,255,255,0.9);
+            font-size: 1em;
+        }
+
+        .protocol-layers {
+            margin: 60px 0;
+        }
+
+        .layer-card {
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .layer-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--color-primary);
+        }
+
+        .layer-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 60px;
+            font-size: 1.8em;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .use-case-card {
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .use-case-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .status-live {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-development {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-planned {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .comparison-table td {
+            padding: 20px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .comparison-table tr:hover {
+            background: var(--color-bg);
+        }
+
+        .check {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .cross {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .hero-pgpx h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-pgpx .tagline {
+                font-size: 1.2em;
+            }
+
+            .hero-pgpx .stats {
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-pgpx">
+        <div class="content">
+            <h1>PGPX</h1>
+            <p class="tagline">
+                Public Goods Protocol X: Open Infrastructure for AI-Powered, Blockchain-Based Public Goods Management
+            </p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">4-6</div>
+                    <div class="stat-label">Weeks (vs 6-9 months)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10-15%</div>
+                    <div class="stat-label">Overhead (vs 15-25%)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Transparent & On-Chain</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- WHAT IS PGPX -->
+        <section class="content-section">
+            <h2>What is PGPX?</h2>
+            <p style="font-size: 1.1em; color: var(--color-text-secondary); max-width: 900px;">
+                PGPX is not just another grant platform. It's a <strong>foundational protocol</strong> that combines AI-powered adaptive smart contracts, decentralized identity, and proof-of-impact validation to create a sustainable ecosystem for managing public goods across multiple domains.
+            </p>
+
+            <div class="diagram-wrapper" style="margin-top: 40px;">
+                <div class="mermaid">
+graph TB
+    subgraph "PGPX PROTOCOL CORE"
+        DID[Decentralized Identity<br/>DID + SBT + NFT]
+        REP[Reputation System<br/>Persistent & On-chain]
+        AI[AI Validation Engine<br/>Fraud Detection & PoI]
+    end
+
+    subgraph "FUNDING MECHANISMS"
+        QF[Quadratic Funding<br/>Community-Driven]
+        GRANT[Grant Management<br/>Milestone-Based]
+        BOND[Impact Bonds<br/>Pay-for-Success]
+    end
+
+    subgraph "GOVERNANCE"
+        DAO[DAO Governance<br/>Decentralized Control]
+        POI[Proof-of-Impact<br/>Multi-layer Validation]
+        CLM[Community Monitoring<br/>Real-time Tracking]
+    end
+
+    DID --> QF
+    DID --> GRANT
+    DID --> BOND
+    REP --> QF
+    REP --> GRANT
+    AI --> POI
+    AI --> CLM
+
+    QF --> DAO
+    GRANT --> POI
+    BOND --> POI
+
+    style DID fill:#9c27b0
+    style REP fill:#ff9800
+    style AI fill:#ffeb3b
+    style QF fill:#2196f3
+    style GRANT fill:#4caf50
+    style POI fill:#f3e5f5
+                </div>
+            </div>
+        </section>
+
+        <!-- PROTOCOL LAYERS -->
+        <section class="protocol-layers">
+            <h2>Protocol Architecture</h2>
+
+            <div class="layer-card">
+                <div class="layer-number">1</div>
+                <h3>Identity & Reputation Layer</h3>
+                <p style="color: var(--color-text-secondary); margin-bottom: 20px;">
+                    Persistent digital identity that travels across all projects and platforms in the PGPX ecosystem.
+                </p>
+                <ul style="margin-left: 20px; color: var(--color-text-secondary);">
+                    <li><strong>DID (W3C Standard):</strong> Self-sovereign identity for users and organizations</li>
+                    <li><strong>Soulbound Tokens (SBT):</strong> Non-transferable credentials and achievements</li>
+                    <li><strong>Reputation Oracle:</strong> 0-100 score that unlocks benefits (Bronze → Silver → Gold → Platinum)</li>
+                    <li><strong>zkKYC (Future):</strong> Privacy-preserving identity verification</li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <a href="smart-contracts.md#1-did-registry" class="btn">View DID Contracts</a>
+                </div>
+            </div>
+
+            <div class="layer-card">
+                <div class="layer-number">2</div>
+                <h3>Funding Mechanisms Layer</h3>
+                <p style="color: var(--color-text-secondary); margin-bottom: 20px;">
+                    Multiple funding mechanisms that can be combined and customized for different use cases.
+                </p>
+                <ul style="margin-left: 20px; color: var(--color-text-secondary);">
+                    <li><strong>Quadratic Funding:</strong> Democratic allocation with reputation multipliers (1.0x - 1.5x)</li>
+                    <li><strong>Grant Management:</strong> Milestone-based disbursement with AI validation</li>
+                    <li><strong>Impact Bonds:</strong> Pay-for-success model with outcome verification</li>
+                    <li><strong>Direct Donations:</strong> Traditional donations with donor incentives</li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <a href="qf-matching-fund-concept.md" class="btn">QF Documentation</a>
+                </div>
+            </div>
+
+            <div class="layer-card">
+                <div class="layer-number">3</div>
+                <h3>Governance & Validation Layer</h3>
+                <p style="color: var(--color-text-secondary); margin-bottom: 20px;">
+                    AI-powered validation combined with community oversight and DAO governance.
+                </p>
+                <ul style="margin-left: 20px; color: var(--color-text-secondary);">
+                    <li><strong>4-Layer Validation:</strong> Automated → AI → Blockchain → Human Expert</li>
+                    <li><strong>Proof-of-Impact NFT:</strong> Immutable certificates of successful outcomes</li>
+                    <li><strong>Community Monitoring:</strong> Real-time tracking and anomaly detection</li>
+                    <li><strong>DAO Governance:</strong> Decentralized protocol management</li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <a href="all-diagrams.html#impact-validation" class="btn">View Validation Process</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- USE CASES -->
+        <section class="content-section">
+            <h2>Built on PGPX: Use Cases</h2>
+            <p style="font-size: 1.1em; color: var(--color-text-secondary); max-width: 900px; margin-bottom: 30px;">
+                PGPX is an open protocol that can be used for any public goods project. Here are the first implementations:
+            </p>
+
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <span class="use-case-status status-live">LIVE - MVP</span>
+                    <h3>Health Grants</h3>
+                    <p style="color: var(--color-text-secondary); margin: 15px 0;">
+                        Emergency health funding with DHIS2 integration, AI validation, and 4-6 week timeline.
+                    </p>
+                    <ul style="margin-left: 20px; color: var(--color-text-secondary); font-size: 0.9em;">
+                        <li>DHIS2 real-time data integration</li>
+                        <li>AI-powered gap detection</li>
+                        <li>Milestone-based disbursement</li>
+                        <li>Multi-layer impact validation</li>
+                    </ul>
+                    <div style="margin-top: 20px;">
+                        <a href="index-main.html#section2" class="btn">Explore Health Grants</a>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <span class="use-case-status status-development">IN DEVELOPMENT</span>
+                    <h3>Education Grants</h3>
+                    <p style="color: var(--color-text-secondary); margin: 15px 0;">
+                        Skills certification, scholarship funding, and learning outcome validation.
+                    </p>
+                    <ul style="margin-left: 20px; color: var(--color-text-secondary); font-size: 0.9em;">
+                        <li>Skills certification SBTs</li>
+                        <li>Scholarship QF rounds</li>
+                        <li>Learning outcome tracking</li>
+                        <li>Educator reputation system</li>
+                    </ul>
+                    <div style="margin-top: 20px;">
+                        <a href="#" class="btn" style="opacity: 0.6; cursor: not-allowed;">Coming Soon</a>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <span class="use-case-status status-planned">PLANNED</span>
+                    <h3>DAO Cities</h3>
+                    <p style="color: var(--color-text-secondary); margin: 15px 0;">
+                        Urban infrastructure funding with citizen participation and local budget allocation.
+                    </p>
+                    <ul style="margin-left: 20px; color: var(--color-text-secondary); font-size: 0.9em;">
+                        <li>Citizen participation SBTs</li>
+                        <li>Local infrastructure QF</li>
+                        <li>Transparent budget tracking</li>
+                        <li>Community governance</li>
+                    </ul>
+                    <div style="margin-top: 20px;">
+                        <a href="#" class="btn" style="opacity: 0.6; cursor: not-allowed;">Q2 2025</a>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <span class="use-case-status status-planned">PLANNED</span>
+                    <h3>Crisis Response</h3>
+                    <p style="color: var(--color-text-secondary); margin: 15px 0;">
+                        Ultra-fast emergency funding (7-14 days) for natural disasters and humanitarian crises.
+                    </p>
+                    <ul style="margin-left: 20px; color: var(--color-text-secondary); font-size: 0.9em;">
+                        <li>7-14 day deployment</li>
+                        <li>Multi-stakeholder coordination</li>
+                        <li>Emergency validation protocols</li>
+                        <li>Rapid disbursement mechanisms</li>
+                    </ul>
+                    <div style="margin-top: 20px;">
+                        <a href="#" class="btn" style="opacity: 0.6; cursor: not-allowed;">Q3 2025</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY PGPX -->
+        <section class="content-section">
+            <h2>Why PGPX?</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Traditional Grants</th>
+                        <th>Pure QF Platforms</th>
+                        <th>PGPX</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Timeline</strong></td>
+                        <td>6-9 months</td>
+                        <td>2-4 weeks</td>
+                        <td><strong>4-6 weeks</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overhead</strong></td>
+                        <td>15-25%</td>
+                        <td>5-8%</td>
+                        <td><strong>10-15%</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transparency</strong></td>
+                        <td><span class="cross">✗</span> Limited</td>
+                        <td><span class="check">✓</span> On-chain</td>
+                        <td><span class="check">✓</span> Full transparency</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Persistent Identity</strong></td>
+                        <td><span class="cross">✗</span> None</td>
+                        <td><span class="cross">✗</span> Round-specific</td>
+                        <td><span class="check">✓</span> DID + Reputation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AI Validation</strong></td>
+                        <td><span class="cross">✗</span> Manual</td>
+                        <td><span class="cross">✗</span> Limited</td>
+                        <td><span class="check">✓</span> Multi-layer AI</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Implementation Support</strong></td>
+                        <td><span class="check">✓</span> Full lifecycle</td>
+                        <td><span class="cross">✗</span> Funding only</td>
+                        <td><span class="check">✓</span> Full lifecycle + AI</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sybil Resistance</strong></td>
+                        <td><span class="check">✓</span> Institutional</td>
+                        <td>~ Basic</td>
+                        <td><span class="check">✓</span> DID + AI + Behavioral</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Decision Making</strong></td>
+                        <td>Top-down</td>
+                        <td>Democratic (QF)</td>
+                        <td><strong>Democratic + Expert</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- KEY INNOVATIONS -->
+        <section class="content-section">
+            <h2>Key Innovations</h2>
+
+            <div class="benefits">
+                <div class="benefit-card">
+                    <h3>Persistent Reputation</h3>
+                    <p>Organizations build reputation over time that unlocks better terms:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Bronze (0-59): 1.0x multiplier, standard review</li>
+                        <li>Silver (60-74): 1.15x multiplier, priority support</li>
+                        <li>Gold (75-89): 1.3x multiplier, fast-track</li>
+                        <li>Platinum (90+): 1.5x multiplier, auto-approvals</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Smart Adaptive Contracts</h3>
+                    <p>Contracts that adapt based on AI analysis:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>AI monitors execution conditions</li>
+                        <li>Automatic milestone validation</li>
+                        <li>Dynamic fund release</li>
+                        <li>Self-adjusting terms</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Multi-Stakeholder QF</h3>
+                    <p>Quadratic Funding with stakeholder weighting:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Healthcare Workers: 1.3x weight</li>
+                        <li>Affected Populations: 1.25x weight</li>
+                        <li>Health Authorities: 1.2x weight</li>
+                        <li>Combined with reputation: up to 1.95x</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>4-Layer Proof-of-Impact</h3>
+                    <p>Multi-layer validation for trust:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Layer 1: Automated data validation (70%+)</li>
+                        <li>Layer 2: AI evidence assessment (75%+)</li>
+                        <li>Layer 3: Blockchain consensus (80%+)</li>
+                        <li>Layer 4: Human expert review (>$500K)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECHNOLOGY STACK -->
+        <section class="content-section">
+            <h2>Technology Stack</h2>
+
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h3>Blockchain</h3>
+                    <p>NEAR Protocol<br/>Polygon/Ethereum</p>
+                </div>
+
+                <div class="tech-item">
+                    <h3>Smart Contracts</h3>
+                    <p>Rust (NEAR)<br/>Solidity (EVM)</p>
+                </div>
+
+                <div class="tech-item">
+                    <h3>Identity</h3>
+                    <p>W3C DID<br/>Soulbound Tokens</p>
+                </div>
+
+                <div class="tech-item">
+                    <h3>AI/ML</h3>
+                    <p>PyTorch<br/>TensorFlow</p>
+                </div>
+
+                <div class="tech-item">
+                    <h3>Storage</h3>
+                    <p>IPFS/Arweave<br/>PostgreSQL</p>
+                </div>
+
+                <div class="tech-item">
+                    <h3>Frontend</h3>
+                    <p>React/Next.js<br/>Web3Auth</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROADMAP -->
+        <section class="content-section">
+            <h2>Roadmap</h2>
+
+            <div class="diagram-wrapper">
+                <div class="mermaid">
+graph LR
+    subgraph "PHASE 1: MVP - Q4 2024"
+        P1A[Health Grants<br/>Live on Testnet]
+        P1B[DID + SBT<br/>Core Contracts]
+        P1C[Basic AI<br/>Validation]
+    end
+
+    subgraph "PHASE 2: PROTOCOL - Q1 2025"
+        P2A[Protocol Core<br/>Extraction]
+        P2B[SDK v1<br/>Release]
+        P2C[Enhanced AI<br/>+ Web2 Integration]
+    end
+
+    subgraph "PHASE 3: EXPANSION - Q2-Q3 2025"
+        P3A[Education<br/>Use Case]
+        P3B[DAO Cities<br/>Pilot]
+        P3C[zkKYC<br/>Implementation]
+    end
+
+    subgraph "PHASE 4: ECOSYSTEM - Q4 2025+"
+        P4A[Cross-chain<br/>Bridges]
+        P4B[DAO<br/>Governance]
+        P4C[Multiple<br/>Domains Live]
+    end
+
+    P1A & P1B & P1C --> P2A
+    P2A & P2B & P2C --> P3A
+    P3A & P3B & P3C --> P4A
+    P4A & P4B & P4C --> Scale[Global<br/>Adoption]
+
+    style P1A fill:#e3f2fd
+    style P2A fill:#fff9c4
+    style P3A fill:#c8e6c9
+    style P4A fill:#f3e5f5
+    style Scale fill:#4caf50
+                </div>
+            </div>
+        </section>
+
+        <!-- GET STARTED -->
+        <section class="content-section">
+            <h2>Get Started</h2>
+
+            <div class="architecture-cards">
+                <div class="arch-card">
+                    <h3>Explore Use Cases</h3>
+                    <p>See PGPX in action with real-world implementations</p>
+                    <a href="index-main.html" class="btn" style="margin-top: 15px;">View Use Cases</a>
+                </div>
+
+                <div class="arch-card">
+                    <h3>Read Documentation</h3>
+                    <p>Complete technical documentation and architecture diagrams</p>
+                    <a href="all-diagrams.html" class="btn" style="margin-top: 15px;">View Docs</a>
+                </div>
+
+                <div class="arch-card" style="border: 2px solid #667eea; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);">
+                    <h3>🚀 AI Improvements Proposal</h3>
+                    <p>Next-generation Adaptive Smart Contracts with AI translation and real-time validation</p>
+                    <a href="ai-improvements-proposal.html" class="btn" style="margin-top: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">Explore Innovations</a>
+                </div>
+
+                <div class="arch-card" style="border: 2px solid #e74c3c; background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(192, 57, 43, 0.1) 100%);">
+                    <h3>🩺 Global Fund: Harm Reduction Model</h3>
+                    <p>Adaptive Smart Contracts for HIV & Harm Reduction services - real-world implementation</p>
+                    <a href="gf-harm-reduction-hiv-model.html" class="btn" style="margin-top: 15px; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white;">View Model</a>
+                </div>
+
+                <div class="arch-card" style="border: 2px solid #667eea; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);">
+                    <h3>🤖 AI Project System</h3>
+                    <p>Claude "lives" in the project - listens to Zoom, participates in Telegram, writes code</p>
+                    <a href="ai-project-system-architecture.html" class="btn" style="margin-top: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">View Architecture</a>
+                </div>
+
+                <div class="arch-card">
+                    <h3>View Smart Contracts</h3>
+                    <p>Production-ready Solidity and Rust contracts</p>
+                    <a href="smart-contracts.md" class="btn" style="margin-top: 15px;">Smart Contracts</a>
+                </div>
+
+                <div class="arch-card">
+                    <h3>Understand the Vision</h3>
+                    <p>Read the comprehensive feedback and architecture analysis</p>
+                    <a href="PGPX-FEEDBACK.md" class="btn" style="margin-top: 15px;">Read Analysis</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3>PGPX - Public Goods Protocol X</h3>
+            <p style="margin: 20px 0;">Open Infrastructure for AI-Powered, Blockchain-Based Public Goods Management</p>
+            <div class="nav-links" style="margin-top: 30px;">
+                <a href="index-main.html">Use Cases</a>
+                <a href="all-diagrams.html">All Diagrams</a>
+                <a href="ai-improvements-proposal.html" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 500;">🚀 AI Improvements</a>
+                <a href="gf-harm-reduction-hiv-model.html" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; font-weight: 500;">🩺 Global Fund Model</a>
+                <a href="smart-contracts.md">Smart Contracts</a>
+                <a href="PGPX-FEEDBACK.md">Architecture Analysis</a>
+                <a href="https://github.com/yourusername/pgpx-protocol">GitHub</a>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.8;">Building the future of sustainable public goods</p>
+        </div>
+    </footer>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

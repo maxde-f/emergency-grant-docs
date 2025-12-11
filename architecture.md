@@ -130,8 +130,8 @@ graph TB
 ```
 
 **Легенда:**
-- 🟡 Желтый = AI/ML Processing
-- 🟢 Зеленый = Blockchain Operations
+- Желтый = AI/ML Processing
+- Зеленый = Blockchain Operations
 
 ---
 
@@ -503,13 +503,13 @@ graph TB
     Q3 -->|Yes| Q4{Volume?}
     
     Q4 -->|Low <100/day| Manual4[Optional<br/>Automation]
-    Q4 -->|High >100/day| Auto[Full<br/>Automation ✅]
+    Q4 -->|High >100/day| Auto[Full<br/>Automation]
     
     Manual2 --> HumanLoop[Human-in-the-Loop<br/>AI Assistant]
     
     Manual3 --> Pilot[Pilot Program]
     Pilot --> Test{Success?}
-    Test -->|Yes| Scale[Scale Up 🔨]
+    Test -->|Yes| Scale[Scale Up]
     Test -->|No| Iterate[Iterate]
     
     Auto --> Monitor[Continuous<br/>Monitoring]
@@ -856,12 +856,12 @@ graph TB
 
 ## ЛЕГЕНДА ЦВЕТОВ
 
-- 🟡 **Желтый** = AI/ML Processing Components
-- 🟢 **Зеленый** = Blockchain Components
-- 🔵 **Синий** = Integration/API Components
-- 🟣 **Фиолетовый** = Data Storage Components
-- 🟠 **Оранжевый** = Human Decision Points
-- 🔴 **Красный** = Critical/High-Risk Components
+- **Желтый** = AI/ML Processing Components
+- **Зеленый** = Blockchain Components
+- **Синий** = Integration/API Components
+- **Фиолетовый** = Data Storage Components
+- **Оранжевый** = Human Decision Points
+- **Красный** = Critical/High-Risk Components
 
 ---
 
