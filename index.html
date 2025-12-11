@@ -44,7 +44,8 @@
             font-size: 1.2em;
             opacity: 0.9;
         }
-        
+
+        /* Collapsible navigation */
         nav {
             background: white;
             border-radius: 10px;
@@ -57,7 +58,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 12px 20px;
             cursor: pointer;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -66,34 +67,28 @@
         .nav-header h3 {
             margin: 0;
             color: white;
-            font-size: 1em;
+            font-size: 0.95em;
         }
 
         .nav-toggle {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            transition: all 0.3s;
-        }
-
-        .nav-toggle:hover {
-            background: rgba(255,255,255,0.3);
         }
 
         .nav-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
-            padding: 0 20px;
         }
 
         .nav-content.open {
-            max-height: 500px;
+            max-height: 400px;
             padding: 15px 20px;
         }
 
@@ -101,26 +96,25 @@
             list-style: none;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 8px;
+            gap: 6px;
         }
 
         nav a {
             display: block;
-            padding: 8px 12px;
+            padding: 6px 10px;
             background: #f8f9fa;
             color: #667eea;
             text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s;
-            border-left: 3px solid #667eea;
-            font-size: 0.9em;
+            border-radius: 4px;
+            font-size: 0.85em;
+            border-left: 2px solid #667eea;
         }
 
         nav a:hover {
             background: #667eea;
             color: white;
         }
-        
+
         .diagram-section {
             background: white;
             padding: 30px;
@@ -1332,7 +1326,7 @@ graph TB
                 messageMargin: 35
             }
         });
-        
+
         // Toggle navigation
         function toggleNav() {
             const content = document.getElementById('navContent');
@@ -1340,21 +1334,6 @@ graph TB
             content.classList.toggle('open');
             toggle.textContent = content.classList.contains('open') ? '−' : '+';
         }
-
-        // Smooth scrolling для navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                // Закрыть навигацию после клика
-                document.getElementById('navContent').classList.remove('open');
-                document.getElementById('navToggle').textContent = '+';
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
 
         // Back to top button
         document.querySelector('.back-to-top').addEventListener('click', function(e) {
