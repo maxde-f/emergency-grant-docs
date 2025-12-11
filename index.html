@@ -47,42 +47,81 @@
         
         nav {
             background: white;
-            padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             position: sticky;
             top: 10px;
             z-index: 100;
+            overflow: hidden;
         }
 
-        nav h3 {
-            margin-bottom: 15px;
-            color: #667eea;
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
-        
+
+        .nav-header h3 {
+            margin: 0;
+            color: white;
+            font-size: 1em;
+        }
+
+        .nav-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .nav-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+        }
+
+        .nav-content.open {
+            max-height: 500px;
+            padding: 15px 20px;
+        }
+
         nav ul {
             list-style: none;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
         }
-        
+
         nav a {
             display: block;
-            padding: 10px 15px;
+            padding: 8px 12px;
             background: #f8f9fa;
             color: #667eea;
             text-decoration: none;
             border-radius: 5px;
             transition: all 0.3s;
             border-left: 3px solid #667eea;
+            font-size: 0.9em;
         }
-        
+
         nav a:hover {
             background: #667eea;
             color: white;
-            transform: translateX(5px);
         }
         
         .diagram-section {
@@ -91,7 +130,7 @@
             margin-bottom: 30px;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            scroll-margin-top: 200px;
+            scroll-margin-top: 80px;
         }
         
         .diagram-section h2 {
@@ -215,20 +254,25 @@
         </header>
 
         <nav id="navigation">
-            <h3>Навигация по диаграммам</h3>
-            <ul>
-                <li><a href="#diagram1">1. High-Level Grant Cycle</a></li>
-                <li><a href="#diagram2">2. Detailed Cycle with AI & Blockchain</a></li>
-                <li><a href="#diagram3">3. System Architecture</a></li>
-                <li><a href="#diagram4">4. Data Flow Architecture</a></li>
-                <li><a href="#diagram5">5. Blockchain Integration</a></li>
-                <li><a href="#diagram6">6. Proof-of-Impact Validation</a></li>
-                <li><a href="#diagram7">7. AI Automation Decision Matrix</a></li>
-                <li><a href="#diagram8">8. Emergency Fast-Track Process</a></li>
-                <li><a href="#diagram9">9. DHIS2 Integration</a></li>
-                <li><a href="#diagram10">10. Security & Compliance</a></li>
-                <li><a href="#diagram11">11. Kubernetes Deployment</a></li>
-            </ul>
+            <div class="nav-header" onclick="toggleNav()">
+                <h3>Навигация по диаграммам (11)</h3>
+                <button class="nav-toggle" id="navToggle">+</button>
+            </div>
+            <div class="nav-content" id="navContent">
+                <ul>
+                    <li><a href="#diagram1">1. High-Level Grant Cycle</a></li>
+                    <li><a href="#diagram2">2. Detailed Cycle with AI & Blockchain</a></li>
+                    <li><a href="#diagram3">3. System Architecture</a></li>
+                    <li><a href="#diagram4">4. Data Flow Architecture</a></li>
+                    <li><a href="#diagram5">5. Blockchain Integration</a></li>
+                    <li><a href="#diagram6">6. Proof-of-Impact Validation</a></li>
+                    <li><a href="#diagram7">7. AI Automation Decision Matrix</a></li>
+                    <li><a href="#diagram8">8. Emergency Fast-Track Process</a></li>
+                    <li><a href="#diagram9">9. DHIS2 Integration</a></li>
+                    <li><a href="#diagram10">10. Security & Compliance</a></li>
+                    <li><a href="#diagram11">11. Kubernetes Deployment</a></li>
+                </ul>
+            </div>
         </nav>
 
         <div id="diagram1" class="diagram-section">
@@ -1292,18 +1336,29 @@ graph TB
             }
         });
         
+        // Toggle navigation
+        function toggleNav() {
+            const content = document.getElementById('navContent');
+            const toggle = document.getElementById('navToggle');
+            content.classList.toggle('open');
+            toggle.textContent = content.classList.contains('open') ? '−' : '+';
+        }
+
         // Smooth scrolling для navigation links
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
+                // Закрыть навигацию после клика
+                document.getElementById('navContent').classList.remove('open');
+                document.getElementById('navToggle').textContent = '+';
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             });
         });
-        
+
         // Back to top button
         document.querySelector('.back-to-top').addEventListener('click', function(e) {
             e.preventDefault();
