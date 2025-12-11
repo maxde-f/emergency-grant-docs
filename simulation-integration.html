@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Intelligence & Simulation - PGPX Integration</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="style-anthropic.css">
+    <style>
+        .hero-sim {
+            background: linear-gradient(135deg, #00d4aa 0%, #0891b2 50%, #6366f1 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero-sim h1 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero-sim .tagline {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.3em;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .tool-card {
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: 16px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card.celonis {
+            border-top: 5px solid #00d4aa;
+        }
+
+        .tool-card.anylogic {
+            border-top: 5px solid #6366f1;
+        }
+
+        .tool-logo {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .tool-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .tool-card .subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            color: #00d4aa;
+            font-weight: bold;
+        }
+
+        .integration-flow {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .layer-section {
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .layer-section.celonis-layer {
+            border-left: 5px solid #00d4aa;
+        }
+
+        .layer-section.anylogic-layer {
+            border-left: 5px solid #6366f1;
+        }
+
+        .layer-section.pgpx-layer {
+            border-left: 5px solid #f59e0b;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .use-case-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .sim-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .sim-type.agent { background: #dbeafe; color: #1e40af; }
+        .sim-type.discrete { background: #dcfce7; color: #166534; }
+        .sim-type.dynamics { background: #fef3c7; color: #92400e; }
+
+        .data-flow-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-flow-table th {
+            background: linear-gradient(135deg, #00d4aa 0%, #0891b2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .data-flow-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .arrow-connector {
+            text-align: center;
+            font-size: 2em;
+            color: #6366f1;
+            margin: 20px 0;
+        }
+
+        .benefit-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 1px solid #10b981;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .benefit-box h4 {
+            color: #065f46;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-sim h1 { font-size: 2em; }
+            .tool-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-sim">
+        <h1>Process Intelligence & Simulation</h1>
+        <p class="tagline">
+            Integrating Celonis Process Mining + AnyLogic Multimethod Simulation
+            for Intelligent Public Good Management
+        </p>
+        <p style="margin-top: 30px; opacity: 0.9;">
+            See how processes really work | Simulate before you act | Optimize continuously
+        </p>
+    </div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <div class="nav-links" style="margin: 30px 0;">
+            <a href="index-pgpx.html">PGPX Home</a>
+            <a href="proof-of-need.html">Proof of Need</a>
+            <a href="all-diagrams.html">Architecture</a>
+            <a href="ai-improvements-proposal.html">AI Innovations</a>
+        </div>
+
+        <!-- WHY THIS INTEGRATION -->
+        <section class="content-section">
+            <h2>Why Process Intelligence + Simulation?</h2>
+
+            <p style="font-size: 1.15em; color: var(--color-text-secondary); max-width: 900px;">
+                Traditional grant management operates blindly — decisions are made without understanding
+                <strong>how processes actually work</strong> or <strong>what will happen</strong> when changes are made.
+            </p>
+
+            <div class="tool-grid">
+                <div class="tool-card celonis">
+                    <div class="tool-logo">C</div>
+                    <h3>Celonis</h3>
+                    <p class="subtitle">Process Intelligence Platform</p>
+                    <p><strong>"See how your processes truly run"</strong></p>
+                    <ul class="feature-list">
+                        <li><span class="feature-icon">+</span> Process Mining — discover real process flows from event logs</li>
+                        <li><span class="feature-icon">+</span> Conformance Checking — compare actual vs. expected</li>
+                        <li><span class="feature-icon">+</span> AI Orchestration — coordinate agents, humans, systems</li>
+                        <li><span class="feature-icon">+</span> Real-time Monitoring — detect bottlenecks instantly</li>
+                        <li><span class="feature-icon">+</span> Action Engine — trigger automated interventions</li>
+                    </ul>
+                </div>
+
+                <div class="tool-card anylogic">
+                    <div class="tool-logo">A</div>
+                    <h3>AnyLogic</h3>
+                    <p class="subtitle">Multimethod Simulation Platform</p>
+                    <p><strong>"Simulate before you act"</strong></p>
+                    <ul class="feature-list">
+                        <li><span class="feature-icon">+</span> Agent-Based Modeling — beneficiaries, NGOs, donors as agents</li>
+                        <li><span class="feature-icon">+</span> System Dynamics — strategic flows, adoption, impact</li>
+                        <li><span class="feature-icon">+</span> Discrete Event — operational pipelines, queues</li>
+                        <li><span class="feature-icon">+</span> Hybrid Models — combine all three methods</li>
+                        <li><span class="feature-icon">+</span> What-if Analysis — test scenarios risk-free</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="benefit-box">
+                <h4>The Power of Combination</h4>
+                <p><strong>Celonis</strong> tells you what IS happening (descriptive + diagnostic).<br>
+                <strong>AnyLogic</strong> tells you what WILL happen (predictive + prescriptive).<br>
+                <strong>Together</strong> = closed-loop intelligent system that learns and adapts.</p>
+            </div>
+        </section>
+
+        <!-- INTEGRATION ARCHITECTURE -->
+        <section class="content-section">
+            <h2>Integration Architecture</h2>
+
+            <div class="integration-flow">
+                <div class="mermaid">
+graph TB
+    subgraph "DATA SOURCES"
+        DS1[MS Dynamics CRM]
+        DS2[Gitcoin / QF Platform]
+        DS3[DHIS2 Health Data]
+        DS4[Blockchain Events]
+        DS5[Field Reports]
+    end
+
+    subgraph "CELONIS - Process Intelligence"
+        C1[Event Log Extraction]
+        C2[Process Discovery]
+        C3[Conformance Analysis]
+        C4[Bottleneck Detection]
+        C5[AI Action Engine]
+    end
+
+    subgraph "ANYLOGIC - Simulation"
+        A1[Agent-Based:<br/>Stakeholder Behavior]
+        A2[System Dynamics:<br/>Funding Flows & Impact]
+        A3[Discrete Event:<br/>Grant Pipeline]
+        A4[Scenario Analysis]
+        A5[Optimization Engine]
+    end
+
+    subgraph "PGPX CORE"
+        P1[PoN Engine]
+        P2[PoI Validation]
+        P3[Smart Contracts]
+        P4[AI Orchestrator]
+        P5[Decision Layer]
+    end
+
+    subgraph "OUTPUTS"
+        O1[Optimized Allocations]
+        O2[Automated Interventions]
+        O3[Risk Alerts]
+        O4[Impact Predictions]
+        O5[Governance Recommendations]
+    end
+
+    DS1 & DS2 & DS3 & DS4 & DS5 --> C1
+    C1 --> C2 --> C3 --> C4
+    C4 --> C5
+
+    C2 --> A3
+    C3 --> A1
+    C4 --> A2
+
+    A1 & A2 & A3 --> A4 --> A5
+
+    C5 --> P4
+    A5 --> P5
+
+    P1 & P2 --> P4
+    P3 --> P4
+    P4 --> P5
+
+    P5 --> O1 & O2 & O3 & O4 & O5
+
+    O1 & O2 --> DS1
+    O3 --> C5
+
+    style C1 fill:#00d4aa,color:#fff
+    style C2 fill:#00d4aa,color:#fff
+    style C3 fill:#00d4aa,color:#fff
+    style C4 fill:#00d4aa,color:#fff
+    style C5 fill:#00d4aa,color:#fff
+
+    style A1 fill:#6366f1,color:#fff
+    style A2 fill:#6366f1,color:#fff
+    style A3 fill:#6366f1,color:#fff
+    style A4 fill:#6366f1,color:#fff
+    style A5 fill:#6366f1,color:#fff
+
+    style P1 fill:#f59e0b,color:#fff
+    style P2 fill:#f59e0b,color:#fff
+    style P3 fill:#f59e0b,color:#fff
+    style P4 fill:#f59e0b,color:#fff
+    style P5 fill:#f59e0b,color:#fff
+                </div>
+            </div>
+        </section>
+
+        <!-- CELONIS INTEGRATION -->
+        <section class="content-section">
+            <h2>Celonis Integration: Process Mining for Grants</h2>
+
+            <div class="layer-section celonis-layer">
+                <h3>What Celonis Discovers</h3>
+
+                <table class="data-flow-table">
+                    <thead>
+                        <tr>
+                            <th>Process Area</th>
+                            <th>Event Log Source</th>
+                            <th>Insights Extracted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Application Processing</strong></td>
+                            <td>MS CRM, Gitcoin API</td>
+                            <td>Actual review times, bottlenecks, rework loops, reviewer workload</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Disbursement Flow</strong></td>
+                            <td>Blockchain, Bank APIs</td>
+                            <td>Payment delays, approval chains, compliance holdups</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Milestone Tracking</strong></td>
+                            <td>CRM + Field Reports</td>
+                            <td>Completion rates, delay patterns, at-risk projects</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Impact Validation</strong></td>
+                            <td>DHIS2, PoI Records</td>
+                            <td>Validation duration, rejection reasons, evidence quality</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-top: 30px;">Celonis Action Engine Triggers</h4>
+                <div class="use-case-grid">
+                    <div class="use-case-card">
+                        <h4>Auto-Escalation</h4>
+                        <p>Application stuck in review > 5 days → escalate to senior reviewer</p>
+                    </div>
+                    <div class="use-case-card">
+                        <h4>Bottleneck Alert</h4>
+                        <p>Disbursement queue > 20 items → notify finance team + suggest batch processing</p>
+                    </div>
+                    <div class="use-case-card">
+                        <h4>Compliance Check</h4>
+                        <p>High-risk pattern detected → trigger additional documentation request</p>
+                    </div>
+                    <div class="use-case-card">
+                        <h4>Resource Rebalancing</h4>
+                        <p>Reviewer overloaded → redistribute applications automatically</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ANYLOGIC INTEGRATION -->
+        <section class="content-section">
+            <h2>AnyLogic Integration: Multimethod Simulation</h2>
+
+            <div class="layer-section anylogic-layer">
+                <h3>Three Simulation Methods Combined</h3>
+
+                <div class="use-case-grid">
+                    <div class="use-case-card">
+                        <span class="sim-type agent">Agent-Based</span>
+                        <h4>Stakeholder Behavior Modeling</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Beneficiaries</strong> — health-seeking behavior, service utilization</li>
+                            <li><strong>NGOs</strong> — capacity, funding decisions, service delivery</li>
+                            <li><strong>Donors</strong> — funding preferences, QF participation</li>
+                            <li><strong>Validators</strong> — PoI verification behavior</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: var(--color-text-secondary);">
+                            <em>Use case: Simulate how 1000 NGOs respond to new QF round parameters</em>
+                        </p>
+                    </div>
+
+                    <div class="use-case-card">
+                        <span class="sim-type dynamics">System Dynamics</span>
+                        <h4>Strategic Flow Modeling</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Funding pools</strong> — accumulation, distribution, replenishment</li>
+                            <li><strong>Impact propagation</strong> — how interventions spread effects</li>
+                            <li><strong>Reputation dynamics</strong> — trust building/erosion over time</li>
+                            <li><strong>Need evolution</strong> — how PoN changes with interventions</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: var(--color-text-secondary);">
+                            <em>Use case: Model 5-year impact of $10M investment in harm reduction</em>
+                        </p>
+                    </div>
+
+                    <div class="use-case-card">
+                        <span class="sim-type discrete">Discrete Event</span>
+                        <h4>Operational Pipeline Modeling</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Application queue</strong> — arrival rates, processing times</li>
+                            <li><strong>Review pipeline</strong> — stages, handoffs, parallel processing</li>
+                            <li><strong>Disbursement process</strong> — approval chains, batch processing</li>
+                            <li><strong>Milestone verification</strong> — validation queues, evidence review</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: var(--color-text-secondary);">
+                            <em>Use case: Optimize reviewer allocation to reduce application backlog by 40%</em>
+                        </p>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 40px;">Hybrid Model Example: Emergency Grant Response</h4>
+
+                <div class="integration-flow" style="margin-top: 20px;">
+                    <div class="mermaid">
+graph LR
+    subgraph "CRISIS EVENT"
+        E1[Outbreak<br/>Detected]
+    end
+
+    subgraph "AGENT-BASED"
+        AB1[Community<br/>Agents React]
+        AB2[NGO Agents<br/>Mobilize]
+        AB3[Donor Agents<br/>Respond]
+    end
+
+    subgraph "SYSTEM DYNAMICS"
+        SD1[Need Level<br/>Increases]
+        SD2[Funding<br/>Flows In]
+        SD3[Impact<br/>Propagates]
+    end
+
+    subgraph "DISCRETE EVENT"
+        DE1[Applications<br/>Queue]
+        DE2[Fast-Track<br/>Review]
+        DE3[Emergency<br/>Disbursement]
+    end
+
+    subgraph "OUTCOME"
+        OUT[Optimized<br/>Response Time<br/>& Impact]
+    end
+
+    E1 --> AB1 --> AB2 --> AB3
+    AB1 --> SD1
+    AB3 --> SD2
+    SD1 --> DE1
+    SD2 --> DE2
+    DE2 --> DE3
+    DE3 --> SD3
+    SD3 --> OUT
+
+    style E1 fill:#ef4444,color:#fff
+    style OUT fill:#10b981,color:#fff
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATA FLOW -->
+        <section class="content-section">
+            <h2>Data Flow: Celonis ↔ AnyLogic ↔ PGPX</h2>
+
+            <table class="data-flow-table">
+                <thead>
+                    <tr>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Data</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Celonis</strong></td>
+                        <td>AnyLogic</td>
+                        <td>Discovered process models, KPIs, bottleneck locations</td>
+                        <td>Calibrate simulation with real process behavior</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AnyLogic</strong></td>
+                        <td>Celonis</td>
+                        <td>Predicted outcomes, optimal parameters</td>
+                        <td>Configure action triggers with simulated thresholds</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Celonis</strong></td>
+                        <td>PGPX</td>
+                        <td>Real-time process state, alerts</td>
+                        <td>Feed PoN/PoI calculations, trigger smart contracts</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AnyLogic</strong></td>
+                        <td>PGPX</td>
+                        <td>Impact predictions, risk scores</td>
+                        <td>Inform allocation decisions, governance parameters</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PGPX</strong></td>
+                        <td>Celonis</td>
+                        <td>Blockchain events, PoI validations</td>
+                        <td>Enrich event logs with on-chain data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PGPX</strong></td>
+                        <td>AnyLogic</td>
+                        <td>PoN scores, allocation outcomes</td>
+                        <td>Validate simulation accuracy, update models</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- USE CASES -->
+        <section class="content-section">
+            <h2>Concrete Use Cases</h2>
+
+            <div class="use-case-grid">
+                <div class="use-case-card" style="border-left: 4px solid #00d4aa;">
+                    <h4>1. Grant Pipeline Optimization</h4>
+                    <p><strong>Celonis:</strong> Discovers that 60% of delays occur at financial compliance check</p>
+                    <p><strong>AnyLogic:</strong> Simulates adding 2 compliance officers vs. automating 3 checks</p>
+                    <p><strong>Result:</strong> Automation reduces average processing time by 45%</p>
+                </div>
+
+                <div class="use-case-card" style="border-left: 4px solid #6366f1;">
+                    <h4>2. QF Round Design</h4>
+                    <p><strong>AnyLogic:</strong> Agent-based simulation of 10,000 donors with different matching parameters</p>
+                    <p><strong>Celonis:</strong> Monitors actual round execution, compares to simulation</p>
+                    <p><strong>Result:</strong> 25% improvement in matching efficiency next round</p>
+                </div>
+
+                <div class="use-case-card" style="border-left: 4px solid #f59e0b;">
+                    <h4>3. Emergency Response Planning</h4>
+                    <p><strong>AnyLogic:</strong> Pre-simulates various crisis scenarios (outbreak, conflict, disaster)</p>
+                    <p><strong>Celonis:</strong> When crisis detected, triggers pre-configured fast-track process</p>
+                    <p><strong>Result:</strong> Response time reduced from weeks to days</p>
+                </div>
+
+                <div class="use-case-card" style="border-left: 4px solid #ec4899;">
+                    <h4>4. Impact Prediction</h4>
+                    <p><strong>Celonis:</strong> Extracts historical project performance patterns</p>
+                    <p><strong>AnyLogic:</strong> System dynamics model predicts 3-year health outcomes</p>
+                    <p><strong>Result:</strong> Donors see expected PoI before funding decision</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPLEMENTATION ROADMAP -->
+        <section class="content-section">
+            <h2>Implementation Roadmap</h2>
+
+            <div class="integration-flow">
+                <div class="mermaid">
+gantt
+    title Celonis + AnyLogic Integration Roadmap
+    dateFormat  YYYY-MM
+    section Phase 1: Foundation
+    Celonis connector setup           :2025-01, 2M
+    Event log extraction pipeline     :2025-02, 2M
+    Basic process discovery           :2025-03, 1M
+    section Phase 2: Simulation
+    AnyLogic model architecture       :2025-03, 2M
+    Agent-based stakeholder model     :2025-04, 2M
+    Discrete event grant pipeline     :2025-05, 2M
+    section Phase 3: Integration
+    Celonis-AnyLogic data bridge      :2025-06, 2M
+    PGPX API integration              :2025-07, 2M
+    Real-time synchronization         :2025-08, 1M
+    section Phase 4: Optimization
+    Closed-loop automation            :2025-09, 2M
+    What-if scenario dashboard        :2025-10, 2M
+    Production deployment             :2025-11, 1M
+                </div>
+            </div>
+        </section>
+
+        <!-- TECHNICAL REQUIREMENTS -->
+        <section class="content-section">
+            <h2>Technical Requirements</h2>
+
+            <div class="tool-grid">
+                <div class="tool-card celonis">
+                    <h3>Celonis Setup</h3>
+                    <ul class="feature-list">
+                        <li><span class="feature-icon">*</span> Celonis EMS (Execution Management System)</li>
+                        <li><span class="feature-icon">*</span> Process Connectors: MS Dynamics, PostgreSQL, REST API</li>
+                        <li><span class="feature-icon">*</span> Action Flows for automated interventions</li>
+                        <li><span class="feature-icon">*</span> Machine Learning Workbench for pattern detection</li>
+                        <li><span class="feature-icon">*</span> Celonis API for external integrations</li>
+                    </ul>
+                </div>
+
+                <div class="tool-card anylogic">
+                    <h3>AnyLogic Setup</h3>
+                    <ul class="feature-list">
+                        <li><span class="feature-icon">*</span> AnyLogic Professional or University license</li>
+                        <li><span class="feature-icon">*</span> AnyLogic Cloud for model deployment</li>
+                        <li><span class="feature-icon">*</span> Java API for custom integrations</li>
+                        <li><span class="feature-icon">*</span> Database connectivity (PostgreSQL, MongoDB)</li>
+                        <li><span class="feature-icon">*</span> REST API for real-time data exchange</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKS -->
+        <section class="content-section">
+            <h2>Related Documentation</h2>
+            <div class="architecture-cards">
+                <div class="arch-card">
+                    <h3>PGPX Protocol</h3>
+                    <p>Core architecture and components</p>
+                    <a href="index-pgpx.html" class="btn">View PGPX</a>
+                </div>
+                <div class="arch-card">
+                    <h3>Proof of Need</h3>
+                    <p>Mathematical framework for need recognition</p>
+                    <a href="proof-of-need.html" class="btn">View PoN</a>
+                </div>
+                <div class="arch-card">
+                    <h3>AI Innovations</h3>
+                    <p>Adaptive smart contracts and AI orchestration</p>
+                    <a href="ai-improvements-proposal.html" class="btn">View AI</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3>Process Intelligence & Simulation - PGPX</h3>
+            <p style="margin: 20px 0;">Celonis + AnyLogic Integration for Intelligent Public Good Management</p>
+            <div class="nav-links" style="margin-top: 30px;">
+                <a href="index-pgpx.html">PGPX Home</a>
+                <a href="proof-of-need.html">Proof of Need</a>
+                <a href="all-diagrams.html">Architecture</a>
+                <a href="https://www.celonis.com" target="_blank">Celonis</a>
+                <a href="https://www.anylogic.com" target="_blank">AnyLogic</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px'
+            },
+            gantt: {
+                titleTopMargin: 25,
+                barHeight: 30,
+                barGap: 10,
+                topPadding: 50,
+                leftPadding: 100
+            }
+        });
+    </script>
+</body>
+</html>
